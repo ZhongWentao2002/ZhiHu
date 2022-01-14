@@ -6,9 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainViewController.h"
 
 @interface ViewController : UIViewController
-
+<MainDelegate>
 
 @end
 
