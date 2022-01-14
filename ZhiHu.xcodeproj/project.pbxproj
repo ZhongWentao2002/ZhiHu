@@ -13,9 +13,11 @@
 		145A0FC9279234A1001D1CA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 145A0FC7279234A1001D1CA3 /* LaunchScreen.storyboard */; };
 		145A0FCC279234A1001D1CA3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A0FCB279234A1001D1CA3 /* main.m */; };
 		145A0FD7279238A1001D1CA3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A0FD6279238A1001D1CA3 /* MainViewController.m */; };
+		B1500D93FB7428CFCBD4C18A /* Pods_ZhiHu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BC546A0C43B70F31023AF4 /* Pods_ZhiHu.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13816A8DCD87EC58C446D512 /* Pods-ZhiHu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhiHu.release.xcconfig"; path = "Target Support Files/Pods-ZhiHu/Pods-ZhiHu.release.xcconfig"; sourceTree = "<group>"; };
 		145A0FB6279234A0001D1CA3 /* ZhiHu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhiHu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145A0FB9279234A0001D1CA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		145A0FBA279234A0001D1CA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -27,6 +29,8 @@
 		145A0FCB279234A1001D1CA3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		145A0FD5279238A1001D1CA3 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		145A0FD6279238A1001D1CA3 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		46BC546A0C43B70F31023AF4 /* Pods_ZhiHu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZhiHu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B9F5C71A72BFB3379CDEC25 /* Pods-ZhiHu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhiHu.debug.xcconfig"; path = "Target Support Files/Pods-ZhiHu/Pods-ZhiHu.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1500D93FB7428CFCBD4C18A /* Pods_ZhiHu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +50,8 @@
 			children = (
 				145A0FB8279234A0001D1CA3 /* ZhiHu */,
 				145A0FB7279234A0001D1CA3 /* Products */,
+				A3CF346CF81C155FC07FE6E0 /* Pods */,
+				D415202F53B622AEE878793C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +80,24 @@
 			path = ZhiHu;
 			sourceTree = "<group>";
 		};
+		A3CF346CF81C155FC07FE6E0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B9F5C71A72BFB3379CDEC25 /* Pods-ZhiHu.debug.xcconfig */,
+				13816A8DCD87EC58C446D512 /* Pods-ZhiHu.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D415202F53B622AEE878793C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46BC546A0C43B70F31023AF4 /* Pods_ZhiHu.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +105,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 145A0FCF279234A1001D1CA3 /* Build configuration list for PBXNativeTarget "ZhiHu" */;
 			buildPhases = (
+				91AA0C60F4F6E4B5710E971A /* [CP] Check Pods Manifest.lock */,
 				145A0FB2279234A0001D1CA3 /* Sources */,
 				145A0FB3279234A0001D1CA3 /* Frameworks */,
 				145A0FB4279234A0001D1CA3 /* Resources */,
+				2E5D14D5F90668E20C7ACCD4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -136,6 +163,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E5D14D5F90668E20C7ACCD4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZhiHu/Pods-ZhiHu-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZhiHu/Pods-ZhiHu-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZhiHu/Pods-ZhiHu-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91AA0C60F4F6E4B5710E971A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZhiHu-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		145A0FB2279234A0001D1CA3 /* Sources */ = {
@@ -277,6 +346,7 @@
 		};
 		145A0FD0279234A1001D1CA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B9F5C71A72BFB3379CDEC25 /* Pods-ZhiHu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +372,7 @@
 		};
 		145A0FD1279234A1001D1CA3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13816A8DCD87EC58C446D512 /* Pods-ZhiHu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
