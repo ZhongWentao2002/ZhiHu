@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**代理，关键时候得到push对象*/
 @property (nonatomic, weak) UIViewController <MainDelegate> *delegate;
 
+/**init不可用，请使用initWithDelegate*/
+- (instancetype)init NS_UNAVAILABLE;
+
 /**指定manageVC为自己代理，封装性良好*/
 - (instancetype)initWithDelegate:(UIViewController <MainDelegate> *)manageVC;
 

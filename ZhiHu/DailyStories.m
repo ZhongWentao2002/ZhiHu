@@ -22,6 +22,7 @@
     if (self) {
         NSMutableArray *storyMA = [[NSMutableArray alloc] init];
         for (NSDictionary *storyDic in storiesArray) {
+            /**注意这里用的initTopDic*/
             [storyMA addObject:[[Story alloc] initTopDic:storyDic]];
         }
         self.stories = [storyMA copy];
@@ -41,8 +42,8 @@
         self.date = date;
         NSMutableArray *storyMA = [[NSMutableArray alloc] init];
         for (NSDictionary *storyDic in storiesArray) {
-            [storyMA addObject:[[Story alloc] initTopDic:storyDic]];
-            
+            /**注意这里用的initCellDic:delegate*/
+            [storyMA addObject:[[Story alloc] initCellDic:storyDic delegate:self]];
         }
         self.stories = [storyMA copy];
     }
@@ -72,7 +73,7 @@
 
 /**提供title，返回doubel类型数据并封装*/
 - (double)heightForTitle:(NSString *)title{
-    /**因为自己不知道，所以转交一次*/
+    /**因为自己不知道，所以传递一次*/
     return [self.delegate heightForTitle:title];
 }
 

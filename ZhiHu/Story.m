@@ -42,7 +42,8 @@
  * image_hue:NSString
  * url:NSString
  */
-- (instancetype)initCellDic:(NSDictionary *)dic{
+- (instancetype)initCellDic:(NSDictionary *)dic
+                   delegate:(id <StoryDelegate>)theDelegate{
     self = [super init];
     if (self) {
         self.title = dic[@"title"];
@@ -54,6 +55,7 @@
         self.image_hue = dic[@"image_hue"];
         self.ID = [dic[@"id"] longValue];
         self.url = dic[@"url"];
+        self.delegate = theDelegate;
         _titleHeight = [self.delegate heightForTitle:self.title];
     }
     return self;

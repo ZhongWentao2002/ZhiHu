@@ -80,7 +80,8 @@ NS_ASSUME_NONNULL_BEGIN
  * image_hue:NSString
  * url:NSString
  */
-- (instancetype)initCellDic:(NSDictionary *)dic;
+- (instancetype)initCellDic:(NSDictionary *)dic
+                   delegate:(id <StoryDelegate>)theDelegate;
 
 @end
 
