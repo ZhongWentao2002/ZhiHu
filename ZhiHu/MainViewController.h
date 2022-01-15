@@ -5,13 +5,15 @@
 //  Created by SSR on 2022/1/15.
 //
 
+/**知乎日报主页控制器
+ * 此控制器将管理一个banner和tableview
+ */
+
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol MainDelegate <NSObject>
-
-
 
 @end
 
