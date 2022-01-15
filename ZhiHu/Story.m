@@ -9,4 +9,51 @@
 
 @implementation Story
 
+#pragma mark - 初始化方法
+
+/**Top类型字典转模型
+ * Top类型字典至少包含如下：
+ * title:NSString
+ * hint:NSString
+ * image:NSString
+ * image_hue:NSString
+ * url:NSString
+ */
+- (instancetype)initTopDic:(NSDictionary *)dic{
+    self = [super init];
+    if (self) {
+        self.title = dic[@"title"];
+        self.hint = dic[@"hint"];
+        self.image = dic[@"image"];
+        self.image_hue = dic[@"image_hue"];
+        self.ID = [dic[@"id"] longValue];
+        self.url = dic[@"url"];
+    }
+    return self;
+}
+
+/**Cell类型字典转模型
+ * Cell类型字典至少包含如下：
+ * title:NSString
+ * hint:NSString
+ * image:NSArray -> NSString有nil情况
+ * image_hue:NSString
+ * url:NSString
+ */
+- (instancetype)initCellDic:(NSDictionary *)dic{
+    self = [super init];
+    if (self) {
+        self.title = dic[@"title"];
+        self.hint = dic[@"hint"];
+        NSArray *images = dic[@"images"];
+        if (images) {
+            self.image = images[0];
+        }
+        self.image_hue = dic[@"image_hue"];
+        self.ID = [dic[@"id"] longValue];
+        self.url = dic[@"url"];
+    }
+    return self;
+}
+
 @end

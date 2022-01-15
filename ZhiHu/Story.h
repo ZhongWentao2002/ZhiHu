@@ -11,7 +11,7 @@
  * 所有的转换都将由字典告诉我们
  */
 
-#import <UIkit/UIkit.h>
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,16 +24,38 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *hint;
 
 /**image预览图片*/
-@property (nonatomic, copy) UIImage *image;
+@property (nonatomic, copy) NSString *image;
 
 /**image_hue，用于top_stories类型*/
-@property (nonatomic, copy) UIColor *image_hue;
+@property (nonatomic, copy) NSString *image_hue;
 
 /**id内容id*/
 @property (nonatomic) NSInteger ID;
 
 /**url详情页保留*/
-@property (nonatomic, copy) NSURL *url;
+@property (nonatomic, copy) NSString *url;
+
+#pragma mark - 初始化方法
+
+/**Top类型字典转模型
+ * Top类型字典至少包含如下：
+ * title:NSString
+ * hint:NSString
+ * image:NSString
+ * image_hue:NSString
+ * url:NSString
+ */
+- (instancetype)initTopDic:(NSDictionary *)dic;
+
+/**Cell类型字典转模型
+ * Cell类型字典至少包含如下：
+ * title:NSString
+ * hint:NSString
+ * image:NSArray -> NSString有nil情况
+ * image_hue:NSString
+ * url:NSString
+ */
+- (instancetype)initCellDic:(NSDictionary *)dic;
 
 @end
 
