@@ -16,17 +16,28 @@
 
 #import <Foundation/Foundation.h>
 
-@class Story;
+/**与自己耦合性相关的模型*/
+#import "Story.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - DailyStories属性
+
 @interface DailyStories : NSObject
+<StoryDelegate>
+
+#pragma mark - 基本数据属性
 
 /**保存当天日期*/
 @property (nonatomic, copy) NSString *date;
 
 /**保存每天的新闻*/
 @property (nonatomic, copy) NSArray <Story *> *stories;
+
+#pragma mark - 其他数据属性
+
+/**代理，转交代理或其他*/
+@property (nonatomic, weak) id <StoryDelegate> delegate;
 
 #pragma mark - 初始化方法
 

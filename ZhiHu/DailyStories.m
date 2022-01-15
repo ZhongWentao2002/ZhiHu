@@ -6,7 +6,6 @@
 //
 
 #import "DailyStories.h"
-#import "Story.h"
 #import "NetTool.h"
 
 @implementation DailyStories
@@ -43,6 +42,7 @@
         NSMutableArray *storyMA = [[NSMutableArray alloc] init];
         for (NSDictionary *storyDic in storiesArray) {
             [storyMA addObject:[[Story alloc] initTopDic:storyDic]];
+            
         }
         self.stories = [storyMA copy];
     }
@@ -66,6 +66,14 @@
         /**创建并回掉Cell*/
         addCell([[self alloc] initCellWithDate:dic[@"date"] Cell_stories:dic[@"stories"]]);
     }];
+}
+
+#pragma mark - <StoryDelegate>
+
+/**提供title，返回doubel类型数据并封装*/
+- (double)heightForTitle:(NSString *)title{
+    /**因为自己不知道，所以转交一次*/
+    return [self.delegate heightForTitle:title];
 }
 
 @end

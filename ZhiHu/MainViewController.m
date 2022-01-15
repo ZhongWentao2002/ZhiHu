@@ -7,7 +7,12 @@
 
 #import "MainViewController.h"
 
+#import "MainTableView.h"
+
 @interface MainViewController ()
+
+/**主页的视图*/
+@property (nonatomic, strong) MainTableView *mainTableView;
 
 @end
 

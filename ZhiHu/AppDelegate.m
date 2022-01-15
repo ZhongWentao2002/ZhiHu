@@ -19,7 +19,7 @@
 
 @implementation AppDelegate
 
-
+/**当application完成从 启动选项 字典中加载*/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] initWithDelegate:[[ViewController alloc] init]]];

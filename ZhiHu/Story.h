@@ -15,7 +15,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - Story代理
+
+@protocol StoryDelegate <NSObject>
+
+@optional//必须实现
+
+/**提供title，返回doubel类型数据并封装*/
+- (double) heightForTitle:(NSString *)title;
+
+@end
+
+#pragma mark - Story属性
+
 @interface Story : NSObject
+
+#pragma mark 基本数据属性
 
 /**title新闻标题*/
 @property (nonatomic, copy) NSString *title;
@@ -26,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**image预览图片*/
 @property (nonatomic, copy) NSString *image;
 
+#pragma mark - 其他数据属性
+
 /**image_hue，用于top_stories类型*/
 @property (nonatomic, copy) NSString *image_hue;
 
@@ -34,6 +51,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**url详情页保留*/
 @property (nonatomic, copy) NSString *url;
+
+/**代理，任何类型，只要给我提供数据的类型*/
+@property (nonatomic, weak) id <StoryDelegate> delegate;
+
+#pragma mark - 被封装的基本属性
+
+/**title的高度，将由代理完成*/
+@property (nonatomic, readonly) double titleHeight;
 
 #pragma mark - 初始化方法
 

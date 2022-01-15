@@ -7,6 +7,8 @@
 
 #import "Story.h"
 
+#pragma mark - 方法实现
+
 @implementation Story
 
 #pragma mark - 初始化方法
@@ -52,6 +54,7 @@
         self.image_hue = dic[@"image_hue"];
         self.ID = [dic[@"id"] longValue];
         self.url = dic[@"url"];
+        _titleHeight = [self.delegate heightForTitle:self.title];
     }
     return self;
 }
