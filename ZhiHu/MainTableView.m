@@ -24,6 +24,7 @@
 
 #pragma mark - PageCell创建方法
 
+/**链式创建*/
 - (PageCell *(^)(void))create{
     return ^PageCell *(){
         static NSString *PageCellIdentify = @"PageCell";
@@ -32,6 +33,7 @@
         /**如果资源池无数据则需要创建*/
         if (aCell == nil) {
             aCell = [[PageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PageCellIdentify];
+            aCell.frame = CGRectMake(0, 0, self.frame.size.width, 0);
         }
         else{
             aCell.Default();

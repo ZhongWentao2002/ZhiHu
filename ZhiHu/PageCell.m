@@ -9,6 +9,8 @@
 
 @implementation PageCell
 
+#pragma mark - 初始化方法
+
 /**重写注册cell的方法
  * 采用复用池机制时调用
  * 将固定除titleHeight的布局属性
@@ -31,6 +33,13 @@
         
     }
     return self;
+}
+
+/**重写Frame*/
+- (void)setFrame:(CGRect)frame{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    [super setFrame:frame];
 }
 
 #pragma mark - 链式编程

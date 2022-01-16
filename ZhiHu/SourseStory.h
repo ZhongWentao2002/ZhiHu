@@ -52,9 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 方法声明
 
-/**init不可用，请用initWithDelegate:*/
-- (instancetype)init NS_UNAVAILABLE;
-
 /**空Sourse的init方法
  * topStories会有基础加载
  * sectionStories会有基础加载

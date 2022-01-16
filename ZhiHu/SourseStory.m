@@ -11,6 +11,16 @@
 
 #pragma mark - 初始化方法
 
+/**调用init时必须在外部制定delegate！！！*/
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        self.topStories = [[DailyStories alloc] init];
+        self.sectionStories = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 /**空Sourse的init方法
  * topStories会有基础加载
  * sectionStories会有基础加载
