@@ -45,6 +45,8 @@
  * backgroundColor
  */
 - (PageCell *(^)(void))Default{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^PageCell *(){
         self.titleLab.text = @"";
         self.titleLab.backgroundColor = [UIColor grayColor];
@@ -57,6 +59,8 @@
 
 /**自定义title的文字*/
 - (PageCell *(^)(NSString *))title{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^PageCell *(NSString *str){
         self.titleLab.text = str;
         return self;
@@ -65,6 +69,8 @@
 
 /**自定义hint的文字*/
 - (PageCell *(^)(NSString *))hint{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^PageCell *(NSString *str){
         self.hintLab.text = str;
         return self;
@@ -73,6 +79,8 @@
 
 /**自定义picture*/
 - (PageCell *(^)(NSString *))picture{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^PageCell *(NSString *url){
         self.pictureView;
         return self;

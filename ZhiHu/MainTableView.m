@@ -16,7 +16,6 @@
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     self = [super initWithFrame:frame style:UITableViewStyleGrouped];
-    NSLog(@"\n%@ - %s", [self class], __func__);
     if (self) {
         self.delegate = self;
     }
@@ -27,6 +26,7 @@
 
 - (PageCell *(^)(void))create{
     return ^PageCell *(){
+        static NSString *PageCellIdentify = @"PageCell";
         /**向资源池访问*/
         PageCell *aCell = [self dequeueReusableCellWithIdentifier:PageCellIdentify];
         /**如果资源池无数据则需要创建*/
@@ -38,23 +38,6 @@
         }
         return aCell;
     };
-}
-
-- (PageCell *)createPageCell:(PageCell *)cell{
-    /**注册cell*/
-    /**资源池identify*/
-    static NSString *identify = @"PageCell";
-    /**向资源池访问*/
-    PageCell *aCell = [self dequeueReusableCellWithIdentifier:identify];
-    /**如果资源池无数据则需要创建*/
-    if (aCell == nil) {
-        aCell = [[PageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-    }
-    else{
-        aCell.Default();
-    }
-    /**加载数据*/
-    return aCell;
 }
 
 #pragma mark - <UITableViewDelegate>

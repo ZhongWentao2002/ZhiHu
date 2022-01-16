@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (PageCell *(^)(void))create;
-- (PageCell *)createPageCell:(PageCell *)cell;
 
 @end
 

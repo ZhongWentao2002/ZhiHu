@@ -7,8 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define PageCellIdentify @"PageCell"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PageCell : UITableViewCell

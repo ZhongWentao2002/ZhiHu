@@ -95,19 +95,23 @@
 /**主页数据懒加载*/
 - (SourseStory *)sourse{
     if (_sourse == nil) {
-        _sourse = [[SourseStory alloc] init];
+        _sourse = [[SourseStory alloc] initWithDelegate:self];
     }
     return _sourse;
 }
 
 #pragma mark - <SourseStoryDelegate>
 
-/**根据story去创建一个cell*/
-- (UITableViewCell *)tableView:(UITableView *)tableView ForSourse:(Story *)story{
+/**根据story去创建一个cell，如果没有story，则得到nil*/
+- (UITableViewCell *)tableView:(UITableView *)tableView
+                     ForSourse:(Story * _Nullable)story{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    return self.mainTableView.create()
-        .title(story.title).hint(story.hint).picture(story.image);
+    return story == nil ? self.mainTableView.create().Default() : self.mainTableView.create().title(story.title).hint(story.hint).picture(story.image);
+}
+
+- (double)heightForTitle:(NSString *)title{
+    return 18;
 }
 
 @end

@@ -26,8 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required//必须实现
 
-/**根据story去创建一个cell*/
-- (UITableViewCell *)tableView:(UITableView *)tableView ForSourse:(Story *)story;
+/**根据story去创建一个cell，如果没有story，则得到nil*/
+- (UITableViewCell *)tableView:(UITableView *)tableView
+                     ForSourse:(Story * _Nullable)story;
 
 @end
 
@@ -48,6 +49,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**代理*/
 @property (nonatomic, weak)id <SourseStoryDelegate> delegate;
+
+#pragma mark - 方法声明
+
+/**init不可用，请用initWithDelegate:*/
+- (instancetype)init NS_UNAVAILABLE;
+
+/**空Sourse的init方法
+ * topStories会有基础加载
+ * sectionStories会有基础加载
+ */
+- (instancetype)initWithDelegate:(id <SourseStoryDelegate>)delegate;
 
 @end
 
