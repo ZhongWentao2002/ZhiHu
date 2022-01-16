@@ -15,6 +15,8 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         self.topStories = [[DailyStories alloc] init];
         self.sectionStories = [[NSMutableArray alloc] init];
     }
@@ -24,12 +26,13 @@
 /**空Sourse的init方法
  * topStories会有基础加载
  * sectionStories会有基础加载
+ * 代理会给遵循了代理协议的代理
  */
 - (instancetype)initWithDelegate:(id <SourseStoryDelegate>)delegate{
-    self = [super init];
+    self = [self init];
     if (self) {
-        self.topStories = [[DailyStories alloc] init];
-        self.sectionStories = [[NSMutableArray alloc] init];
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         self.delegate = delegate;
     }
     return self;

@@ -67,6 +67,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     NSLog(@"\n%@ - %s", [self class], __func__);
+    
 }
 
 /**视图已经出现，做banner页启动timer用*/
@@ -107,7 +108,7 @@
                      ForSourse:(Story * _Nullable)story{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    return story == nil ? self.mainTableView.create().Default() : self.mainTableView.create().title(story.title).hint(story.hint).picture(story.image);
+    return story == nil ? self.mainTableView.cellDefault() : self.mainTableView.cellDefault().title(story.title).hint(story.hint).picture(story.image);
 }
 
 - (double)heightForTitle:(NSString *)title{

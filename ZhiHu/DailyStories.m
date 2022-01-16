@@ -16,6 +16,8 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         self.date = [NSString string];
         self.stories = [[NSArray alloc] init];
     }
@@ -30,6 +32,8 @@
 - (instancetype)initTopWithTop_stories:(NSArray *)storiesArray{
     self = [super init];
     if (self) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         NSMutableArray *storyMA = [[NSMutableArray alloc] init];
         for (NSDictionary *storyDic in storiesArray) {
             /**注意这里用的initTopDic*/
@@ -49,6 +53,8 @@
                      Cell_stories:(NSArray *)storiesArray{
     self = [super init];
     if (self) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         self.date = date;
         NSMutableArray *storyMA = [[NSMutableArray alloc] init];
         for (NSDictionary *storyDic in storiesArray) {

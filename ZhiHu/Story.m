@@ -24,6 +24,8 @@
 - (instancetype)initTopDic:(NSDictionary *)dic{
     self = [super init];
     if (self) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         self.title = dic[@"title"];
         self.hint = dic[@"hint"];
         self.image = dic[@"image"];
@@ -46,6 +48,8 @@
                    delegate:(id <StoryDelegate>)theDelegate{
     self = [super init];
     if (self) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         self.title = dic[@"title"];
         self.hint = dic[@"hint"];
         NSArray *images = dic[@"images"];
