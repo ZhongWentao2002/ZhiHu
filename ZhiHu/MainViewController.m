@@ -54,6 +54,7 @@
 - (void)loadView{
     [super loadView];
     NSLog(@"\n%@ - %s", [self class], __func__);
+    
     [self.view addSubview:self.mainTableView];
 }
 
@@ -61,6 +62,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    
 }
 
 /**视图将要出现，可以做一些内容反馈*/
@@ -111,8 +114,11 @@
     return story == nil ? self.mainTableView.cellDefault() : self.mainTableView.cellDefault().title(story.title).hint(story.hint).picture(story.image);
 }
 
+/**去寻找title所需要的高度*/
 - (double)heightForTitle:(NSString *)title{
-    return 18;
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    return 80;
 }
 
 @end

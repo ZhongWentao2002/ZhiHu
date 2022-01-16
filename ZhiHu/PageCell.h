@@ -11,10 +11,11 @@
  */
 
 #import <UIKit/UIKit.h>
-
-#import <Masonry.h>
+#include <Masonry.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+#pragma mark - 基本声明
 
 @interface PageCell : UITableViewCell
 
@@ -42,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  * hintlab显示空文本，灰色
  * backgroundColor
  */
-- (PageCell *(^)(void))Default;
+- (void(^)(void))Default;
 
 /**frame的layout*/
 - (PageCell *(^)(CGFloat))width;
@@ -57,6 +58,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**自定义picture*/
 - (PageCell *(^)(NSString *url))picture;
+
+/**设置titleHeight，将重新布局*/
+- (PageCell *(^)(CGFloat))heightOfTitle;
+
+/**封装的高度，只计算并附值*/
++ (CGFloat (^)(NSString *))heightForTitle;
+
+@end
+
+/**封装自己本身的CGRect，title高度将由其他来提供*/
+@interface PageCell (CGRect)
+
+/**title的Rect*/
+@property (nonatomic) CGRect titleRect;
+
 
 @end
 

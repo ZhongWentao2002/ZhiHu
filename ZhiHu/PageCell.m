@@ -7,9 +7,24 @@
 
 #import "PageCell.h"
 
+#import <UIImageView+AFNetworking.h>
+
+
+
+#pragma mark -  类扩展（被封装的类）
+
+@interface PageCell ()
+
+/**封装titleHeight*/
+@property (nonatomic) CGFloat titleHeight;
+
+@end
+
+#pragma mark - 方法实现
+
 @implementation PageCell
 
-#pragma mark - 初始化方法
+#pragma mark - 初始化和布局
 
 /**重写注册cell的方法
  * 采用复用池机制时调用
@@ -33,6 +48,13 @@
         
     }
     return self;
+}
+
+- (void)StaticCGRectWithCellWeidth:(CGFloat)weidth{
+    
+    [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.mas_offset(10);
+    }];
 }
 
 /**layout方法，布局各个视图*/
@@ -70,6 +92,11 @@
     
 }
 
+/**title的CGRect*/
+- (void)CGRectForTitle{
+    
+}
+
 #pragma mark - 懒加载
 
 /**懒加载pictureView，以免bug*/
@@ -89,6 +116,8 @@
         NSLog(@"\n%@ - %s", [self class], __func__);
      
         _titleLab = [[UILabel alloc] init];
+        _titleLab.numberOfLines = 0;
+        _titleLab.font = [UIFont boldSystemFontOfSize:18];
         _titleLab.backgroundColor = [UIColor darkGrayColor];
     }
     return _titleLab;
@@ -100,6 +129,7 @@
         NSLog(@"\n%@ - %s", [self class], __func__);
         
         _hintLab = [[UILabel alloc] init];
+        _hintLab.font = [UIFont systemFontOfSize:16];
         _hintLab.backgroundColor = [UIColor grayColor];
     }
     return _hintLab;
@@ -118,16 +148,16 @@
  * hintlab显示空文本，灰色
  * backgroundColor
  */
-- (PageCell *(^)(void))Default{
+- (void(^)(void))Default{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    return ^PageCell *(){
+    return ^(){
         self.titleLab.text = @"";
         self.titleLab.backgroundColor = [UIColor darkGrayColor];
         self.hintLab.text = @"";
         self.hintLab.backgroundColor = [UIColor grayColor];
         self.pictureView.image = [UIImage imageNamed:@"ImageDefault"];
-        return self;
+        return;
     };
 }
 
@@ -151,6 +181,7 @@
     
     return ^PageCell *(NSString *str){
         self.titleLab.text = str;
+        self.titleLab.backgroundColor = [UIColor clearColor];
         return self;
     };
 }
@@ -161,6 +192,7 @@
     
     return ^PageCell *(NSString *str){
         self.hintLab.text = str;
+        self.hintLab.backgroundColor = [UIColor clearColor];
         return self;
     };
 }
@@ -170,8 +202,46 @@
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     return ^PageCell *(NSString *url){
-        self.pictureView;
+        [self.pictureView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"ImageDefault"]];
         return self;
+    };
+}
+
+/**设置titleHeight，将重新布局*/
+- (PageCell *(^)(CGFloat))heightOfTitle{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    return ^PageCell *(CGFloat height){
+        /**重新布局title*/
+        self.titleHeight = height;
+        CGRect titleRect = self.titleLab.frame;
+        titleRect.size.height = height;
+        self.titleLab.frame = titleRect;
+        /**重新布局hint*/
+        CGRect hintRect = self.hintLab.frame;
+        hintRect.origin.y = titleRect.origin.y + titleRect.size.height;
+        self.hintLab.frame = hintRect;
+        return self;
+    };
+}
+
+/**封装的高度，只计算并附值*/
+- (CGFloat (^)(NSString *))heightForTitle{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    return ^CGFloat(NSString *title){
+        //计算高度需要 文本 文本宽度 文本字典
+        CGFloat width = self.titleLab.frame.size.width;
+        NSDictionary *font =//得到字典
+        @{NSFontAttributeName :[UIFont boldSystemFontOfSize:self.titleLab.font.pointSize]};
+        //计算cgrect(0,0,width,autoHeight)
+        CGRect rect = [self.titleLab.text
+                       boundingRectWithSize:CGSizeMake(width, 0)
+                       options:NSStringDrawingUsesFontLeading
+                              |NSStringDrawingUsesLineFragmentOrigin
+                    attributes:font
+                       context:nil];
+        return rect.size.height;
     };
 }
 

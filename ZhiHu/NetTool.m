@@ -39,9 +39,9 @@
  * 返回NSDictionary
  * 注意：不做对dictionary的进一步操作
  */
-+ (void)GetLatestNewsSuccess:(void(^)(NSDictionary *))create{
+- (void)Lastest:(void(^)(NSDictionary *))create{
     /**网络请求*/
-    [[[self class] shareTool]
+    [self 
      GET:@"news/latest"
      parameters:nil
      headers:nil

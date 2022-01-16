@@ -18,11 +18,13 @@
     self = [super initWithFrame:frame style:UITableViewStyleGrouped];
     if (self) {
         self.delegate = self;
+        
+        
     }
     return self;
 }
 
-#pragma mark - PageCell创建方法
+#pragma mark - PageCell相关的方法
 
 /**链式创建，如果有则直接拿，如果没有则创建，默认default状态*/
 - (PageCell *(^)(void))cellDefault{
@@ -43,6 +45,10 @@
         }
         return aCell;
     };
+}
+
++ (CGFloat)GetTitleHeightFromPageCell:(NSString *)title{
+    return PageCell.heightForTitle(title);
 }
 
 #pragma mark - <UITableViewDelegate>

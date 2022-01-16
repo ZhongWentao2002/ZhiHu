@@ -36,8 +36,15 @@
         
         NSMutableArray *storyMA = [[NSMutableArray alloc] init];
         for (NSDictionary *storyDic in storiesArray) {
-            /**注意这里用的initTopDic*/
-            [storyMA addObject:[[Story alloc] initTopDic:storyDic]];
+            // Top
+            Story *astory = Story.Create()
+                .Title_String(storyDic[@"title"])
+                .Hint_String(storyDic[@"hint"])
+                .Image_URLString(storyDic[@"image"])
+                .Image_hue_String(storyDic[@"image_hue"])
+                .ID_String(storyDic[@"id"])
+                .URL_String(storyDic[@"url"]);
+            [storyMA addObject:astory];
         }
         self.stories = [storyMA copy];
     }
@@ -57,13 +64,68 @@
         
         self.date = date;
         NSMutableArray *storyMA = [[NSMutableArray alloc] init];
-        for (NSDictionary *storyDic in storiesArray) {
-            /**注意这里用的initCellDic:delegate*/
-            [storyMA addObject:[[Story alloc] initCellDic:storyDic delegate:self]];
+        for (NSDictionary *dic in storiesArray) {
+            // Cell
+            Story *aStory = Story.Create()
+                .Title_String(dic[@"title"])
+                .Hint_String(dic[@"hint"])
+                .Image_URLArray(dic[@"images"])
+                .ID_String(dic[@"ID"])
+                .URL_String(dic[@"url"]);
+            [storyMA addObject:aStory];
         }
         self.stories = [storyMA copy];
     }
     return self;
+}
+
+#pragma mark - 链式创建
+
+/**创建*/
++ (DailyStories *(^)(void))Create{
+    return ^DailyStories *(){
+        return [[DailyStories alloc] init];
+    };
+}
+
+/**Top，传值类型为Array*/
+- (DailyStories *(^)(NSArray *))Top_Array{
+    return ^(NSArray * storiesArray){
+        NSMutableArray *storyMA = [[NSMutableArray alloc] init];
+        for (NSDictionary *storyDic in storiesArray) {
+            // Top
+            Story *astory = Story.Create()
+                .Title_String(storyDic[@"title"])
+                .Hint_String(storyDic[@"hint"])
+                .Image_URLString(storyDic[@"image"])
+                .Image_hue_String(storyDic[@"image_hue"])
+                .ID_String(storyDic[@"id"])
+                .URL_String(storyDic[@"url"]);
+            [storyMA addObject:astory];
+        }
+        self.stories = [storyMA copy];
+        return self;
+    };
+}
+
+/**Cell*/
+- (DailyStories *(^)(NSString *, NSArray *))Cell_Date_Array{
+    return ^(NSString *date, NSArray *storiesArray){
+        self.date = date;
+        NSMutableArray *storyMA = [[NSMutableArray alloc] init];
+        for (NSDictionary *dic in storiesArray) {
+            // Cell
+            Story *aStory = Story.Create()
+                .Title_String(dic[@"title"])
+                .Hint_String(dic[@"hint"])
+                .Image_URLArray(dic[@"images"])
+                .ID_String(dic[@"ID"])
+                .URL_String(dic[@"url"]);
+            [storyMA addObject:aStory];
+        }
+        self.stories = [storyMA copy];
+        return self;
+    };
 }
 
 #pragma mark - 网络请求
@@ -77,20 +139,12 @@
 + (void)GetLastestTop:(void(^)(DailyStories *))setTop
                  Cell:(void(^)(DailyStories *))addCell{
     /**网络请求，得到了可用的dic*/
-    [NetTool GetLatestNewsSuccess:^(NSDictionary * _Nonnull dic) {
+    [[NetTool shareTool] Lastest:^(NSDictionary * _Nonnull dic) {
         /**创建并回掉Top*/
         setTop([[self alloc] initTopWithTop_stories:dic[@"top_stories"]]);
         /**创建并回掉Cell*/
         addCell([[self alloc] initCellWithDate:dic[@"date"] Cell_stories:dic[@"stories"]]);
     }];
-}
-
-#pragma mark - <StoryDelegate>
-
-/**提供title，返回doubel类型数据并封装*/
-- (double)heightForTitle:(NSString *)title{
-    /**因为自己不知道，所以传递一次*/
-    return [self.delegate heightForTitle:title];
 }
 
 @end

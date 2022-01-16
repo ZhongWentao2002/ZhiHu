@@ -30,8 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 返回NSDictionary
  * 注意：不做对dictionary的进一步操作
  */
-+ (void)GetLatestNewsSuccess:(void(^)(NSDictionary *))create;
-
+- (void)Lastest:(void(^)(NSDictionary *))create;
 
 
 @end

@@ -75,4 +75,8 @@
     return [self.delegate heightForTitle:title];
 }
 
+- (void)test{
+    
+}
+
 @end

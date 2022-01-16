@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - DailyStories属性
 
 @interface DailyStories : NSObject
-<StoryDelegate>
 
 #pragma mark - 基本数据属性
 
@@ -37,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 其他数据属性
 
 /**代理，转交代理或其他*/
-@property (nonatomic, weak) id <StoryDelegate> delegate;
+@property (nonatomic, weak) id delegate;
 
 #pragma mark - 初始化方法
 
@@ -55,6 +54,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initCellWithDate:(NSString *)date
                     Cell_stories:(NSArray *)storiesArray;
+
+#pragma mark - 链式创建
+
+/**创建*/
++ (DailyStories *(^)(void))Create;
+
+/**Top，传值类型为Array*/
+- (DailyStories *(^)(NSArray *))Top_Array;
+
+/**Cell，传值date和Array*/
+- (DailyStories *(^)(NSString *, NSArray *))Cell_Date_Array;
 
 #pragma mark - 网络请求
 

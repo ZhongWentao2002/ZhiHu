@@ -15,17 +15,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - Story代理
-
-@protocol StoryDelegate <NSObject>
-
-@required//必须实现
-
-/**提供title，返回doubel类型数据并封装*/
-- (double) heightForTitle:(NSString *)title;
-
-@end
-
 #pragma mark - Story属性
 
 @interface Story : NSObject
@@ -52,8 +41,31 @@ NS_ASSUME_NONNULL_BEGIN
 /**url详情页保留*/
 @property (nonatomic, copy) NSString *url;
 
-/**代理，任何类型，只要给我提供数据的类型*/
-@property (nonatomic, weak) id <StoryDelegate> delegate;
+#pragma mark - 链式编程
+
+/**类方法创建*/
++ (Story *(^)(void))Create;
+
+/**title赋值*/
+- (Story *(^)(NSString *))Title_String;
+
+/**hint赋值*/
+- (Story *(^)(NSString *))Hint_String;
+
+/**image，根据Ary赋值*/
+- (Story *(^)(NSArray *))Image_URLArray;
+
+/**image，根据具体url赋值*/
+- (Story *(^)(NSString *))Image_URLString;
+
+/**image_hue赋值*/
+- (Story *(^)(NSString *))Image_hue_String;
+
+/**ID，根据传入数字的String得到Intager*/
+- (Story *(^)(NSString *))ID_String;
+
+/**url赋值*/
+- (Story *(^)(NSString *))URL_String;
 
 #pragma mark - 被封装的基本属性
 
@@ -80,8 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
  * image_hue:NSString
  * url:NSString
  */
-- (instancetype)initCellDic:(NSDictionary *)dic
-                   delegate:(id <StoryDelegate>)theDelegate;
+- (instancetype)initCellDic:(NSDictionary *)dic;
 
 @end
 
