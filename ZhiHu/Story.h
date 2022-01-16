@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol StoryDelegate <NSObject>
 
-@optional//必须实现
+@required//必须实现
 
 /**提供title，返回doubel类型数据并封装*/
 - (double) heightForTitle:(NSString *)title;

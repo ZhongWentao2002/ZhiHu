@@ -12,6 +12,16 @@
 
 #pragma mark - 初始化方法
 
+/**简单初始化方法，无数据加载*/
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        self.date = [NSString string];
+        self.stories = [[NSArray alloc] init];
+    }
+    return self;
+}
+
 /**Top创建
  * 传入将转为Story类型的数组
  * top数据将不使用date，可用不用复值

@@ -9,12 +9,15 @@
 
 #import "MainTableView.h"
 
-#import "DailyStories.h"
+#import "SourseStory.h"
 
 @interface MainViewController ()
 
 /**主页的视图*/
 @property (nonatomic, strong) MainTableView *mainTableView;
+
+/**主页的数据*/
+@property (nonatomic, copy) SourseStory <UITableViewDataSource> *sourse;
 
 @end
 
@@ -25,8 +28,8 @@
 /**基本初始化方法，外部不可用使用*/
 - (instancetype)init{
     self = [super init];
+    NSLog(@"\n%@ - %s", [self class], __func__);
     if (self) {
-        NSLog(@"\n%@ - %s", [self class], __func__);
         self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
@@ -68,11 +71,27 @@
 }
 
 #pragma mark - 懒加载
+
+/**主页视图懒加载*/
 - (MainTableView *)mainTableView{
     if (_mainTableView == nil) {
-        _mainTableView = [[MainTableView alloc] init];
+        /**计算可靠高度，留足40给hearderView*/
+        CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+        CGRect tvRect = self.view.frame;
+        tvRect.origin.y += statusHeight + 40;
+        tvRect.size.height -= tvRect.origin.y;
+        _mainTableView = [[MainTableView alloc] initWithFrame:tvRect style:UITableViewStyleGrouped];
+        _mainTableView.dataSource = self.sourse;
     }
     return _mainTableView;
+}
+
+/**主页数据懒加载*/
+- (SourseStory *)sourse{
+    if (_sourse == nil) {
+        _sourse = [[SourseStory alloc] init];
+    }
+    return _sourse;
 }
 
 @end

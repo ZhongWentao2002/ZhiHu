@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**代理*/
 <UITableViewDelegate>
 
+/**init方法不可用，请使用initWithFrame:style:*/
+- (instancetype)init NS_UNAVAILABLE;
+
 @end
 
 NS_ASSUME_NONNULL_END
