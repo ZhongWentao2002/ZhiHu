@@ -50,13 +50,6 @@
     return self;
 }
 
-- (void)StaticCGRectWithCellWeidth:(CGFloat)weidth{
-    
-    [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.mas_offset(10);
-    }];
-}
-
 /**layout方法，布局各个视图*/
 - (void)layout{
     NSLog(@"\n%@ - %s", [self class], __func__);

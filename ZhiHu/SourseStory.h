@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 代理
 
 /**此代理和Story相关，必须遵守StoryDelegate协议*/
-@protocol SourseStoryDelegate <StoryDelegate>
+@protocol SourseStoryDelegate <NSObject>
 
 @required//必须实现
 
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 属性
 
 @interface SourseStory : NSObject
-<StoryDelegate, UITableViewDataSource>
+<UITableViewDataSource>
 
 #pragma mark - 基本数据属性
 
@@ -50,13 +50,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**代理*/
 @property (nonatomic, weak)id <SourseStoryDelegate> delegate;
 
-#pragma mark - 方法声明
+#pragma mark - 链式编程
 
-/**空Sourse的init方法
- * topStories会有基础加载
- * sectionStories会有基础加载
- */
-- (instancetype)initWithDelegate:(id <SourseStoryDelegate>)delegate;
+/**创建*/
++ (SourseStory *(^)(void))Create;
+
+/**代理*/
+- (SourseStory *(^)(id <SourseStoryDelegate>))Self_Delegate;
 
 @end
 

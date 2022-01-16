@@ -67,11 +67,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**url赋值*/
 - (Story *(^)(NSString *))URL_String;
 
-#pragma mark - 被封装的基本属性
-
-/**title的高度，将由代理完成*/
-@property (nonatomic, readonly) double titleHeight;
-
 #pragma mark - 初始化方法
 
 /**Top类型字典转模型

@@ -11,11 +11,12 @@
  */
 
 #import <UIKit/UIKit.h>
-#include <Masonry.h>
+
+#import "Story.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - 基本声明
+#pragma mark - PageCell属性
 
 @interface PageCell : UITableViewCell
 
@@ -67,13 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/**封装自己本身的CGRect，title高度将由其他来提供*/
-@interface PageCell (CGRect)
+#pragma mark - PageCell类扩展（封装基本CGRect）
 
-/**title的Rect*/
-@property (nonatomic) CGRect titleRect;
+#pragma mark - Story类扩展（封装title高度）
 
-
-@end
 
 NS_ASSUME_NONNULL_END

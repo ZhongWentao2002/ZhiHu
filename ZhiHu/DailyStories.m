@@ -141,9 +141,9 @@
     /**网络请求，得到了可用的dic*/
     [[NetTool shareTool] Lastest:^(NSDictionary * _Nonnull dic) {
         /**创建并回掉Top*/
-        setTop([[self alloc] initTopWithTop_stories:dic[@"top_stories"]]);
+        setTop(DailyStories.Create().Top_Array(dic[@"top_stories"]));
         /**创建并回掉Cell*/
-        addCell([[self alloc] initCellWithDate:dic[@"date"] Cell_stories:dic[@"stories"]]);
+        addCell(DailyStories.Create().Cell_Date_Array(dic[@"date"], dic[@"stories"]));
     }];
 }
 

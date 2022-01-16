@@ -11,7 +11,7 @@
 
 #pragma mark - 初始化方法
 
-/**调用init时必须在外部制定delegate！！！*/
+/**原生态init方法*/
 - (instancetype)init{
     self = [super init];
     if (self) {
@@ -23,19 +23,38 @@
     return self;
 }
 
-/**空Sourse的init方法
- * topStories会有基础加载
- * sectionStories会有基础加载
- * 代理会给遵循了代理协议的代理
- */
-- (instancetype)initWithDelegate:(id <SourseStoryDelegate>)delegate{
-    self = [self init];
-    if (self) {
-        NSLog(@"\n%@ - %s", [self class], __func__);
-        
+#pragma mark - 链式编程
+
+/**创建*/
++ (SourseStory *(^)(void))Create{
+    return ^SourseStory *(){
+        return [[SourseStory alloc] init];
+    };
+}
+
+/**代理*/
+- (SourseStory *(^)(id <SourseStoryDelegate>))Self_Delegate{
+    return ^SourseStory *(id <SourseStoryDelegate> delegate){
         self.delegate = delegate;
+        return self;
+    };
+}
+
+#pragma mark - 网络请求
+
+/**lastest请求    */
+- (void)getLastest:(void(^)(void))reload{
+    [DailyStories
+     GetLastestTop:^(DailyStories * _Nonnull topSourse) {
+        // Set Top
+        self.topStories = topSourse;
+        reload();
     }
-    return self;
+     Cell:^(DailyStories * _Nonnull cellSourse) {
+        // Add Cell
+        [self.sectionStories addObject:cellSourse];
+        reload();
+    }];
 }
 
 #pragma mark - <UITableViewDataSource>
@@ -67,16 +86,5 @@
     return [self.delegate tableView:tableView ForSourse:(self.sectionStories.count == indexPath.section ? nil : self.sectionStories[indexPath.section].stories[indexPath.row])];
 }
 
-#pragma mark - <StoryDelegate>
-
-- (double)heightForTitle:(nonnull NSString *)title {
-    NSLog(@"\n%@ - %s", [self class], __func__);
-    
-    return [self.delegate heightForTitle:title];
-}
-
-- (void)test{
-    
-}
 
 @end

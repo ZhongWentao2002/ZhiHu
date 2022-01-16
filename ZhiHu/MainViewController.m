@@ -96,10 +96,10 @@
     return _mainTableView;
 }
 
-/**主页数据懒加载*/
+/**主页数据懒加载，代理交给自己*/
 - (SourseStory *)sourse{
     if (_sourse == nil) {
-        _sourse = [[SourseStory alloc] initWithDelegate:self];
+        _sourse = SourseStory.Create().Self_Delegate(self);
     }
     return _sourse;
 }
