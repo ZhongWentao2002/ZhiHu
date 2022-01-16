@@ -37,18 +37,17 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    NSInteger menbers = self.sectionStories[section].stories.count;
-    return menbers == 0 ? 6 :menbers;
+    return self.sectionStories.count == 0 ? 6 : self.sectionStories[section].stories.count;
 }
 
-/**转交Cell的创建
- * sourse只提供数据源，不提供创建的Cell类型
- * 将转交给代理提供，必须实现！！！
- */
+/**根据story去set一个cell，应交给代理去做*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    return [self.delegate tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    return [self.delegate
+            tableView:tableView
+            ForSourse:(self.sectionStories.count == 0 ? nil : self.sectionStories[indexPath.section].stories[indexPath.row])];
 }
 
 @end

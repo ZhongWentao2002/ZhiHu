@@ -10,10 +10,6 @@
  * 传递和代理都将写在这个文件
  * 遵循<UITableViewDataSource>
  * 提供完美的source数据解决方案
- * 部分类似返回UITableViewCell的协议将转交一次！
- * 必须实现以下代理：
- * - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-
  */
 
 #import <Foundation/Foundation.h>
@@ -23,17 +19,35 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - 代理
+
+/**此代理和Story相关，必须遵守StoryDelegate协议*/
+@protocol SourseStoryDelegate <StoryDelegate>
+
+@required//必须实现
+
+/**根据story去创建一个cell*/
+- (UITableViewCell *)tableView:(UITableView *)tableView ForSourse:(Story *)story;
+
+@end
+
+#pragma mark - 属性
+
 @interface SourseStory : NSObject
-<UITableViewDataSource>
+<StoryDelegate, UITableViewDataSource>
+
+#pragma mark - 基本数据属性
 
 /**banner内容*/
-@property (nonatomic, copy) DailyStories *topStories;
+@property (nonatomic, strong) DailyStories *topStories;
 
 /**table内容*/
 @property (nonatomic, copy)NSMutableArray <DailyStories *> *sectionStories;
 
+#pragma mark - 其他数据属性
+
 /**代理*/
-@property (nonatomic, weak)id <UITableViewDataSource> delegate;
+@property (nonatomic, weak)id <SourseStoryDelegate> delegate;
 
 @end
 

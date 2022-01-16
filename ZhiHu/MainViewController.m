@@ -11,7 +11,10 @@
 
 #import "SourseStory.h"
 
+#pragma mark - 模块封装
+
 @interface MainViewController ()
+<SourseStoryDelegate>
 
 /**主页的视图*/
 @property (nonatomic, strong) MainTableView *mainTableView;
@@ -20,6 +23,8 @@
 @property (nonatomic, copy) SourseStory <UITableViewDataSource> *sourse;
 
 @end
+
+#pragma mark - 方法实现
 
 @implementation MainViewController
 
@@ -81,6 +86,7 @@
         tvRect.origin.y += statusHeight + 40;
         tvRect.size.height -= tvRect.origin.y;
         _mainTableView = [[MainTableView alloc] initWithFrame:tvRect style:UITableViewStyleGrouped];
+        /**数据源代理将交给数据源处理*/
         _mainTableView.dataSource = self.sourse;
     }
     return _mainTableView;
@@ -92,6 +98,16 @@
         _sourse = [[SourseStory alloc] init];
     }
     return _sourse;
+}
+
+#pragma mark - <SourseStoryDelegate>
+
+/**根据story去创建一个cell*/
+- (UITableViewCell *)tableView:(UITableView *)tableView ForSourse:(Story *)story{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    return self.mainTableView.create()
+        .title(story.title).hint(story.hint).picture(story.image);
 }
 
 @end
