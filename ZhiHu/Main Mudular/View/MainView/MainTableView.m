@@ -70,6 +70,8 @@ willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section{
 /**scroll正在滚动的方法 banner应该放大*/
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
+    /*----------------------------------待完成-----------------------------------------**/
+    
 }
 
 // Variable height support
@@ -125,10 +127,11 @@ willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section{
     return headerView;
 }
 
-/**选中后应跳转页面*/
+/**选中后应跳转页面，但我们只提供单击事件*/
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
+    [self.mainTV_delegate tapAtIndexPath:indexPath];
 }
 
 @end

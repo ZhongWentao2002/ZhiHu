@@ -40,6 +40,13 @@
     };
 }
 
+/**得到section数据*/
+- (DailyStories *(^)(NSInteger))DailyStories_inSection{
+    return ^DailyStories *(NSInteger section){
+        return section <= self.sectionStories.count ? self.sectionStories[section] : nil;
+    };
+}
+
 #pragma mark - 网络请求
 
 /**Lastest请求*/

@@ -13,12 +13,15 @@
 
 #import <UIKit/UIKit.h>
 
-/**新闻Controller*/
+/**新闻预览Controller*/
 #import "MainViewController.h"
+
+/**新闻详情Controller*/
+#import "NewsViewController.h"
 
 @interface ViewController : UIViewController
 /**遵循的代理*/
-<MainDelegate>
+<MainDelegate, NewsDelegate>
 
 @end
 

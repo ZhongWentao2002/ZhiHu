@@ -6,6 +6,7 @@
 //
 
 #import "DailyStories.h"
+
 #import "NetTool.h"
 
 @implementation DailyStories
@@ -125,6 +126,13 @@
         }
         self.stories = [storyMA copy];
         return self;
+    };
+}
+
+/**得到下标为Row的story*/
+- (Story *(^)(NSInteger))Story_inRow{
+    return ^Story *(NSInteger row){
+        return row <= self.stories.count ? self.stories[row] : nil;
     };
 }
 

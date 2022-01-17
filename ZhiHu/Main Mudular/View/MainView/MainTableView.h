@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**获取indexPath的date*/
 - (NSString *)titleForSection:(NSInteger)section;
 
+/**单击了indexPath的cell*/
+- (void)tapAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 #pragma mark - MainTableView基本

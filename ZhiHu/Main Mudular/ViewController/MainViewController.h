@@ -13,20 +13,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - Main模块代理
+
 @protocol MainDelegate <NSObject>
 
+/**得到单击了Cell被push到的页面，传出id和url*/
+- (UIViewController *)VC_pushedFromCell_withID:(NSInteger)ID url:(NSString *)url;
+
 @end
+
+#pragma mark - Main属性
 
 @interface MainViewController : UIViewController
 
 /**代理，关键时候得到push对象*/
 @property (nonatomic, weak) UIViewController <MainDelegate> *delegate;
 
-/**init不可用，请使用initWithDelegate*/
-- (instancetype)init NS_UNAVAILABLE;
+/**init不可用，请使用Create_withDelegate*/
+- (instancetype)init __attribute__((unavailable("请使用Create_withDelegate()")));
 
-/**指定manageVC为自己代理，封装性良好*/
-- (instancetype)initWithDelegate:(UIViewController <MainDelegate> *)manageVC;
+/**链式创建方法*/
++ (MainViewController *(^)(UIViewController <MainDelegate> *))Create_withDelegate;
 
 @end
 

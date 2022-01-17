@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		142FB71C27955F0E00FD001D /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71B27955F0E00FD001D /* BannerView.m */; };
 		142FB71F2795682F00FD001D /* BannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71E2795682F00FD001D /* BannerCell.m */; };
+		142FB7222795C6C300FD001D /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB7212795C6C300FD001D /* NewsViewController.m */; };
+		142FB7252795CD0B00FD001D /* SafeBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB7242795CD0B00FD001D /* SafeBarView.m */; };
 		145A0FBB279234A0001D1CA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A0FBA279234A0001D1CA3 /* AppDelegate.m */; };
 		145A0FC1279234A0001D1CA3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A0FC0279234A0001D1CA3 /* ViewController.m */; };
 		145A0FC6279234A1001D1CA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 145A0FC5279234A1001D1CA3 /* Assets.xcassets */; };
@@ -31,6 +33,10 @@
 		142FB71B27955F0E00FD001D /* BannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerView.m; sourceTree = "<group>"; };
 		142FB71D2795682F00FD001D /* BannerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerCell.h; sourceTree = "<group>"; };
 		142FB71E2795682F00FD001D /* BannerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerCell.m; sourceTree = "<group>"; };
+		142FB7202795C6C300FD001D /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		142FB7212795C6C300FD001D /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		142FB7232795CD0B00FD001D /* SafeBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafeBarView.h; sourceTree = "<group>"; };
+		142FB7242795CD0B00FD001D /* SafeBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeBarView.m; sourceTree = "<group>"; };
 		145A0FB6279234A0001D1CA3 /* ZhiHu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhiHu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145A0FB9279234A0001D1CA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		145A0FBA279234A0001D1CA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -71,6 +77,130 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		142FB7262795D01B00FD001D /* NetTool */ = {
+			isa = PBXGroup;
+			children = (
+				145A0FD827923F79001D1CA3 /* NetTool.h */,
+				145A0FD927923F79001D1CA3 /* NetTool.m */,
+			);
+			path = NetTool;
+			sourceTree = "<group>";
+		};
+		142FB7272795D03200FD001D /* StoryModel */ = {
+			isa = PBXGroup;
+			children = (
+				145A0FDB279243E6001D1CA3 /* Story.h */,
+				145A0FDC279243E6001D1CA3 /* Story.m */,
+			);
+			path = StoryModel;
+			sourceTree = "<group>";
+		};
+		142FB7282795D03F00FD001D /* DailyStoriesModel */ = {
+			isa = PBXGroup;
+			children = (
+				145A0FDE2792C16C001D1CA3 /* DailyStories.h */,
+				145A0FDF2792C16C001D1CA3 /* DailyStories.m */,
+				142FB7272795D03200FD001D /* StoryModel */,
+			);
+			path = DailyStoriesModel;
+			sourceTree = "<group>";
+		};
+		142FB7292795D05400FD001D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14D77DB4279391C500C0B6D1 /* SourseStory.h */,
+				14D77DB5279391C500C0B6D1 /* SourseStory.m */,
+				142FB7282795D03F00FD001D /* DailyStoriesModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		142FB72B2795D0B600FD001D /* PageCellView */ = {
+			isa = PBXGroup;
+			children = (
+				149EA4E82792F11F009AC0A9 /* PageCell.h */,
+				149EA4E92792F11F009AC0A9 /* PageCell.m */,
+			);
+			path = PageCellView;
+			sourceTree = "<group>";
+		};
+		142FB72C2795D0D100FD001D /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				149EA4E52792EE90009AC0A9 /* MainTableView.h */,
+				149EA4E62792EE90009AC0A9 /* MainTableView.m */,
+				142FB72B2795D0B600FD001D /* PageCellView */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		142FB72D2795D0DC00FD001D /* SafeBarView *** */ = {
+			isa = PBXGroup;
+			children = (
+				142FB7232795CD0B00FD001D /* SafeBarView.h */,
+				142FB7242795CD0B00FD001D /* SafeBarView.m */,
+			);
+			path = "SafeBarView ***";
+			sourceTree = "<group>";
+		};
+		142FB72E2795D0EF00FD001D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				145A0FD5279238A1001D1CA3 /* MainViewController.h */,
+				145A0FD6279238A1001D1CA3 /* MainViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		142FB72F2795D12F00FD001D /* BannerCellView *** */ = {
+			isa = PBXGroup;
+			children = (
+				142FB71D2795682F00FD001D /* BannerCell.h */,
+				142FB71E2795682F00FD001D /* BannerCell.m */,
+			);
+			path = "BannerCellView ***";
+			sourceTree = "<group>";
+		};
+		142FB7312795D18600FD001D /* BannerView *** */ = {
+			isa = PBXGroup;
+			children = (
+				142FB71A27955F0E00FD001D /* BannerView.h */,
+				142FB71B27955F0E00FD001D /* BannerView.m */,
+				142FB72F2795D12F00FD001D /* BannerCellView *** */,
+			);
+			path = "BannerView ***";
+			sourceTree = "<group>";
+		};
+		142FB7322795D20F00FD001D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				142FB72D2795D0DC00FD001D /* SafeBarView *** */,
+				142FB7312795D18600FD001D /* BannerView *** */,
+				142FB72C2795D0D100FD001D /* MainView */,
+				149EA4EB27930789009AC0A9 /* Main.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		142FB7332795D23900FD001D /* ViewControllerManager */ = {
+			isa = PBXGroup;
+			children = (
+				145A0FBF279234A0001D1CA3 /* ViewController.h */,
+				145A0FC0279234A0001D1CA3 /* ViewController.m */,
+			);
+			path = ViewControllerManager;
+			sourceTree = "<group>";
+		};
+		142FB7342795D24F00FD001D /* Main Mudular */ = {
+			isa = PBXGroup;
+			children = (
+				142FB72E2795D0EF00FD001D /* ViewController */,
+				142FB7322795D20F00FD001D /* View */,
+				142FB7292795D05400FD001D /* Model */,
+			);
+			path = "Main Mudular";
+			sourceTree = "<group>";
+		};
 		145A0FAD279234A0001D1CA3 = {
 			isa = PBXGroup;
 			children = (
@@ -94,27 +224,11 @@
 			children = (
 				145A0FB9279234A0001D1CA3 /* AppDelegate.h */,
 				145A0FBA279234A0001D1CA3 /* AppDelegate.m */,
-				145A0FBF279234A0001D1CA3 /* ViewController.h */,
-				145A0FC0279234A0001D1CA3 /* ViewController.m */,
-				145A0FD5279238A1001D1CA3 /* MainViewController.h */,
-				145A0FD6279238A1001D1CA3 /* MainViewController.m */,
-				149EA4E52792EE90009AC0A9 /* MainTableView.h */,
-				149EA4E62792EE90009AC0A9 /* MainTableView.m */,
-				149EA4E82792F11F009AC0A9 /* PageCell.h */,
-				149EA4E92792F11F009AC0A9 /* PageCell.m */,
-				142FB71A27955F0E00FD001D /* BannerView.h */,
-				142FB71B27955F0E00FD001D /* BannerView.m */,
-				142FB71D2795682F00FD001D /* BannerCell.h */,
-				142FB71E2795682F00FD001D /* BannerCell.m */,
-				149EA4EB27930789009AC0A9 /* Main.xcassets */,
-				14D77DB4279391C500C0B6D1 /* SourseStory.h */,
-				14D77DB5279391C500C0B6D1 /* SourseStory.m */,
-				145A0FDE2792C16C001D1CA3 /* DailyStories.h */,
-				145A0FDF2792C16C001D1CA3 /* DailyStories.m */,
-				145A0FDB279243E6001D1CA3 /* Story.h */,
-				145A0FDC279243E6001D1CA3 /* Story.m */,
-				145A0FD827923F79001D1CA3 /* NetTool.h */,
-				145A0FD927923F79001D1CA3 /* NetTool.m */,
+				142FB7332795D23900FD001D /* ViewControllerManager */,
+				142FB7342795D24F00FD001D /* Main Mudular */,
+				142FB7202795C6C300FD001D /* NewsViewController.h */,
+				142FB7212795C6C300FD001D /* NewsViewController.m */,
+				142FB7262795D01B00FD001D /* NetTool */,
 				145A0FC5279234A1001D1CA3 /* Assets.xcassets */,
 				145A0FC7279234A1001D1CA3 /* LaunchScreen.storyboard */,
 				145A0FCA279234A1001D1CA3 /* Info.plist */,
@@ -255,11 +369,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				145A0FE02792C16C001D1CA3 /* DailyStories.m in Sources */,
+				142FB7252795CD0B00FD001D /* SafeBarView.m in Sources */,
 				145A0FC1279234A0001D1CA3 /* ViewController.m in Sources */,
 				149EA4E72792EE90009AC0A9 /* MainTableView.m in Sources */,
 				145A0FDA27923F79001D1CA3 /* NetTool.m in Sources */,
 				142FB71C27955F0E00FD001D /* BannerView.m in Sources */,
 				142FB71F2795682F00FD001D /* BannerCell.m in Sources */,
+				142FB7222795C6C300FD001D /* NewsViewController.m in Sources */,
 				149EA4EA2792F11F009AC0A9 /* PageCell.m in Sources */,
 				145A0FBB279234A0001D1CA3 /* AppDelegate.m in Sources */,
 				14D77DB6279391C500C0B6D1 /* SourseStory.m in Sources */,

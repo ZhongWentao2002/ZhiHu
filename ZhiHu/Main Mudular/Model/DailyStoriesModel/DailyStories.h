@@ -66,6 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**Cell，传值date和Array*/
 - (DailyStories *(^)(NSString *, NSArray *))Cell_Date_Array;
 
+/**得到下标为Row的story*/
+- (Story *(^)(NSInteger))Story_inRow;
+
 #pragma mark - 网络请求
 
 /**Lastest请求

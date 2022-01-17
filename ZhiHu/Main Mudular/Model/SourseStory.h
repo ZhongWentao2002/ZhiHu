@@ -58,6 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**代理*/
 - (SourseStory *(^)(id <SourseStoryDelegate>))Self_Delegate;
 
+/**得到section数据*/
+- (DailyStories *(^)(NSInteger))DailyStories_inSection;
+
 #pragma mark - 网络请求
 
 /**lastest请求*/
