@@ -21,6 +21,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - PageCellDelegate
+
+@protocol PageCellDelegate <NSObject>
+
+@required//必须实现
+
+/**在恰当的时机知道自己的superTableView*/
+- (UITableView *)superTableView;
+
+@end
+
 #pragma mark - PageCell属性
 
 @interface PageCell : UITableViewCell
@@ -36,9 +47,20 @@ NS_ASSUME_NONNULL_BEGIN
 /**image图片imageView*/
 @property (nonatomic, strong) UIImageView *pictureView;
 
-#pragma mark - 链式编程声明
+#pragma mark - 其他数据属性
 
-#pragma mark 模式链式
+/**代理*/
+@property (nonatomic, weak) id delegate;
+
+#pragma mark - 链式编程方法
+
+#pragma mark 初始化
+
+/**init不可用，请用initWithStyle*/
+- (instancetype)init NS_UNAVAILABLE;
+
+/**链式创建，如果有则直接拿，如果没有则创建，默认default状态*/
++ (PageCell *(^)(UITableView *))ReusableCellFromSuperTableView;
 
 /**无数据状态
  * 这种状态将存在于 加载数据前 和 无限滚动加载数据前
@@ -49,12 +71,9 @@ NS_ASSUME_NONNULL_BEGIN
  * hintlab显示空文本，灰色
  * backgroundColor
  */
-- (void(^)(void))Default;
+- (PageCell *(^)(void))Default;
 
-/**frame的layout*/
-- (PageCell *(^)(CGFloat))width;
-
-#pragma mark 属性链式
+#pragma mark 根据传值设置数据
 
 /**自定义title的文字*/
 - (PageCell *(^)(NSString *text))Title_text;
@@ -65,11 +84,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**自定义picture*/
 - (PageCell *(^)(NSString *url))Picture_URLString;
 
+
 @end
 
-#pragma mark - PageCell类扩展（封装基本CGRect）
+#pragma mark - PageCell类扩展（封装）
 
 @interface PageCell (CGRect)
+
+#pragma mark - 被封装的基本CGRect
 
 /**title的Rect封装*/
 @property (nonatomic, readonly) CGRect titleRect;
@@ -80,9 +102,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**picture的Rect封装*/
 @property (nonatomic, readonly) CGRect pictureRect;
 
+#pragma mark - 初始化
+
+/**将布局这些控件，已优化*/
++ (void(^)(void))MakeCGRect;
+
 @end
 
-#pragma mark - Story类扩展（封装title高度）
+#pragma mark - Story类扩展（封装）
 
 @interface Story (PageCell)
 

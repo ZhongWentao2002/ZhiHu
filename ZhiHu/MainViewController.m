@@ -112,8 +112,8 @@
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     return story == nil ?
-        self.mainTableView.cellDefault() :
-        self.mainTableView.cellDefault()
+        self.mainTableView.ReusablePageCell():
+        self.mainTableView.ReusablePageCell()
             .Title_text(story.title)
             .Hint_text(story.hint)
             .Picture_URLString(story.image);

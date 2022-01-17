@@ -17,38 +17,23 @@
     
     self = [super initWithFrame:frame style:UITableViewStyleGrouped];
     if (self) {
+        /**将UITableView代理给自己*/
         self.delegate = self;
-        
-        
+        /**不显示横条*/
+        self.alwaysBounceVertical = NO;
+        /**不显示竖条*/
+        self.alwaysBounceHorizontal = NO;
     }
     return self;
 }
 
 #pragma mark - PageCell相关的方法
 
-/**链式创建，如果有则直接拿，如果没有则创建，默认default状态*/
-- (PageCell *(^)(void))cellDefault{
-    NSLog(@"\n%@ - %s", [self class], __func__);
-    
+/**复用机制得到Cell*/
+- (PageCell *(^)(void))ReusablePageCell{
     return ^PageCell *(){
-        static NSString *PageCellIdentify = @"PageCell";
-        /**向资源池访问*/
-        PageCell *aCell = [self dequeueReusableCellWithIdentifier:PageCellIdentify];
-        /**如果资源池无数据则需要创建*/
-        if (aCell == nil) {
-            aCell = [[PageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PageCellIdentify];
-            /**初始化一次大小*/
-            aCell.width(self.frame.size.width);
-        }
-        else{
-            aCell.Default();
-        }
-        return aCell;
+        return PageCell.ReusableCellFromSuperTableView(self);
     };
-}
-
-+ (CGFloat)GetTitleHeightFromPageCell:(NSString *)title{
-    return PageCell.heightForTitle(title);
 }
 
 #pragma mark - <UITableViewDelegate>

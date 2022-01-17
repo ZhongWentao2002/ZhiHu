@@ -26,8 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**init方法不可用，请使用initWithFrame:style:*/
 - (instancetype)init NS_UNAVAILABLE;
 
-/**链式创建，如果有则直接拿，如果没有则创建，默认default状态*/
-- (PageCell *(^)(void))cellDefault;
+#pragma mark - PageCell相关的方法
+
+/**复用机制得到Cell*/
+- (PageCell *(^)(void))ReusablePageCell;
 
 @end
 
