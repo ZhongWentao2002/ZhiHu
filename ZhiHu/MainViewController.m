@@ -111,14 +111,12 @@
                      ForSourse:(Story * _Nullable)story{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    return story == nil ? self.mainTableView.cellDefault() : self.mainTableView.cellDefault().title(story.title).hint(story.hint).picture(story.image);
-}
-
-/**去寻找title所需要的高度*/
-- (double)heightForTitle:(NSString *)title{
-    NSLog(@"\n%@ - %s", [self class], __func__);
-    
-    return 80;
+    return story == nil ?
+        self.mainTableView.cellDefault() :
+        self.mainTableView.cellDefault()
+            .Title_text(story.title)
+            .Hint_text(story.hint)
+            .Picture_URLString(story.image);
 }
 
 @end

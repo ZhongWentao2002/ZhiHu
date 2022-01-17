@@ -169,7 +169,7 @@
 #pragma mark 属性链式
 
 /**自定义title的文字*/
-- (PageCell *(^)(NSString *))title{
+- (PageCell *(^)(NSString *))Title_text{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     return ^PageCell *(NSString *str){
@@ -180,7 +180,7 @@
 }
 
 /**自定义hint的文字*/
-- (PageCell *(^)(NSString *))hint{
+- (PageCell *(^)(NSString *))Hint_text{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     return ^PageCell *(NSString *str){
@@ -191,7 +191,7 @@
 }
 
 /**自定义picture*/
-- (PageCell *(^)(NSString *))picture{
+- (PageCell *(^)(NSString *))Picture_URLString{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     return ^PageCell *(NSString *url){

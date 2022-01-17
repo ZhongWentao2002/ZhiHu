@@ -7,7 +7,12 @@
 
 /**PageCell
  * 拥有titleLab，需要去判断行高
- * 
+ * hintLab，显示作者信息
+ * picture，显示图片
+ *
+ * Defualt状态，即加载不出来cell的状态，初始化时默认此状态
+ * 链式创建，当得到了值过后，视图将有其他人决定
+ * 外部将传递Story模型供封装使用
  */
 
 #import <UIKit/UIKit.h>
@@ -52,25 +57,41 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark 属性链式
 
 /**自定义title的文字*/
-- (PageCell *(^)(NSString *text))title;
+- (PageCell *(^)(NSString *text))Title_text;
 
 /**自定义hint的文字*/
-- (PageCell *(^)(NSString *text))hint;
+- (PageCell *(^)(NSString *text))Hint_text;
 
 /**自定义picture*/
-- (PageCell *(^)(NSString *url))picture;
-
-/**设置titleHeight，将重新布局*/
-- (PageCell *(^)(CGFloat))heightOfTitle;
-
-/**封装的高度，只计算并附值*/
-+ (CGFloat (^)(NSString *))heightForTitle;
+- (PageCell *(^)(NSString *url))Picture_URLString;
 
 @end
 
 #pragma mark - PageCell类扩展（封装基本CGRect）
 
+@interface PageCell (CGRect)
+
+/**title的Rect封装*/
+@property (nonatomic, readonly) CGRect titleRect;
+
+/**hint的Rect封装*/
+@property (nonatomic, readonly) CGRect hintRect;
+
+/**picture的Rect封装*/
+@property (nonatomic, readonly) CGRect pictureRect;
+
+@end
+
 #pragma mark - Story类扩展（封装title高度）
 
+@interface Story (PageCell)
+
+/**title高度的封装*/
+@property (nonatomic, readonly) CGFloat titleHeight;
+
+/**titleHeight传值*/
+- (PageCell *(^)(Story *))Story;
+
+@end
 
 NS_ASSUME_NONNULL_END
