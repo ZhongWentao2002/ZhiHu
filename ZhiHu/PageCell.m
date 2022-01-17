@@ -42,6 +42,7 @@
 
 /**链式创建，如果有则直接拿，如果没有则创建，默认default状态*/
 + (PageCell *(^)(UITableView *))ReusableCellFromSuperTableView{
+    NSLog(@"\n%@ - %s", [self class], __func__);
     
     return ^PageCell *(UITableView *superTableView){
         static NSString *PageCellIdentify = @"PageCell";
@@ -150,14 +151,11 @@
     return ^PageCell *(){
         self.titleLab.text = @"";
         self.titleLab.backgroundColor = [UIColor darkGrayColor];
-        self.titleLab.frame = self.titleRect;
         
         self.hintLab.text = @"";
         self.hintLab.backgroundColor = [UIColor grayColor];
-        self.hintLab.frame = self.hintRect;
         
         self.pictureView.image = [UIImage imageNamed:@"ImageDefault"];
-        self.pictureView.frame = self.pictureRect;
         return self;
     };
 }
@@ -174,51 +172,53 @@
 /**picture的Rect*/
 - (CGRect)pictureRect{
     static BOOL hadMake = NO;
+    static CGFloat x, y, width, height;
     if (hadMake == NO) {
         hadMake = YES;
         NSLog(@"\n%@ - %s", [self class], __func__);
         
         CGRect thisRect = self.contentView.frame;
-        CGRect rect;
         CGFloat content = 10;
         CGFloat size = 120;
-        rect = CGRectMake(0, content, size, size);
-        rect.origin.x = thisRect.size.width - content - size;
-        return rect;
+        x = thisRect.size.width - content - size;
+        y = content;
+        width = height = content;
     }
-    return self.pictureRect;
+    return CGRectMake(x, y, width, height);
 }
 
 /**title的Rect*/
 - (CGRect)titleRect{
     static BOOL hadMake = NO;
+    static CGFloat x, y, width, height;
     if (hadMake == NO) {
         hadMake = YES;
         NSLog(@"\n%@ - %s", [self class], __func__);
         
-        CGRect rect;
         CGFloat content = 10;
-        CGFloat height = 70;
-        rect = CGRectMake(content / 2, self.pictureRect.origin.y, 0, height);
-        rect.size.width = self.pictureRect.origin.x - content;
-        return rect;
+        height = 70;
+        x = content / 2;
+        y = self.pictureRect.origin.y;
+        width = 0;
     }
-    return self.pictureRect;
+    return CGRectMake(x, y, width, height);
 }
 
 - (CGRect)hintRect{
     static BOOL hadMake = NO;
+    static CGFloat x, y, width, height;
     if (hadMake == NO) {
         hadMake = YES;
         NSLog(@"\n%@ - %s", [self class], __func__);
         
         CGFloat content = 10;
-        CGRect rect;
-        CGFloat height = 40;
-        rect = CGRectMake(self.titleRect.origin.x, self.titleRect.origin.y + self.titleRect.size.height + content / 2, self.titleRect.size.width, height);
-        return rect;
+        CGRect titleRect = self.titleRect;
+        height = 40;
+        x = titleRect.origin.x;
+        y = titleRect.origin.y;
+        width = titleRect.origin.y + titleRect.size.height + content / 2;
     }
-    return self.hintRect;
+    return CGRectMake(x, y, width, height);
 }
 
 #pragma mark - 初始化
