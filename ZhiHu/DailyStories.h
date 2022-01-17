@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *date;
 
 /**保存每天的新闻*/
-@property (nonatomic, copy) NSArray <Story *> *stories;
+@property (nonatomic, strong) NSArray <Story *> *stories;
 
 #pragma mark - 其他数据属性
 
@@ -75,6 +75,14 @@ NS_ASSUME_NONNULL_BEGIN
  * 将用date和stories组成Cell类型回掉
  */
 + (void)GetLastestTop:(void(^)(DailyStories *))setTop
+                 Cell:(void(^)(DailyStories *))addCell;
+
+/**Before请求
+ * 请求最近一次数据，将由NetTool传入
+ * 得到字典
+ * 将用date和stories组成Cell类型回掉
+ */
++ (void)GetBeforeDate:(NSString *)date
                  Cell:(void(^)(DailyStories *))addCell;
 
 @end

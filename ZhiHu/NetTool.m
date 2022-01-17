@@ -49,8 +49,36 @@
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"\n%@ - %s - success", [self class], __func__);
         NSLog(@"\n%@", responseObject);
+        
         /**得到数据就回掉*/
         create(responseObject);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"\n%@ - %s - failure", [self class], __func__);
+        NSLog(@"\n%@", error);
+    }];
+}
+
+/**Before数据
+ * URL：stories/before/日期
+ * 请求Before数据
+ * 返回NSDictionary
+ * 注意：不做对dictionary的进一步操作
+ */
+- (void)BeforeDate:(NSString *)date
+               Add:(void(^)(NSDictionary *))add{
+    /**网络请求*/
+    [self
+     GET:[NSString stringWithFormat:@"stories/before/%@", date]
+     parameters:nil
+     headers:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"\n%@ - %s - success", [self class], __func__);
+        NSLog(@"\n%@", responseObject);
+        
+        /**得到数据就回掉*/
+        add(responseObject);
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"\n%@ - %s - failure", [self class], __func__);

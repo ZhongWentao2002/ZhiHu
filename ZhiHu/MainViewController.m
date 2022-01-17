@@ -14,7 +14,7 @@
 #pragma mark - 模块封装
 
 @interface MainViewController ()
-<SourseStoryDelegate>
+<SourseStoryDelegate, MainTableViewDelegate>
 
 /**主页的视图*/
 @property (nonatomic, strong) MainTableView *mainTableView;
@@ -95,6 +95,7 @@
         _mainTableView = [[MainTableView alloc] initWithFrame:tvRect style:UITableViewStyleGrouped];
         /**数据源代理将交给数据源处理*/
         _mainTableView.dataSource = self.sourse;
+        _mainTableView.mainTV_delegate = self;
     }
     return _mainTableView;
 }
@@ -120,6 +121,36 @@
             .Title_text(story.title)
             .Hint_text(story.hint)
             .Picture_URLString(story.image);
+}
+
+#pragma mark - <MainTableViewDelegate>
+
+/**将WillDisplayCell的indexpath转交出去，当显示footer时调用*/
+- (void)MainTableViewWillDisplaySection:(NSInteger)section{
+    /**是否正在网络请求*/
+    static BOOL Loading = NO;
+    /**如果没有网络请求才判断*/
+    if (Loading == NO) {
+        if (section == self.sourse.sectionStories.count - 1){
+            Loading = YES;
+            [self.sourse getBefore:^{
+                [self.mainTableView reloadData];
+                Loading = NO;
+            }];
+        }
+    }
+}
+
+/**获取indexPath的date*/
+- (NSString *)titleForSection:(NSInteger)section{
+    /**返回YYYYMMDD日期*/
+    if (section == self.sourse.sectionStories.count) {
+        return nil;
+    }
+    NSString *sectionDate = self.sourse.sectionStories[section].date;
+    NSInteger month = [[sectionDate substringWithRange:NSMakeRange(4, 2)] integerValue];
+    NSInteger day = [[sectionDate substringFromIndex:6] integerValue];
+    return [NSString stringWithFormat:@"%ld月%ld日", month, day];
 }
 
 @end

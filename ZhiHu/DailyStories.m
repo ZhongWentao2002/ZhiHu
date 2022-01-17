@@ -139,9 +139,26 @@
 + (void)GetLastestTop:(void(^)(DailyStories *))setTop
                  Cell:(void(^)(DailyStories *))addCell{
     /**网络请求，得到了可用的dic*/
-    [[NetTool shareTool] Lastest:^(NSDictionary * _Nonnull dic) {
+    [[NetTool shareTool]
+     Lastest:^(NSDictionary * _Nonnull dic) {
         /**创建并回掉Top*/
         setTop(DailyStories.Create().Top_Array(dic[@"top_stories"]));
+        /**创建并回掉Cell*/
+        addCell(DailyStories.Create().Cell_Date_Array(dic[@"date"], dic[@"stories"]));
+    }];
+}
+
+/**Before请求
+ * 请求最近一次数据，将由NetTool传入
+ * 得到字典
+ * 将用date和stories组成Cell类型回掉
+ */
++ (void)GetBeforeDate:(NSString *)date
+                 Cell:(void(^)(DailyStories *))addCell{
+    /**网络请求*/
+    [[NetTool shareTool]
+     BeforeDate:date
+     Add:^(NSDictionary * _Nonnull dic) {
         /**创建并回掉Cell*/
         addCell(DailyStories.Create().Cell_Date_Array(dic[@"date"], dic[@"stories"]));
     }];

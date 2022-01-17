@@ -17,8 +17,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Story.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - PageCellDelegate
@@ -101,18 +99,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**picture的Rect封装*/
 @property (nonatomic, readonly) CGRect pictureRect;
-
-@end
-
-#pragma mark - Story类扩展（封装）
-
-@interface Story (PageCell)
-
-/**title高度的封装*/
-@property (nonatomic, readonly) CGFloat titleHeight;
-
-/**titleHeight传值*/
-- (PageCell *(^)(Story *))Story;
 
 @end
 

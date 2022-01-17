@@ -32,6 +32,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)Lastest:(void(^)(NSDictionary *))create;
 
+/**Before数据
+ * URL：stories/before/日期
+ * 请求Before数据
+ * 返回NSDictionary
+ * 注意：不做对dictionary的进一步操作
+ */
+- (void)BeforeDate:(NSString *)date
+               Add:(void(^)(NSDictionary *))add;
 
 @end
 

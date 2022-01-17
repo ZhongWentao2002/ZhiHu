@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142FB71C27955F0E00FD001D /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71B27955F0E00FD001D /* BannerView.m */; };
+		142FB71F2795682F00FD001D /* BannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71E2795682F00FD001D /* BannerCell.m */; };
 		145A0FBB279234A0001D1CA3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A0FBA279234A0001D1CA3 /* AppDelegate.m */; };
 		145A0FC1279234A0001D1CA3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A0FC0279234A0001D1CA3 /* ViewController.m */; };
 		145A0FC6279234A1001D1CA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 145A0FC5279234A1001D1CA3 /* Assets.xcassets */; };
@@ -25,6 +27,10 @@
 
 /* Begin PBXFileReference section */
 		13816A8DCD87EC58C446D512 /* Pods-ZhiHu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhiHu.release.xcconfig"; path = "Target Support Files/Pods-ZhiHu/Pods-ZhiHu.release.xcconfig"; sourceTree = "<group>"; };
+		142FB71A27955F0E00FD001D /* BannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
+		142FB71B27955F0E00FD001D /* BannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerView.m; sourceTree = "<group>"; };
+		142FB71D2795682F00FD001D /* BannerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerCell.h; sourceTree = "<group>"; };
+		142FB71E2795682F00FD001D /* BannerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerCell.m; sourceTree = "<group>"; };
 		145A0FB6279234A0001D1CA3 /* ZhiHu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhiHu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145A0FB9279234A0001D1CA3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		145A0FBA279234A0001D1CA3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -96,6 +102,10 @@
 				149EA4E62792EE90009AC0A9 /* MainTableView.m */,
 				149EA4E82792F11F009AC0A9 /* PageCell.h */,
 				149EA4E92792F11F009AC0A9 /* PageCell.m */,
+				142FB71A27955F0E00FD001D /* BannerView.h */,
+				142FB71B27955F0E00FD001D /* BannerView.m */,
+				142FB71D2795682F00FD001D /* BannerCell.h */,
+				142FB71E2795682F00FD001D /* BannerCell.m */,
 				149EA4EB27930789009AC0A9 /* Main.xcassets */,
 				14D77DB4279391C500C0B6D1 /* SourseStory.h */,
 				14D77DB5279391C500C0B6D1 /* SourseStory.m */,
@@ -248,6 +258,8 @@
 				145A0FC1279234A0001D1CA3 /* ViewController.m in Sources */,
 				149EA4E72792EE90009AC0A9 /* MainTableView.m in Sources */,
 				145A0FDA27923F79001D1CA3 /* NetTool.m in Sources */,
+				142FB71C27955F0E00FD001D /* BannerView.m in Sources */,
+				142FB71F2795682F00FD001D /* BannerCell.m in Sources */,
 				149EA4EA2792F11F009AC0A9 /* PageCell.m in Sources */,
 				145A0FBB279234A0001D1CA3 /* AppDelegate.m in Sources */,
 				14D77DB6279391C500C0B6D1 /* SourseStory.m in Sources */,

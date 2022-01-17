@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 代理
 
-/**此代理和Story相关，必须遵守StoryDelegate协议*/
+/**Sourse代理*/
 @protocol SourseStoryDelegate <NSObject>
 
 @required//必须实现
@@ -62,6 +62,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**lastest请求*/
 - (void)getLastest:(void(^)(void))reload;
+
+/**Before请求*/
+- (void)getBefore:(void(^)(void))reloadSection;
 
 @end
 

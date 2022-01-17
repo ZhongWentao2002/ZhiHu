@@ -42,18 +42,30 @@
 
 #pragma mark - 网络请求
 
-/**lastest请求*/
+/**Lastest请求*/
 - (void)getLastest:(void(^)(void))reload{
+    /**网络请求*/
     [DailyStories
      GetLastestTop:^(DailyStories * _Nonnull topSourse) {
         // Set Top
         self.topStories = topSourse;
-        reload();
     }
      Cell:^(DailyStories * _Nonnull cellSourse) {
         // Add Cell
         [self.sectionStories addObject:cellSourse];
         reload();
+    }];
+}
+
+/**Before请求*/
+- (void)getBefore:(void(^)(void))reloadSection{
+    /**网络请求*/
+    [DailyStories
+     GetBeforeDate:self.sectionStories.lastObject.date
+     Cell:^(DailyStories * _Nonnull cellSourse) {
+        // Add Cell
+        [self.sectionStories addObject:cellSourse];
+        reloadSection();
     }];
 }
 
@@ -85,6 +97,5 @@
     
     return [self.delegate tableView:tableView ForSourse:(self.sectionStories.count == indexPath.section ? nil : self.sectionStories[indexPath.section].stories[indexPath.row])];
 }
-
 
 @end

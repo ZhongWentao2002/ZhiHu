@@ -15,13 +15,43 @@
 
 #import <UIKit/UIKit.h>
 
+#import "BannerView.h"
+
 #import "PageCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - MainTableView代理
+
+@protocol MainTableViewDelegate <NSObject>
+
+@required//提醒一下下
+
+/**将WillDisplayCell的indexpath转交出去，当显示footer时调用*/
+- (void)MainTableViewWillDisplaySection:(NSInteger)section;
+
+/**获取indexPath的date*/
+- (NSString *)titleForSection:(NSInteger)section;
+
+@end
+
+#pragma mark - MainTableView基本
+
 @interface MainTableView : UITableView
-/**代理*/
+/**遵守的代理*/
 <UITableViewDelegate>
+
+#pragma mark - 基本属性
+
+/**banner页*/
+@property (nonatomic, strong)BannerView *bannerView;
+
+#pragma mark - 其他属性
+
+/**tableView的代理*/
+@property (nonatomic, weak)id <MainTableViewDelegate> mainTV_delegate;
+
+#pragma mark - 方法
 
 /**init方法不可用，请使用initWithFrame:style:*/
 - (instancetype)init NS_UNAVAILABLE;
