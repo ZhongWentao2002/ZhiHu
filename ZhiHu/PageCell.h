@@ -102,11 +102,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**picture的Rect封装*/
 @property (nonatomic, readonly) CGRect pictureRect;
 
-#pragma mark - 初始化
-
-/**将布局这些控件，已优化*/
-+ (void(^)(void))MakeCGRect;
-
 @end
 
 #pragma mark - Story类扩展（封装）

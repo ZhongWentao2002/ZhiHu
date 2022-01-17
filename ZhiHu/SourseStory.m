@@ -42,7 +42,7 @@
 
 #pragma mark - 网络请求
 
-/**lastest请求    */
+/**lastest请求*/
 - (void)getLastest:(void(^)(void))reload{
     [DailyStories
      GetLastestTop:^(DailyStories * _Nonnull topSourse) {

@@ -82,6 +82,15 @@
     return headerView;
 }
 
+/**测试*/
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 20)];
+    headerView.backgroundColor = [UIColor greenColor];
+    return headerView;
+}
+
 /**选中后应跳转页面*/
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"\n%@ - %s", [self class], __func__);

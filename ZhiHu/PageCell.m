@@ -24,20 +24,13 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
         NSLog(@"\n%@ - %s", [self class], __func__);
-        
         /**自己被选中后不显示任何东西*/
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        /**加载到自己的contentView上*/
-        [self.contentView addSubview:self.titleLab];
-        [self.contentView addSubview:self.hintLab];
-        [self.contentView addSubview:self.pictureView];
-        /**配置自己的数据为无数据状态*/
-        self.Default();
-        /**高度数据初始化*/
         
     }
     return self;
 }
+
 
 
 /**链式创建，如果有则直接拿，如果没有则创建，默认default状态*/
@@ -52,11 +45,15 @@
         if (aCell == nil) {
             /**创建资源池类型*/
             aCell = [[PageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PageCellIdentify];
+            /**设置基础宽度*/
+            aCell.frame = CGRectMake(0, 0, superTableView.frame.size.width, 0);
+            /**加载到自己的contentView上*/
+            [aCell.contentView addSubview:aCell.pictureView];
+            [aCell.contentView addSubview:aCell.titleLab];
+            [aCell.contentView addSubview:aCell.hintLab];
         }
-        else{
-            /**直接赋值*/
-            aCell.Default();
-        }
+        /**初始化状态*/
+        aCell.Default();
         return aCell;
     };
 }
@@ -95,7 +92,7 @@
         NSLog(@"\n%@ - %s", [self class], __func__);
         
         _hintLab = [[UILabel alloc] init];
-        _titleLab.frame = self.titleRect;
+        _hintLab.frame = self.hintRect;
         _hintLab.font = [UIFont systemFontOfSize:16];
         _hintLab.backgroundColor = [UIColor grayColor];
     }
@@ -182,7 +179,7 @@
         CGFloat size = 120;
         x = thisRect.size.width - content - size;
         y = content;
-        width = height = content;
+        width = height = size;
     }
     return CGRectMake(x, y, width, height);
 }
@@ -197,9 +194,9 @@
         
         CGFloat content = 10;
         height = 70;
-        x = content / 2;
-        y = self.pictureRect.origin.y;
-        width = 0;
+        x = content;
+        y = self.pictureView.frame.origin.y;
+        width = self.pictureView.frame.origin.x - 2 * content;
     }
     return CGRectMake(x, y, width, height);
 }
@@ -215,19 +212,10 @@
         CGRect titleRect = self.titleRect;
         height = 40;
         x = titleRect.origin.x;
-        y = titleRect.origin.y;
-        width = titleRect.origin.y + titleRect.size.height + content / 2;
+        y = titleRect.origin.y + titleRect.size.height + content / 2;
+        width = titleRect.size.width;
     }
     return CGRectMake(x, y, width, height);
-}
-
-#pragma mark - 初始化
-
-/**将布局这些控件，已优化*/
-+ (void(^)(void))MakeCGRect{
-    return ^(){
-        
-    };
 }
 
 @end

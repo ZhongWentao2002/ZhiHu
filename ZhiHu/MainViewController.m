@@ -63,7 +63,10 @@
     [super viewDidLoad];
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    
+    /**网络请求，加载数据*/
+    [self.sourse getLastest:^{
+            [self.mainTableView reloadData];
+    }];
 }
 
 /**视图将要出现，可以做一些内容反馈*/

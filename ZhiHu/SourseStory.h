@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) DailyStories *topStories;
 
 /**table内容*/
-@property (nonatomic, copy)NSMutableArray <DailyStories *> *sectionStories;
+@property (nonatomic, strong)NSMutableArray <DailyStories *> *sectionStories;
 
 #pragma mark - 其他数据属性
 
@@ -57,6 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**代理*/
 - (SourseStory *(^)(id <SourseStoryDelegate>))Self_Delegate;
+
+#pragma mark - 网络请求
+
+/**lastest请求*/
+- (void)getLastest:(void(^)(void))reload;
 
 @end
 
