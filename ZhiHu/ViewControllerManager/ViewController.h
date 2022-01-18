@@ -19,9 +19,12 @@
 /**新闻详情Controller*/
 #import "NewsViewController.h"
 
+/**用户信息Controller*/
+#import "LoadViewController.h"
+
 @interface ViewController : UIViewController
 /**遵循的代理*/
-<MainDelegate, NewsDelegate>
+<MainDelegate, NewsDelegate, LoadDelegate>
 
 @end
 

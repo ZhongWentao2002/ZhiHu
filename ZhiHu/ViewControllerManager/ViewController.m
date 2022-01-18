@@ -16,4 +16,9 @@
     return NewsViewController.Create_withDelegate(self);
 }
 
+/**跳转到用户页*/
+- (UIViewController *)VC_pushedFromHeadView{
+    return LoadViewController.Create_withDelegate(self);
+}
+
 @end

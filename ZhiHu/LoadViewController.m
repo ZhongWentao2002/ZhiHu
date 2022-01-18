@@ -1,18 +1,17 @@
 //
-//  NewsViewController.m
+//  LoadViewController.m
 //  ZhiHu
 //
-//  Created by SSR on 2022/1/17.
+//  Created by SSR on 2022/1/18.
 //
 
-#import "NewsViewController.h"
+#import "LoadViewController.h"
 
-@interface NewsViewController ()
+@interface LoadViewController ()
 
 @end
 
-@implementation NewsViewController
-
+@implementation LoadViewController
 
 #pragma mark - 初始化方法
 
@@ -21,15 +20,15 @@
     self = [super init];
     NSLog(@"\n%@ - %s", [self class], __func__);
     if (self) {
-        self.view.backgroundColor = [UIColor orangeColor];
+        self.view.backgroundColor = [UIColor blueColor];
     }
     return self;
 }
 
 /**链式创建方法*/
-+ (NewsViewController *(^)(UIViewController <NewsDelegate> *))Create_withDelegate{
-    return ^NewsViewController *(UIViewController <NewsDelegate> *t){
-        NewsViewController *vc = [[NewsViewController alloc] init];
++ (LoadViewController *(^)(LoadViewController <LoadDelegate> *))Create_withDelegate{
+    return ^LoadViewController *(UIViewController <LoadDelegate> *t){
+        LoadViewController *vc = [[LoadViewController alloc] init];
         vc.delegate = t;
         return vc;
     };

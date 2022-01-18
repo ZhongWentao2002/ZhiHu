@@ -16,7 +16,7 @@
 #pragma mark - 模块封装
 
 @interface MainViewController ()
-<SourseStoryDelegate, MainTableViewDelegate>
+<SourseStoryDelegate, SafeBarViewDelegate, MainTableViewDelegate>
 
 /**SafeBar的顶视图*/
 @property (nonatomic, strong) SafeBarView *safeView;
@@ -101,11 +101,10 @@
 - (SafeBarView *)safeView{
     if (_safeView == nil) {
         /**计算可用高度*/
-        _safeView = [[SafeBarView alloc] init];
         CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
         CGRect tvRect = self.view.frame;
-        tvRect.size.height = statusHeight + 37;
-        _safeView.frame = tvRect;
+        tvRect.size.height = statusHeight + 40;
+        _safeView = SafeBarView.Create_withDelegate(self).Frame_CGRect(tvRect);
     }
     return _safeView;
 }
@@ -183,6 +182,21 @@
 - (void)tapAtIndexPath:(NSIndexPath *)indexPath{
     Story *aStory = self.sourse.DailyStories_inSection(indexPath.section).Story_inRow(indexPath.row);
     [self.navigationController pushViewController:[self.delegate VC_pushedFromCell_withID:aStory.ID url:aStory.url] animated:YES];
+}
+
+
+#pragma mark - <SafeBarViewDelegate>
+
+/**单击safeBar时会调用此代理*/
+- (void)safeBarTaped{
+    /**应该跳转到新闻页*/
+    [self.mainTableView setContentOffset:CGPointMake(0,0) animated:YES];
+}
+
+/**单击imageview时会调用此代理*/
+- (void)safeBarImageViewTaped{
+    /**应该跳转到用户页*/
+    [self.navigationController pushViewController:[self.delegate VC_pushedFromHeadView] animated:YES];
 }
 
 @end

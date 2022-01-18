@@ -53,6 +53,20 @@ NS_ASSUME_NONNULL_BEGIN
 /**代理*/
 @property (nonatomic, weak) id <SafeBarViewDelegate> delegate;
 
+#pragma mark - 方法
+
+/**init不可用，请用Create_withDelegate*/
+- (instancetype)init __attribute__((unavailable("请使用Create_withDelegate()")));
+
+/**initWithFrame:不可用，请用链式语法*/
+- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("请使用Frame_CGRect()")));
+
+/**链式创建Create*/
++ (SafeBarView *(^)(id <SafeBarViewDelegate>))Create_withDelegate;
+
+/**frame链式语法*/
+- (SafeBarView *(^)(CGRect))Frame_CGRect;
+
 @end
 
 NS_ASSUME_NONNULL_END

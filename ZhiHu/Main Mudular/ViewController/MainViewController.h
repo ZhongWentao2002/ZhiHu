@@ -17,8 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MainDelegate <NSObject>
 
+@required//提醒下下
+
 /**得到单击了Cell被push到的页面，传出id和url*/
 - (UIViewController *)VC_pushedFromCell_withID:(NSInteger)ID url:(NSString *)url;
+
+/**得到单击了SafeView的Img被push到的页面*/
+- (UIViewController *)VC_pushedFromHeadView;
 
 @end
 
