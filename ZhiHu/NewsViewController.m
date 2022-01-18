@@ -60,11 +60,14 @@
     
     [self.sourse
      getNewsHTTP:^{
+        // HTTP
+        NSLog(@"\n%s - HTTP", __func__);
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.sourse.url]]];
         
         }
      Request:^(NSString * theURL) {
-        
+        // Request
+        NSLog(@"\n%s - Request", __func__);
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:theURL]]];
     }];
 }
