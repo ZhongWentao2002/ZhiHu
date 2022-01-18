@@ -5,7 +5,7 @@
 //  Created by SSR on 2022/1/18.
 //
 
-/**News
+/**News Model模型
  * 保存一个New的基本信息
  * html加载方法，css图片，js注册
  */
@@ -15,6 +15,8 @@
 #include "NetTool.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+#pragma mark - News模型
 
 @interface News : NSObject
 
@@ -73,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 方法
 
 /**网络请求*/
-- (void)getNewsHTTP:(void(^)(void))loadHTTP Request:(void(^)(void))loadRequest;
+- (void)getNewsHTTP:(void(^)(void))loadHTTP Request:(void(^)(NSString *))loadRequest;
 
 @end
 

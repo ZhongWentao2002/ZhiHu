@@ -13,12 +13,13 @@
 
 /**得到id和url，跳转新闻中心模块*/
 - (UIViewController *)VC_pushedFromCell_withID:(NSInteger)ID url:(NSString *)url{
-    return NewsViewController.Create_withDelegate(self);
+    return [NewsViewController createWithDelegate:self ID:ID URL:url];
 }
 
 /**跳转到用户页*/
 - (UIViewController *)VC_pushedFromHeadView{
-    return LoadViewController.Create_withDelegate(self);
+    return LoadViewController
+            .Create_withDelegate(self);
 }
 
 @end

@@ -87,7 +87,7 @@
 }
 
 /**News数据
- * URL：story-extra/新闻id
+ * URL：news/文章id
  * 请求News数据
  * 返回NSDictionary
  * 如果得不到数据，告诉应尝试Request
@@ -98,7 +98,7 @@
     tryRequest:(void(^)(void))request{
     /**网络请求*/
     [self
-     GET:[NSString stringWithFormat:@"story-extra/%ld", ID]
+     GET:[NSString stringWithFormat:@"news/%ld", ID]
      parameters:nil
      headers:nil
      progress:nil

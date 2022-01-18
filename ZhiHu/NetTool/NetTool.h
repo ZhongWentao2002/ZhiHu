@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
                Add:(void(^)(NSDictionary *))add;
 
 /**News数据
- * URL：story-extra/新闻id
+ * URL：news/文章id
  * 请求News数据
  * 返回NSDictionary
  * 如果得不到数据，告诉应尝试Request

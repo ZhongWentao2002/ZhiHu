@@ -28,16 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 对外方法
 
 /**init不可用，请使用Create_withDelegate*/
-- (instancetype)init __attribute__((unavailable("请使用Create_withDelegate()")));
+- (instancetype)init __attribute__((unavailable("请使用Create_withDelegate:ID:URL")));
 
-/**链式创建方法*/
-+ (NewsViewController *(^)(UIViewController <NewsDelegate> *))Create_withDelegate;
-
-/**创建时需要id*/
-- (NewsViewController *(^)(NSInteger))ID_Integer;
-
-/**创建时需要url*/
-- (NewsViewController *(^)(NSURL *))URL_String;
+/**创建的方法*/
++ (NewsViewController *)createWithDelegate:(UIViewController <NewsDelegate> *)delegate
+                                        ID:(NSInteger)ID URL:(NSString * _Nullable )url;
 
 @end
 

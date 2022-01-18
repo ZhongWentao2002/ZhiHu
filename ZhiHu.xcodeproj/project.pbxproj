@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1422CB8427970AFD00C0E206 /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422CB8327970AFD00C0E206 /* NewsView.m */; };
 		142FB71C27955F0E00FD001D /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71B27955F0E00FD001D /* BannerView.m */; };
 		142FB71F2795682F00FD001D /* BannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71E2795682F00FD001D /* BannerCell.m */; };
 		142FB7222795C6C300FD001D /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB7212795C6C300FD001D /* NewsViewController.m */; };
@@ -31,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		13816A8DCD87EC58C446D512 /* Pods-ZhiHu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhiHu.release.xcconfig"; path = "Target Support Files/Pods-ZhiHu/Pods-ZhiHu.release.xcconfig"; sourceTree = "<group>"; };
+		1422CB8227970AFD00C0E206 /* NewsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsView.h; sourceTree = "<group>"; };
+		1422CB8327970AFD00C0E206 /* NewsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
 		142FB71A27955F0E00FD001D /* BannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
 		142FB71B27955F0E00FD001D /* BannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerView.m; sourceTree = "<group>"; };
 		142FB71D2795682F00FD001D /* BannerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerCell.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				142FB7342795D24F00FD001D /* Main Mudular */,
 				142FB7202795C6C300FD001D /* NewsViewController.h */,
 				142FB7212795C6C300FD001D /* NewsViewController.m */,
+				1422CB8227970AFD00C0E206 /* NewsView.h */,
+				1422CB8327970AFD00C0E206 /* NewsView.m */,
 				14922BE62796B77A00DA306A /* News.h */,
 				14922BE72796B77A00DA306A /* News.m */,
 				14922BDB2796901D00DA306A /* LoadViewController.h */,
@@ -385,6 +390,7 @@
 				145A0FDA27923F79001D1CA3 /* NetTool.m in Sources */,
 				142FB71C27955F0E00FD001D /* BannerView.m in Sources */,
 				142FB71F2795682F00FD001D /* BannerCell.m in Sources */,
+				1422CB8427970AFD00C0E206 /* NewsView.m in Sources */,
 				142FB7222795C6C300FD001D /* NewsViewController.m in Sources */,
 				149EA4EA2792F11F009AC0A9 /* PageCell.m in Sources */,
 				145A0FBB279234A0001D1CA3 /* AppDelegate.m in Sources */,
