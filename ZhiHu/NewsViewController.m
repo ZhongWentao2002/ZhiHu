@@ -7,7 +7,15 @@
 
 #import "NewsViewController.h"
 
+#include "News.h"
+
 @interface NewsViewController ()
+
+/**持有一个webView*/
+@property (nonatomic) WKWebView *webView;
+
+/**持有一个数据源*/
+@property (nonatomic, strong) News *sourse;
 
 @end
 
@@ -35,12 +43,34 @@
     };
 }
 
+/**创建时需要id*/
+- (NewsViewController *(^)(NSInteger))ID_Integer{
+    return ^NewsViewController *(NSInteger num){
+        
+        return self;
+    };
+}
+
+/**创建时需要url*/
+- (NewsViewController *(^)(NSURL *))URL_String{
+    return ^NewsViewController *(NSURL *url){
+        
+        return self;
+    };
+}
+
+
 #pragma mark - 生命周期
 
-
+/**视图将要出现*/
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self.view addSubview:self.webView];
 }
+
+#pragma mark - 懒加载
+
+
 
 @end

@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,8 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NewsViewController : UIViewController
 
+#pragma mark - 其它属性
+
 /**代理，关键时候得到push对象*/
 @property (nonatomic, weak) UIViewController <NewsDelegate> *delegate;
+
+#pragma mark - 对外方法
 
 /**init不可用，请使用Create_withDelegate*/
 - (instancetype)init __attribute__((unavailable("请使用Create_withDelegate()")));
@@ -28,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**链式创建方法*/
 + (NewsViewController *(^)(UIViewController <NewsDelegate> *))Create_withDelegate;
 
+/**创建时需要id*/
+- (NewsViewController *(^)(NSInteger))ID_Integer;
+
+/**创建时需要url*/
+- (NewsViewController *(^)(NSURL *))URL_String;
 
 @end
 

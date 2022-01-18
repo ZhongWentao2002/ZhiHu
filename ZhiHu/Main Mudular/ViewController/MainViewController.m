@@ -150,7 +150,7 @@
 
 #pragma mark - <MainTableViewDelegate>
 
-/**将WillDisplayCell的indexpath转交出去，当显示footer时调用*/
+/**得到section，当显示footer时调用*/
 - (void)MainTableViewWillDisplaySection:(NSInteger)section{
     /**是否正在网络请求*/
     static BOOL Loading = NO;

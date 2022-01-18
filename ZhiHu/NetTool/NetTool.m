@@ -86,4 +86,36 @@
     }];
 }
 
+/**News数据
+ * URL：story-extra/新闻id
+ * 请求News数据
+ * 返回NSDictionary
+ * 如果得不到数据，告诉应尝试Request
+ * 注意：不做对dictionary的进一步操作
+ */
+- (void)NewsID:(NSInteger)ID
+          HTTP:(void(^)(NSDictionary *))show
+    tryRequest:(void(^)(void))request{
+    /**网络请求*/
+    [self
+     GET:[NSString stringWithFormat:@"story-extra/%ld", ID]
+     parameters:nil
+     headers:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"\n%@ - %s - success", [self class], __func__);
+        NSLog(@"\n%@", responseObject);
+        
+        /**HTTP数据加载*/
+        show(responseObject);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"\n%@ - %s - failure", [self class], __func__);
+        NSLog(@"\n%@", error);
+        
+        /**应该尝试request请求*/
+        request();
+    }];
+}
+
 @end

@@ -41,6 +41,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)BeforeDate:(NSString *)date
                Add:(void(^)(NSDictionary *))add;
 
+/**News数据
+ * URL：story-extra/新闻id
+ * 请求News数据
+ * 返回NSDictionary
+ * 如果得不到数据，告诉应尝试Request
+ * 注意：不做对dictionary的进一步操作
+ */
+- (void)NewsID:(NSInteger)ID
+          HTTP:(void(^)(NSDictionary *))show
+    tryRequest:(void(^)(void))request;
+
 @end
 
 NS_ASSUME_NONNULL_END
