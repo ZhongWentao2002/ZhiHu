@@ -137,7 +137,7 @@
     rect.origin.x = todayRect.origin.x + todayRect.size.width + content;
     rect.origin.y = todayRect.origin.y;
     rect.size.width = 5;
-    rect.size.height = todayRect.size.height - 2;
+    rect.size.height = todayRect.size.height - 5;
     return rect;
 }
 

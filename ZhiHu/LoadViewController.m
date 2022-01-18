@@ -26,8 +26,8 @@
 }
 
 /**链式创建方法*/
-+ (LoadViewController *(^)(LoadViewController <LoadDelegate> *))Create_withDelegate{
-    return ^LoadViewController *(UIViewController <LoadDelegate> *t){
++ (LoadViewController *(^)(UIViewController <LoadDelegate> *))Create_withDelegate{
+    return ^LoadViewController *(UIViewController <LoadDelegate> * t){
         LoadViewController *vc = [[LoadViewController alloc] init];
         vc.delegate = t;
         return vc;

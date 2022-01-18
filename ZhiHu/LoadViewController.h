@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init __attribute__((unavailable("请使用Create_withDelegate()")));
 
 /**链式创建方法*/
-+ (LoadViewController *(^)(LoadViewController <LoadDelegate> *))Create_withDelegate;
++ (LoadViewController *(^)(UIViewController <LoadDelegate> *))Create_withDelegate;
 
 
 @end
