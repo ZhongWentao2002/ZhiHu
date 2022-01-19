@@ -84,6 +84,7 @@
 
 #pragma mark - 链式编程
 
+
 /**自定义title的文字*/
 - (BannerCell *(^)(NSString *))Title_text{
     NSLog(@"\n%@ - %s", [self class], __func__);
