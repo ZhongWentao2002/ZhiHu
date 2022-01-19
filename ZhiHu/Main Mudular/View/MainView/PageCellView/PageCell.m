@@ -131,6 +131,19 @@
     };
 }
 
+/**title文字颜色，0黑，1灰*/
+- (PageCell *(^)(NSInteger))Type_Integer{
+    return ^PageCell *(NSInteger type){
+        if (type == 0) {
+            self.titleLab.textColor = [UIColor blackColor];
+        }
+        else{
+            self.titleLab.textColor = [UIColor grayColor];
+        }
+        return self;
+    };
+}
+
 /**自定义hint的文字*/
 - (PageCell *(^)(NSString *))Hint_text{
     NSLog(@"\n%@ - %s", [self class], __func__);

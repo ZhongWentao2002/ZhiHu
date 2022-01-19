@@ -9,7 +9,37 @@
 
 #import <UIImageView+AFNetworking.h>
 
+#pragma mark - BannerCell方法实现
+
 @implementation BannerCell
+
+#pragma mark - 初始化
+
+/**注册时，会通过这个实例化*/
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        NSLog(@"\n]t%@", NSStringFromCGRect(frame));
+        
+        [self addSubview:self.pictureView];
+        [self addSubview:self.hintLab];
+        [self addSubview:self.titleLab];
+    }
+    return self;
+}
+
+/**绘制内部控件*/
+- (BannerCell *(^)(CGRect))CellDrawRect{
+    return ^BannerCell *(CGRect cellRect){
+        self.pictureView.frame = cellRect;
+        
+        
+        
+        return self;
+    };
+}
 
 #pragma mark - 懒加载
 
@@ -139,7 +169,7 @@
 #pragma mark - 懒加载
 
 /**hint的Rect*/
-- (CGRect)hintRect{
+- (CGRect)hintRectwithRect:(CGRect)aRect{
     static BOOL hadMake = NO;
     static CGFloat x, y, width, height;
     if (hadMake == NO) {
@@ -147,11 +177,8 @@
         NSLog(@"\n%@ - %s", [self class], __func__);
         
         CGFloat content = 10;
-        CGRect titleRect = self.titleRect;
-        height = 30;
-        x = titleRect.origin.x;
-        y = titleRect.origin.y + titleRect.size.height + content / 2;
-        width = titleRect.size.width;
+        CGRect rect = CGRectMake(content, 0, aRect.size.width - 2 * content, 40);
+        rect.origin.y = aRect.size.height - rect.size.height;
     }
     return CGRectMake(x, y, width, height);
 }

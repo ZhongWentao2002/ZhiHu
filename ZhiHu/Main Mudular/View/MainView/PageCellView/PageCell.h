@@ -76,6 +76,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**自定义title的文字*/
 - (PageCell *(^)(NSString *text))Title_text;
 
+/**title文字颜色，0黑，1灰*/
+- (PageCell *(^)(NSInteger))Type_Integer;
+
 /**自定义hint的文字*/
 - (PageCell *(^)(NSString *text))Hint_text;
 

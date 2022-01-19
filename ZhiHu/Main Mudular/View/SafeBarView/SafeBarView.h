@@ -36,8 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 基本属性
 
-/**今天的日期Lab*/
-@property (nonatomic, strong) UILabel *todayLab;
+/**天*/
+@property (nonatomic, strong) UILabel *dayLab;
+
+/**月*/
+@property (nonatomic, strong) UILabel *monthLab;
 
 /**线*/
 @property (nonatomic, strong) UILabel *line;

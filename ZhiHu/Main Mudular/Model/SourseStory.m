@@ -50,17 +50,19 @@
 #pragma mark - 网络请求
 
 /**Lastest请求*/
-- (void)getLastest:(void(^)(void))reload{
+- (void)getLastestTop:(void(^)(void))reloadTop
+                 Cell:(void(^)(void))reloadCell{
     /**网络请求*/
     [DailyStories
      GetLastestTop:^(DailyStories * _Nonnull topSourse) {
         // Set Top
         self.topStories = topSourse;
+        reloadTop();
     }
      Cell:^(DailyStories * _Nonnull cellSourse) {
         // Add Cell
         [self.sectionStories addObject:cellSourse];
-        reload();
+        reloadCell();
     }];
 }
 
@@ -103,6 +105,25 @@
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     return [self.delegate tableView:tableView ForSourse:(self.sectionStories.count == indexPath.section ? nil : self.sectionStories[indexPath.section].stories[indexPath.row])];
+}
+
+#pragma mark - <UICollectionViewDataSource>
+
+/**根据story去set一个cell，应交给代理去做
+ * 若没有Story，则代理得到nil
+ * 因为collection靠indexpath注册
+ */
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    return [self.delegate collectionView:collectionView ForIndexPath:indexPath];
+}
+
+/**返回个数，默认是6组*/
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    return self.topStories.stories == nil ? 6 :self.topStories.stories.count;
 }
 
 @end

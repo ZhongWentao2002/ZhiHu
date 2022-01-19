@@ -7,15 +7,12 @@
 
 /**MainTableView
  * 自己将掌握PageCell类型，用于创建该类Cell
- * 自己将掌握banner类型，用于头视图
  *
  * Cell将在循环的时候确定，所以自己将不引用
  * Top只有一个，所以强引用
  */
 
 #import <UIKit/UIKit.h>
-
-#import "BannerView.h"
 
 #import "PageCell.h"
 
@@ -43,11 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MainTableView : UITableView
 /**遵守的代理*/
 <UITableViewDelegate>
-
-#pragma mark - 基本属性
-
-/**banner页*/
-@property (nonatomic, strong)BannerView *bannerView;
 
 #pragma mark - 其他属性
 

@@ -9,6 +9,8 @@
 
 #import "SafeBarView.h"
 
+#import "BannerView.h"
+
 #import "MainTableView.h"
 
 #import "SourseStory.h"
@@ -20,6 +22,9 @@
 
 /**SafeBar的顶视图*/
 @property (nonatomic, strong) SafeBarView *safeView;
+
+/**banner视图*/
+@property (nonatomic,strong) BannerView *bannerView;
 
 /**主页的视图*/
 @property (nonatomic, strong) MainTableView *mainTableView;
@@ -64,6 +69,9 @@
     [self.view addSubview:self.safeView];
     
     [self.view addSubview:self.mainTableView];
+    
+    self.mainTableView.tableHeaderView = self.bannerView;
+    
 }
 
 /**自己的视图已经加载*/
@@ -72,8 +80,12 @@
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     /**网络请求，加载数据*/
-    [self.sourse getLastest:^{
-            [self.mainTableView reloadData];
+    [self.sourse
+     getLastestTop:^{
+        [self.bannerView reloadData];
+    }
+     Cell:^{
+        [self.mainTableView reloadData];
     }];
 }
 
@@ -103,10 +115,19 @@
         /**计算可用高度*/
         CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
         CGRect tvRect = self.view.frame;
-        tvRect.size.height = statusHeight + 40;
+        tvRect.size.height = statusHeight + 45;
         _safeView = SafeBarView.Create_withDelegate(self).Frame_CGRect(tvRect);
     }
     return _safeView;
+}
+
+- (BannerView *)bannerView{
+    if (_bannerView == nil) {
+        CGFloat width = self.view.frame.size.width;
+        _bannerView = [[BannerView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+        _bannerView.dataSource = self.sourse;
+    }
+    return _bannerView;
 }
 
 /**主页视图懒加载*/
@@ -144,8 +165,27 @@
         self.mainTableView.ReusablePageCell():
         self.mainTableView.ReusablePageCell()
             .Title_text(story.title)
+            .Type_Integer(story.type)
             .Hint_text(story.hint)
             .Picture_URLString(story.image);
+}
+
+/**根据story去创建一个cell，如果没有story，则得到nil*/
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                            ForIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    DailyStories *top_stories = self.sourse.topStories;
+    if (top_stories == nil) {
+        return self.bannerView
+                    .ReusableBannerCell_atIndexPath(indexPath)
+                    .Default();
+    }
+    Story *aStory = top_stories.stories[indexPath.section];
+    return self.bannerView.ReusableBannerCell_atIndexPath(indexPath)
+                .Picture_URLString(aStory.url)
+                .Hint_text(aStory.hint)
+                .Title_text(aStory.title);
 }
 
 #pragma mark - <MainTableViewDelegate>
@@ -181,6 +221,7 @@
 /**得到单击事件，应执行跳转操作*/
 - (void)tapAtIndexPath:(NSIndexPath *)indexPath{
     Story *aStory = self.sourse.DailyStories_inSection(indexPath.section).Story_inRow(indexPath.row);
+    aStory.type = 1;
     [self.navigationController pushViewController:[self.delegate VC_pushedFromCell_withID:aStory.ID url:aStory.url] animated:YES];
 }
 

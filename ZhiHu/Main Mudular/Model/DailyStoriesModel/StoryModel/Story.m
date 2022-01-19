@@ -113,9 +113,9 @@
 }
 
 /**ID，根据传入数字的String得到Intager*/
-- (Story *(^)(NSString *))ID_String{
-    return ^(NSString *IDStr){
-        self.ID = [IDStr intValue];
+- (Story *(^)(NSInteger))ID_Integer{
+    return ^(NSInteger IDNum){
+        self.ID = IDNum;
         return self;
     };
 }
@@ -124,6 +124,14 @@
 - (Story *(^)(NSString *))URL_String{
     return ^(NSString *urlStr){
         self.url = urlStr;
+        return self;
+    };
+}
+
+/**type状态*/
+- (Story *(^)(NSInteger))Type_Integer{
+    return ^Story *(NSInteger type){
+        self.type = type;
         return self;
     };
 }

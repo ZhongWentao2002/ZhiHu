@@ -7,7 +7,16 @@
 
 #import "SafeBarView.h"
 
-#pragma mark - SafeBar
+#pragma mark - SafeBar类扩展
+
+@interface SafeBarView ()
+
+/**用于日期的view*/
+@property (nonatomic, strong) UIView *todayView;
+
+@end
+
+#pragma mark - SafeBar视图
 
 @implementation SafeBarView
 
@@ -29,7 +38,7 @@
         vc.delegate = delegate;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:vc.delegate action:@selector(safeBarTaped)];
         [vc addGestureRecognizer:tap];
-        [vc addSubview:vc.todayLab];
+        [vc addSubview:vc.todayView];
         [vc addSubview:vc.line];
         [vc addSubview:vc.headImgView];
         [vc addSubview:vc.titleLab];
@@ -41,7 +50,11 @@
 - (SafeBarView *(^)(CGRect))Frame_CGRect{
     return ^SafeBarView *(CGRect rect){
         self.frame = rect;
-        self.todayLab.frame = [self todayLabRect];
+        self.todayView.frame = [self todayViewRect];{
+            self.dayLab.frame = [self dayRect];
+            self.monthLab.frame = [self monthRect];
+        }
+        
         self.line.frame = [self lineRect];
         self.headImgView.frame = [self headRect];
         self.titleLab.frame = [self titleRect];
@@ -52,25 +65,50 @@
 #pragma mark - 懒加载
 
 /**日期*/
-- (UILabel *)todayLab{
-    if (_todayLab == nil) {
-        _todayLab = [[UILabel alloc] init];
-        _todayLab.numberOfLines = 2;
-        _todayLab.textAlignment = NSTextAlignmentCenter;
-        _todayLab.font = [UIFont boldSystemFontOfSize:18];
-        _todayLab.userInteractionEnabled = NO;
+- (UIView *)todayView{
+    if (_todayView == nil) {
+        _todayView = [[UILabel alloc] init];
+        
+        [_todayView addSubview:self.dayLab];
+        [_todayView addSubview:self.monthLab];
+    }
+    return _todayView;
+}
+
+/**天*/
+- (UILabel *)dayLab{
+    if (_dayLab == nil) {
+        _dayLab = [[UILabel alloc] init];
+        _dayLab.textAlignment = NSTextAlignmentCenter;
+        _dayLab.userInteractionEnabled = NO;
+        _dayLab.font = [UIFont boldSystemFontOfSize:23];
         //找日期
         NSDate *date =[NSDate date];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         /**日期*/
         [formatter setDateFormat:@"dd"];
         NSString *day = [NSString stringWithFormat:@"%ld",[[formatter stringFromDate:date] integerValue]];
-        /**月份*/
-        [formatter setDateFormat:@"MM"];
-        NSString *month = [self monthTransform:[[formatter stringFromDate:date]integerValue]];
-        _todayLab.text = [NSString stringWithFormat:@"%@\n%@", day, month];
+        _dayLab.text = [NSString stringWithFormat:@"%@", day];
     }
-    return _todayLab;
+    return _dayLab;
+}
+
+/**月*/
+- (UILabel *)monthLab{
+    if (_monthLab == nil) {
+        _monthLab = [[UILabel alloc] init];
+        _monthLab.textAlignment = NSTextAlignmentCenter;
+        _monthLab.font = [UIFont boldSystemFontOfSize:18];
+        _monthLab.userInteractionEnabled = NO;
+        //找日期
+        NSDate *date =[NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        /**日期*/
+        [formatter setDateFormat:@"MM"];
+        NSString *month = [self monthTransform:[[formatter stringFromDate:date] integerValue]];
+        _monthLab.text = [NSString stringWithFormat:@"%@", month];
+    }
+    return _monthLab;
 }
 
 /**将数字转文字*月*/
@@ -120,24 +158,41 @@
 #pragma mark - 尺寸计算
 
 /**todayLab的计算*/
-- (CGRect)todayLabRect{
+- (CGRect)todayViewRect{
     CGRect safebarRect = self.frame;
     CGRect rect;
     rect.size.width = rect.size.height = 50;
     rect.origin.x = 15;
-    rect.origin.y = safebarRect.size.height - rect.size.width;
+    rect.origin.y = safebarRect.size.height - rect.size.width - 5;
+    return rect;
+}
+
+/**天*/
+- (CGRect)dayRect{
+    CGRect tRect = self.todayView.frame;
+    CGRect rect = CGRectMake(0, 0, tRect.size.width, tRect.size.height * 0.618);
+    return rect;
+}
+
+/**月*/
+- (CGRect)monthRect{
+    CGRect rect = self.todayView.frame;
+    CGRect dayRect = self.dayLab.frame;
+    rect.origin.x = 0;
+    rect.origin.y = dayRect.size.height;
+    rect.size.height -= rect.origin.y;
     return rect;
 }
 
 /**line的计算*/
 - (CGRect)lineRect{
-    CGRect todayRect = self.todayLab.frame;
+    CGRect todayRect = self.todayView.frame;
     CGFloat content = 10;
     CGRect rect;
     rect.origin.x = todayRect.origin.x + todayRect.size.width + content;
     rect.origin.y = todayRect.origin.y;
-    rect.size.width = 5;
-    rect.size.height = todayRect.size.height - 5;
+    rect.size.width = 2;
+    rect.size.height = todayRect.size.height;
     return rect;
 }
 

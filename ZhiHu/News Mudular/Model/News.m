@@ -15,6 +15,8 @@
 
 /**Create操作*/
 + (News *(^)(NSInteger))Create_withID{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^News *(NSInteger ID){
         News *aNew = [[News alloc] init];
         aNew.ID = ID;
@@ -24,6 +26,8 @@
 
 /**body赋值*/
 - (News *(^)(NSString *))Body_HTTPString{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^News *(NSString *http){
         self.body = http;
         return self;
@@ -32,6 +36,8 @@
 
 /**css赋值*/
 - (News *(^)(NSArray *))CSS_URLArray{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^News *(NSArray *cssA){
         NSString *css = cssA[0];
         self.css = css;
@@ -41,6 +47,8 @@
 
 /**image赋值*/
 - (News *(^)(NSString *))Image_URLString{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^News *(NSString *url){
         self.image = url;
         return self;
@@ -49,6 +57,8 @@
 
 /**image_hue赋值*/
 - (News *(^)(NSString *))Image_hue_String{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^News *(NSString *img_hue){
         self.image_hue = img_hue;
         return self;
@@ -57,6 +67,8 @@
 
 /**js赋值*/
 - (News *(^)(NSArray *))JS_URLArray{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^News *(NSArray *jsA){
         NSString *js = jsA[0];
         self.js = js;
@@ -66,6 +78,8 @@
 
 /**title赋值*/
 - (News *(^)(NSString *))Title_String{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^News *(NSString *title){
         self.title = title;
         return self;
@@ -74,6 +88,8 @@
 
 /**url赋值*/
 - (News *(^)(NSString *))URL_URLString{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return ^News *(NSString *url){
         self.url = url;
         return self;

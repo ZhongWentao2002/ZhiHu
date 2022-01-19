@@ -25,25 +25,8 @@
         self.showsHorizontalScrollIndicator = NO;
         /**不显示cell间线*/
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        /**加载banner页*/
-        self.tableHeaderView = self.bannerView;
     }
     return self;
-}
-
-#pragma mark - 懒加载
-
-/**banner页懒加载*/
-- (BannerView *)bannerView{
-    if (_bannerView == nil) {
-        /**计算Banner页的大小*/
-        CGFloat width = self.frame.size.width;
-        _bannerView = [[BannerView alloc] initWithFrame:CGRectMake(0, 0, width, width) collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-        
-        _bannerView.backgroundColor = [UIColor blueColor];
-    }
-    return _bannerView;
 }
 
 #pragma mark - PageCell相关的方法
@@ -51,7 +34,7 @@
 /**复用机制得到Cell*/
 - (PageCell *(^)(void))ReusablePageCell{
     return ^PageCell *(){
-        return PageCell.ReusableCellFromSuperTableView(self);
+        return PageCell.ReusableCellFromSuperTableView(self).Default();
     };
 }
 
@@ -130,6 +113,9 @@ willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section{
 /**选中后应跳转页面，但我们只提供单击事件*/
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    PageCell *cell = [self cellForRowAtIndexPath:indexPath];
+    cell.Type_Integer(1);
     
     [self.mainTV_delegate tapAtIndexPath:indexPath];
 }

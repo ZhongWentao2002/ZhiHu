@@ -43,7 +43,7 @@
                 .Hint_String(storyDic[@"hint"])
                 .Image_URLString(storyDic[@"image"])
                 .Image_hue_String(storyDic[@"image_hue"])
-                .ID_String(storyDic[@"id"])
+                .ID_Integer([storyDic[@"id"] longValue])
                 .URL_String(storyDic[@"url"]);
             [storyMA addObject:astory];
         }
@@ -71,7 +71,7 @@
                 .Title_String(dic[@"title"])
                 .Hint_String(dic[@"hint"])
                 .Image_URLArray(dic[@"images"])
-                .ID_String(dic[@"ID"])
+                .ID_Integer([dic[@"id"] longValue])
                 .URL_String(dic[@"url"]);
             [storyMA addObject:aStory];
         }
@@ -100,7 +100,7 @@
                 .Hint_String(storyDic[@"hint"])
                 .Image_URLString(storyDic[@"image"])
                 .Image_hue_String(storyDic[@"image_hue"])
-                .ID_String(storyDic[@"id"])
+                .ID_Integer([storyDic[@"id"] longValue])
                 .URL_String(storyDic[@"url"]);
             [storyMA addObject:astory];
         }
@@ -120,7 +120,7 @@
                 .Title_String(dic[@"title"])
                 .Hint_String(dic[@"hint"])
                 .Image_URLArray(dic[@"images"])
-                .ID_String(dic[@"ID"])
+                .ID_Integer([dic[@"id"] longValue])
                 .URL_String(dic[@"url"]);
             [storyMA addObject:aStory];
         }

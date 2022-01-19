@@ -29,7 +29,11 @@
 - (instancetype)initWithID:(NSInteger)ID URL:(NSString * _Nullable )url{
     self = [super init];
     if (self) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         self.sourse = News.Create_withID(ID).URL_URLString(url);
+        
+        NSLog(@"\n%@ - %s", [self class], __func__);
     }
     return self;
 }
@@ -37,8 +41,13 @@
 /**创建的方法*/
 + (NewsViewController *)createWithDelegate:(UIViewController <NewsDelegate> *)delegate
                                         ID:(NSInteger)ID URL:(NSString * _Nullable )url{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     NewsViewController *vc = [[NewsViewController alloc] initWithID:ID URL:url];
     vc.delegate = delegate;
+    
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
     return vc;
 }
 
@@ -88,7 +97,11 @@
 /**懒加载sourse*/
 - (News *)sourse{
     if (_sourse == nil) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         _sourse = [[News alloc] init];
+        
+        NSLog(@"\n%@ - %s", [self class], __func__);
     }
     return _sourse;
 }

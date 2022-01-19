@@ -8,7 +8,7 @@
 /**SourseStory
  * 所有的主页数据都将归到这个数据中心
  * 传递和代理都将写在这个文件
- * 遵循<UITableViewDataSource>
+ * 遵循<UITableViewDataSource, UICollectionViewDataSource>
  * 提供完美的source数据解决方案
  */
 
@@ -30,12 +30,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (UITableViewCell *)tableView:(UITableView *)tableView
                      ForSourse:(Story * _Nullable)story;
 
+/**根据story去创建一个cell，如果没有story，则得到nil*/
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                            ForIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 #pragma mark - 属性
 
 @interface SourseStory : NSObject
-<UITableViewDataSource>
+<UITableViewDataSource, UICollectionViewDataSource>
 
 #pragma mark - 基本数据属性
 
@@ -63,8 +67,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 网络请求
 
-/**lastest请求*/
-- (void)getLastest:(void(^)(void))reload;
+/**Lastest请求*/
+- (void)getLastestTop:(void(^)(void))reloadTop
+                 Cell:(void(^)(void))reloadCell;
 
 /**Before请求*/
 - (void)getBefore:(void(^)(void))reloadSection;

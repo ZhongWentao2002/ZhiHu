@@ -41,6 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**url详情页保留*/
 @property (nonatomic, copy) NSString *url;
 
+/**type状态*/
+@property (nonatomic) NSInteger type;
+
 #pragma mark - 链式编程
 
 /**类方法创建*/
@@ -62,10 +65,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (Story *(^)(NSString *))Image_hue_String;
 
 /**ID，根据传入数字的String得到Intager*/
-- (Story *(^)(NSString *))ID_String;
+- (Story *(^)(NSInteger))ID_Integer;
 
 /**url赋值*/
 - (Story *(^)(NSString *))URL_String;
+
+/**type状态*/
+- (Story *(^)(NSInteger))Type_Integer;
 
 #pragma mark - 初始化方法
 

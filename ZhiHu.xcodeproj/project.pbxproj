@@ -25,7 +25,7 @@
 		14922BE82796B77A00DA306A /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 14922BE72796B77A00DA306A /* News.m */; };
 		149EA4E72792EE90009AC0A9 /* MainTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 149EA4E62792EE90009AC0A9 /* MainTableView.m */; };
 		149EA4EA2792F11F009AC0A9 /* PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 149EA4E92792F11F009AC0A9 /* PageCell.m */; };
-		149EA4EC27930789009AC0A9 /* Main.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149EA4EB27930789009AC0A9 /* Main.xcassets */; };
+		149EA4EC27930789009AC0A9 /* MainImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 149EA4EB27930789009AC0A9 /* MainImage.xcassets */; };
 		14D77DB6279391C500C0B6D1 /* SourseStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D77DB5279391C500C0B6D1 /* SourseStory.m */; };
 		B1500D93FB7428CFCBD4C18A /* Pods_ZhiHu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BC546A0C43B70F31023AF4 /* Pods_ZhiHu.framework */; };
 /* End PBXBuildFile section */
@@ -67,7 +67,7 @@
 		149EA4E62792EE90009AC0A9 /* MainTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableView.m; sourceTree = "<group>"; };
 		149EA4E82792F11F009AC0A9 /* PageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageCell.h; sourceTree = "<group>"; };
 		149EA4E92792F11F009AC0A9 /* PageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageCell.m; sourceTree = "<group>"; };
-		149EA4EB27930789009AC0A9 /* Main.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Main.xcassets; sourceTree = "<group>"; };
+		149EA4EB27930789009AC0A9 /* MainImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MainImage.xcassets; sourceTree = "<group>"; };
 		14D77DB4279391C500C0B6D1 /* SourseStory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SourseStory.h; sourceTree = "<group>"; };
 		14D77DB5279391C500C0B6D1 /* SourseStory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SourseStory.m; sourceTree = "<group>"; };
 		46BC546A0C43B70F31023AF4 /* Pods_ZhiHu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZhiHu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +186,7 @@
 				142FB72D2795D0DC00FD001D /* SafeBarView */,
 				142FB7312795D18600FD001D /* BannerView *** */,
 				142FB72C2795D0D100FD001D /* MainView */,
-				149EA4EB27930789009AC0A9 /* Main.xcassets */,
+				149EA4EB27930789009AC0A9 /* MainImage.xcassets */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,6 +208,43 @@
 				142FB7292795D05400FD001D /* Model */,
 			);
 			path = "Main Mudular";
+			sourceTree = "<group>";
+		};
+		14314B9E279851CB001D71D0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				142FB7202795C6C300FD001D /* NewsViewController.h */,
+				142FB7212795C6C300FD001D /* NewsViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14314B9F2798521C001D71D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1422CB8227970AFD00C0E206 /* NewsView.h */,
+				1422CB8327970AFD00C0E206 /* NewsView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14314BA02798523A001D71D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14922BE62796B77A00DA306A /* News.h */,
+				14922BE72796B77A00DA306A /* News.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14314BA127985247001D71D0 /* News Mudular */ = {
+			isa = PBXGroup;
+			children = (
+				14314B9E279851CB001D71D0 /* ViewController */,
+				14314B9F2798521C001D71D0 /* View */,
+				14314BA02798523A001D71D0 /* Model */,
+			);
+			path = "News Mudular";
 			sourceTree = "<group>";
 		};
 		145A0FAD279234A0001D1CA3 = {
@@ -235,12 +272,7 @@
 				145A0FBA279234A0001D1CA3 /* AppDelegate.m */,
 				142FB7332795D23900FD001D /* ViewControllerManager */,
 				142FB7342795D24F00FD001D /* Main Mudular */,
-				142FB7202795C6C300FD001D /* NewsViewController.h */,
-				142FB7212795C6C300FD001D /* NewsViewController.m */,
-				1422CB8227970AFD00C0E206 /* NewsView.h */,
-				1422CB8327970AFD00C0E206 /* NewsView.m */,
-				14922BE62796B77A00DA306A /* News.h */,
-				14922BE72796B77A00DA306A /* News.m */,
+				14314BA127985247001D71D0 /* News Mudular */,
 				14922BDB2796901D00DA306A /* LoadViewController.h */,
 				14922BDC2796901D00DA306A /* LoadViewController.m */,
 				142FB7262795D01B00FD001D /* NetTool */,
@@ -329,7 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				145A0FC9279234A1001D1CA3 /* LaunchScreen.storyboard in Resources */,
-				149EA4EC27930789009AC0A9 /* Main.xcassets in Resources */,
+				149EA4EC27930789009AC0A9 /* MainImage.xcassets in Resources */,
 				145A0FC6279234A1001D1CA3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
