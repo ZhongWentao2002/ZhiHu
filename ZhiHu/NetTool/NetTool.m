@@ -7,27 +7,47 @@
 
 #import "NetTool.h"
 
+static NetTool *net = nil;
+
 @implementation NetTool
 
 #pragma mark - 初始化方法
 
 /**单例模块*/
 - (instancetype)init{
-    self = [[self class] shareTool];
-    return self;
+    /**单例net*/
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        net = [super init];
+        /**baseURL在头文件已说明*/
+        NSURL *baseURL = [NSURL URLWithString:@"https://news-at.zhihu.com/api/3"];
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        net = [[NetTool alloc] initWithBaseURL:baseURL sessionConfiguration:config];
+    });
+    return net;
 }
 
 /**单例模块*/
 + (NetTool *)shareTool{
-    /**单例net*/
-    static NetTool *net;
+    return [[self alloc] init];
+}
+
+/**单例模块*/
++ (instancetype)allocWithZone:(struct _NSZone *)zone{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        /**baseURL在头文件已说明*/
-        NSURL *baseURL = [NSURL URLWithString:@"https://news-at.zhihu.com/api/3"];
-        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        net = [[self alloc] initWithBaseURL:baseURL sessionConfiguration:config];
+        net = [super allocWithZone:zone];
     });
+    return net;
+}
+
+/**单例模块*/
+- (id)copyWithZone:(NSZone *)zone{
+    return net;
+}
+
+/**单例模块*/
+- (id)mutableCopyWithZone:(NSZone *)zone{
     return net;
 }
 

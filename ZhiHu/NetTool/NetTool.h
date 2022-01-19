@@ -16,6 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NetTool : AFHTTPSessionManager
+<NSCopying, NSMutableCopying>
 
 #pragma mark - 初始化方法
 

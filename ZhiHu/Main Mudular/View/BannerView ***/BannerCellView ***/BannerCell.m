@@ -169,10 +169,11 @@
 #pragma mark - 懒加载
 
 /**hint的Rect*/
-- (CGRect)hintRectwithRect:(CGRect)aRect{
+- (CGRect)hintRect{
     static BOOL hadMake = NO;
     static CGFloat x, y, width, height;
     if (hadMake == NO) {
+        CGRect aRect = self.contentView.frame;
         hadMake = YES;
         NSLog(@"\n%@ - %s", [self class], __func__);
         
