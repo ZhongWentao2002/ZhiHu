@@ -23,6 +23,9 @@
         [self addSubview:self.relayBtn];
         [self addSubview:self.likeBtn];
         [self addSubview:self.collectBtn];
+        
+        [self addSubview:self.commentNumLab];
+        [self addSubview:self.popularNumLab];
     }
     return self;
 }
@@ -108,18 +111,72 @@
     return _collectBtn;
 }
 
-#pragma mark - 需要改变颜色的
+#pragma mark - 单击先过一遍自己
 
 /**单击Like*/
 - (void)TapLike:(UIButton *)btn{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+
     btn.selected = ! btn.selected;
-    [self.delegate ExtraView_tapPopuliarItem];
+    if (btn.selected == YES) {
+        self.popularNumLab.textColor = [UIColor orangeColor];
+    }
+    else{
+        self.popularNumLab.textColor = [UIColor blackColor];
+    }
+    [self.delegate ExtraView_tapPopuliarItem_selected:btn.selected];
 }
 
 /*单击Collect*/
 - (void)TapCollect:(UIButton *)btn{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+
     btn.selected = ! btn.selected;
-    [self.delegate ExtraView_tapCollectItem];
+    [self.delegate ExtraView_tapCollectItem_selected:btn.selected];
+}
+
+#pragma mark - 数字类扩展
+
+/**评论数*/
+- (UILabel *)commentNumLab{
+    if (_commentNumLab == nil) {
+        CGRect cRect = self.commentBtn.frame;
+        cRect.size.height /= 2;
+        cRect.origin.x += cRect.size.width;
+        _commentNumLab = [[UILabel alloc] initWithFrame:cRect];
+        _commentNumLab.text = @"0";
+    }
+    return _commentNumLab;
+}
+
+/**点赞数*/
+- (UILabel *)popularNumLab{
+    if (_popularNumLab == nil) {
+        CGRect pRect = self.likeBtn.frame;
+        pRect.size.height /= 2;
+        pRect.origin.x += pRect.size.width;
+        _popularNumLab = [[UILabel alloc] initWithFrame:pRect];
+        _popularNumLab.text = @"0";
+    }
+    return _popularNumLab;
+}
+
+#pragma mark - 链式
+
+/**comment数字*/
+- (ExtraView *(^)(NSInteger)) CommentNum_Integer{
+    return ^ExtraView *(NSInteger com){
+        self.commentNumLab.text = [NSString stringWithFormat:@"%ld", com];
+        return self;
+    };
+}
+
+/**popular数字*/
+- (ExtraView *(^)(NSInteger)) PopularNum_Integer{
+    return ^ExtraView *(NSInteger pop){
+        self.popularNumLab.text = [NSString stringWithFormat:@"%ld", pop];
+        return self;
+    };
 }
 
 @end

@@ -230,10 +230,8 @@
 		14314B9F2798521C001D71D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1422CB8227970AFD00C0E206 /* NewsView.h */,
-				1422CB8327970AFD00C0E206 /* NewsView.m */,
-				1481A2D227992CBA00B6B4E8 /* ExtraView.h */,
-				1481A2D327992CBA00B6B4E8 /* ExtraView.m */,
+				146D77CD2799C2E800FC159C /* NewView */,
+				146D77CC2799C2DB00FC159C /* ExtraView */,
 				1481A2D52799482300B6B4E8 /* NewsImage.xcassets */,
 			);
 			path = View;
@@ -242,10 +240,8 @@
 		14314BA02798523A001D71D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14922BE62796B77A00DA306A /* News.h */,
-				14922BE72796B77A00DA306A /* News.m */,
-				1481A2CF27990F6E00B6B4E8 /* Extra.h */,
-				1481A2D027990F6E00B6B4E8 /* Extra.m */,
+				146D77CB2799C2CE00FC159C /* NewsModel */,
+				146D77CA2799C2A300FC159C /* ExtraModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -295,6 +291,42 @@
 				145A0FCB279234A1001D1CA3 /* main.m */,
 			);
 			path = ZhiHu;
+			sourceTree = "<group>";
+		};
+		146D77CA2799C2A300FC159C /* ExtraModel */ = {
+			isa = PBXGroup;
+			children = (
+				1481A2CF27990F6E00B6B4E8 /* Extra.h */,
+				1481A2D027990F6E00B6B4E8 /* Extra.m */,
+			);
+			path = ExtraModel;
+			sourceTree = "<group>";
+		};
+		146D77CB2799C2CE00FC159C /* NewsModel */ = {
+			isa = PBXGroup;
+			children = (
+				14922BE62796B77A00DA306A /* News.h */,
+				14922BE72796B77A00DA306A /* News.m */,
+			);
+			path = NewsModel;
+			sourceTree = "<group>";
+		};
+		146D77CC2799C2DB00FC159C /* ExtraView */ = {
+			isa = PBXGroup;
+			children = (
+				1481A2D227992CBA00B6B4E8 /* ExtraView.h */,
+				1481A2D327992CBA00B6B4E8 /* ExtraView.m */,
+			);
+			path = ExtraView;
+			sourceTree = "<group>";
+		};
+		146D77CD2799C2E800FC159C /* NewView */ = {
+			isa = PBXGroup;
+			children = (
+				1422CB8227970AFD00C0E206 /* NewsView.h */,
+				1422CB8327970AFD00C0E206 /* NewsView.m */,
+			);
+			path = NewView;
 			sourceTree = "<group>";
 		};
 		A3CF346CF81C155FC07FE6E0 /* Pods */ = {
@@ -563,6 +595,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

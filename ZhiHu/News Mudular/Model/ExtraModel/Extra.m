@@ -16,6 +16,8 @@
     return ^Extra *(NSInteger ID){
         Extra *data = [[Extra alloc] init];
         data.ID = ID;
+        data.comments = 0;
+        data.popularity = 0;
         return data;
     };
 }
@@ -43,6 +45,7 @@
      Data:^(NSDictionary * _Nonnull dic) {
         self.Comments_Integer([dic[@"comments"] longValue])
             .Popularity_Integer([dic[@"poppularity"] longValue]);
+        load();
     }];
 }
 

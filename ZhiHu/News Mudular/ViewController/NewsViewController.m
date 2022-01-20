@@ -86,6 +86,14 @@
     [super viewDidLoad];
     NSLog(@"\n%@ - %s", [self class], __func__);
     
+    [self.extraSourse
+     getExtra:^{
+        //得到数据
+        self.extraView
+            .CommentNum_Integer(self.extraSourse.comments)
+            .PopularNum_Integer(self.extraSourse.popularity);
+    }];
+    
     [self.newsSourse
      getNewsHTTP:^{
         // HTTP
@@ -97,12 +105,6 @@
         // Request
         NSLog(@"\n%s - Request", __func__);
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:theURL]]];
-    }];
-    
-    [self.extraSourse
-     getExtra:^{
-        //得到数据
-        
     }];
 }
 
@@ -134,11 +136,12 @@
         CGRect rect = CGRectMake(0, 0, viewRect.size.width, 70);
         rect.origin.y = viewRect.size.height - rect.size.height;
         _extraView = [[ExtraView alloc] initWithFrame:rect];
+        _extraView.delegate = self;
     }
     return _extraView;
 }
 
-#pragma mark - <UIControlEvents>
+#pragma mark - <ExtraViewDelegate>
 
 /**单击了返回按钮*/
 - (void)ExtraView_tapBackItem{
@@ -155,14 +158,18 @@
 }
 
 /**单击了点赞按钮*/
-- (void)ExtraView_tapPopuliarItem{
+- (void)ExtraView_tapPopuliarItem_selected:(BOOL)selected{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    
+    NSInteger popular = self.extraSourse.popularity;
+    self.extraView.popularNumLab.text =
+    (selected == YES ?
+     [NSString stringWithFormat:@"%ld", popular + 1] :
+     [NSString stringWithFormat:@"%ld", popular]);
 }
 
 /**单击了收藏按钮*/
-- (void)ExtraView_tapCollectItem{
+- (void)ExtraView_tapCollectItem_selected:(BOOL)selected{
     NSLog(@"\n%@ - %s", [self class], __func__);
 
     

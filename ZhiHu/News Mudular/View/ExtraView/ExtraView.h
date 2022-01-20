@@ -26,10 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ExtraView_tapCommentItem;
 
 /**单击了点赞按钮*/
-- (void)ExtraView_tapPopuliarItem;
+- (void)ExtraView_tapPopuliarItem_selected:(BOOL)selected;
 
 /**单击了收藏按钮*/
-- (void)ExtraView_tapCollectItem;
+- (void)ExtraView_tapCollectItem_selected:(BOOL)selected;
 
 /**单击了转发按钮*/
 - (void)ExtraView_tapRelayItem;
@@ -59,23 +59,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 其它属性
 
+/**很小的细线*/
+@property (nonatomic, strong) UILabel *line;
+
 /**代理*/
 @property (nonatomic, weak) id <ExtraViewDelegate> delegate;
 
 @end
 
-#pragma mark - 数字视图
+#pragma mark - ExtraView放数字控件
 
 @interface ExtraView ()
+
+#pragma mark - 属性
 
 /**总评论数*/
 @property (nonatomic, strong) UILabel *commentNumLab;
 
-/**很小的细线*/
-@property (nonatomic, strong) UILabel *line;
-
 /**点赞数*/
-@property (nonatomic, strong) UILabel *popularLab;
+@property (nonatomic, strong) UILabel *popularNumLab;
+
+#pragma mark - 链式
+
+/**comment数字*/
+- (ExtraView *(^)(NSInteger)) CommentNum_Integer;
+
+/**popular数字*/
+- (ExtraView *(^)(NSInteger)) PopularNum_Integer;
 
 @end
 
