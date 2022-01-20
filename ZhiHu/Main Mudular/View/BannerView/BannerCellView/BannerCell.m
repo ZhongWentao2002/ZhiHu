@@ -164,7 +164,7 @@
         
         CGFloat content = 10;
         x = 1.5 * content;
-        width = aRect.size.width - content;
+        width = aRect.size.width - 3.5 * content;
         height = 40;
         y = aRect.size.height - height;
     }

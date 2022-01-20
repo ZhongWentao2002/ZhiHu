@@ -53,6 +53,15 @@ NS_ASSUME_NONNULL_BEGIN
           HTTP:(void(^)(NSDictionary *))show
     tryRequest:(void(^)(void))request;
 
+/**Extra数据请求
+ * URL：story-extra/该新闻id
+ * 请求Extra数据
+ * 返回NSDictionary
+ * 注意：不做对dictionary的进一步操作
+ */
+- (void)ExtraID:(NSInteger)ID
+           Data:(void(^)(NSDictionary *))load;
+
 @end
 
 NS_ASSUME_NONNULL_END

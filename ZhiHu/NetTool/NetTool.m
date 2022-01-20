@@ -53,6 +53,8 @@ static NetTool *net = nil;
 
 #pragma mark - 网络请求
 
+#pragma mark Latest
+
 /**Latest数据
  * URL：new/Latest
  * 请求Latest数据
@@ -78,6 +80,8 @@ static NetTool *net = nil;
         NSLog(@"\n%@", error);
     }];
 }
+
+#pragma mark - Before
 
 /**Before数据
  * URL：stories/before/日期
@@ -105,6 +109,8 @@ static NetTool *net = nil;
         NSLog(@"\n%@", error);
     }];
 }
+
+#pragma mark News
 
 /**News数据
  * URL：news/文章id
@@ -138,4 +144,31 @@ static NetTool *net = nil;
     }];
 }
 
+#pragma mark - Extra
+
+/**Extra数据请求
+ * URL：story-extra/该新闻id
+ * 请求Extra数据
+ * 返回NSDictionary
+ * 注意：不做对dictionary的进一步操作
+ */
+- (void)ExtraID:(NSInteger)ID
+           Data:(void(^)(NSDictionary *))load{
+    [self
+     GET:[NSString stringWithFormat:@"story-extra/%ld", ID]
+     parameters:nil
+     headers:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"\n%@ - %s - success", [self class], __func__);
+        NSLog(@"\n%@", responseObject);
+        
+        // 获得数据，回掉load
+        load(responseObject);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"\n%@ - %s - failure", [self class], __func__);
+        NSLog(@"\n%@", error);
+    }];
+}
 @end

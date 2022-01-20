@@ -12,7 +12,7 @@
 
 #import <Foundation/Foundation.h>
 
-#include "NetTool.h"
+#import "NetTool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
