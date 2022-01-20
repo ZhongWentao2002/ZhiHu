@@ -18,7 +18,7 @@
 #pragma mark - 模块封装
 
 @interface MainViewController ()
-<SourseStoryDelegate, SafeBarViewDelegate, MainTableViewDelegate>
+<SourseStoryDelegate, BannerViewDelegate, SafeBarViewDelegate, MainTableViewDelegate>
 
 /**SafeBar的顶视图*/
 @property (nonatomic, strong) SafeBarView *safeView;
@@ -126,6 +126,7 @@
         CGFloat width = self.view.frame.size.width;
         _bannerView = [[BannerView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
         _bannerView.dataSource = self.sourse;
+        _bannerView.Banner_delegate = self;
     }
     return _bannerView;
 }
@@ -176,16 +177,25 @@
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     DailyStories *top_stories = self.sourse.topStories;
-    if (top_stories == nil) {
+    if (top_stories.stories.count == 0) {
         return self.bannerView
                     .ReusableBannerCell_atIndexPath(indexPath)
                     .Default();
     }
-    Story *aStory = top_stories.stories[indexPath.section];
+    Story *aStory = top_stories.stories[indexPath.row];
     return self.bannerView.ReusableBannerCell_atIndexPath(indexPath)
-                .Picture_URLString(aStory.url)
+                .Picture_URLString(aStory.image)
                 .Hint_text(aStory.hint)
                 .Title_text(aStory.title);
+    
+}
+
+#pragma mark - <BannerViewDelegate>
+
+/**单击了cell传出indexpath*/
+- (void)BannerView_tapAtIndexPath:(NSIndexPath *)indexPath{
+    Story *aStory = self.sourse.DailyStories_inSection(indexPath.section).Story_inRow(indexPath.row);
+    [self.navigationController pushViewController:[self.delegate VC_pushedFromBanner_withID:aStory.ID url:aStory.url] animated:YES];
 }
 
 #pragma mark - <MainTableViewDelegate>

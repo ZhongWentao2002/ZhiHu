@@ -22,4 +22,9 @@
             .Create_withDelegate(self);
 }
 
+/**得到单击了Banner的push页面，传出id和url*/
+- (UIViewController *)VC_pushedFromBanner_withID:(NSInteger)ID url:(NSString *)url{
+    return [NewsViewController createWithDelegate:self ID:ID URL:url];
+}
+
 @end

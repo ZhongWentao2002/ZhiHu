@@ -123,7 +123,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    return self.topStories.stories == nil ? 6 :self.topStories.stories.count;
+    return self.topStories.stories.count == 0 ? 6 :self.topStories.stories.count;
 }
 
 @end

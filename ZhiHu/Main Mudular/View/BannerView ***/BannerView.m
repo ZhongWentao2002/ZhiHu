@@ -50,12 +50,28 @@
     return ^BannerCell *(NSIndexPath *indexPath){
         BannerCell *cell = [self dequeueReusableCellWithReuseIdentifier:@"BannerCell" forIndexPath:indexPath];
         
+        cell.CellDrawRect(self.frame);
+        
         return cell;
     };
 }
 
 #pragma mark - <UICollectionViewDelegate>
 
+/**选中的代理*/
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    [self.Banner_delegate BannerView_tapAtIndexPath:indexPath];
+}
 
+#pragma mark - <UICollectionViewDelegateFlowLayout>
+
+/**cell大小的代理*/
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    return self.frame.size;
+}
 
 @end

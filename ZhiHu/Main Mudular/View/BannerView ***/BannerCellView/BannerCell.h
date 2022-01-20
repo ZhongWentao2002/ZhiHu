@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import <UIImageView+AFNetworking.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BannerCell : UICollectionViewCell
@@ -57,6 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**hint的Rect封装*/
 @property (nonatomic, readonly) CGRect hintRect;
+
+/**绘制内部控件*/
+- (BannerCell *(^)(CGRect))CellDrawRect;
 
 @end
 

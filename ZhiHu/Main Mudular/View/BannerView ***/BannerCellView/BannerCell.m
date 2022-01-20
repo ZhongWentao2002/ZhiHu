@@ -30,17 +30,6 @@
     return self;
 }
 
-/**绘制内部控件*/
-- (BannerCell *(^)(CGRect))CellDrawRect{
-    return ^BannerCell *(CGRect cellRect){
-        self.pictureView.frame = cellRect;
-        
-        
-        
-        return self;
-    };
-}
-
 #pragma mark - 懒加载
 
 /**懒加载pictureView，以免bug*/
@@ -63,8 +52,8 @@
         _titleLab = [[UILabel alloc] init];
         _titleLab.frame = self.titleRect;
         _titleLab.numberOfLines = 0;
-        _titleLab.font = [UIFont boldSystemFontOfSize:18];
-        _titleLab.backgroundColor = [UIColor darkGrayColor];
+        _titleLab.font = [UIFont boldSystemFontOfSize:25];
+        _titleLab.backgroundColor = [UIColor orangeColor];
     }
     return _titleLab;
 }
@@ -76,14 +65,13 @@
         
         _hintLab = [[UILabel alloc] init];
         _hintLab.frame = self.hintRect;
-        _hintLab.font = [UIFont systemFontOfSize:16];
-        _hintLab.backgroundColor = [UIColor grayColor];
+        _hintLab.font = [UIFont systemFontOfSize:18];
+        _hintLab.backgroundColor = [UIColor darkGrayColor];
     }
     return _hintLab;
 }
 
 #pragma mark - 链式编程
-
 
 /**自定义title的文字*/
 - (BannerCell *(^)(NSString *))Title_text{
@@ -91,6 +79,7 @@
     
     return ^BannerCell *(NSString *str){
         self.titleLab.text = str;
+        self.titleLab.textColor = [UIColor whiteColor];
         self.titleLab.backgroundColor = [UIColor clearColor];
         
         // 计算高度
@@ -106,11 +95,6 @@
                                  attributes:font context:nil];
         tRect.size.height = rect.size.height;
         self.titleLab.frame = tRect;
-        
-        // 重新布局hint的高度
-        CGRect hRect = self.hintLab.frame;
-        hRect.origin.y = tRect.origin.y + tRect.size.height;
-        self.hintLab.frame = hRect;
         return self;
     };
 }
@@ -121,7 +105,7 @@
     
     return ^BannerCell *(NSString *str){
         self.hintLab.text = str;
-        self.hintLab.textColor = [UIColor grayColor];
+        self.hintLab.textColor = [UIColor whiteColor];
         self.hintLab.backgroundColor = [UIColor clearColor];
         return self;
     };
@@ -151,10 +135,10 @@
     
     return ^BannerCell *(){
         self.titleLab.text = @"";
-        self.titleLab.backgroundColor = [UIColor darkGrayColor];
+        self.titleLab.backgroundColor = [UIColor orangeColor];
         
         self.hintLab.text = @"";
-        self.hintLab.backgroundColor = [UIColor grayColor];
+        self.hintLab.backgroundColor = [UIColor darkGrayColor];
         
         self.pictureView.image = [UIImage imageNamed:@"ImageDefault"];
         return self;
@@ -179,8 +163,10 @@
         NSLog(@"\n%@ - %s", [self class], __func__);
         
         CGFloat content = 10;
-        CGRect rect = CGRectMake(content, 0, aRect.size.width - 2 * content, 40);
-        rect.origin.y = aRect.size.height - rect.size.height;
+        x = 1.5 * content;
+        width = aRect.size.width - content;
+        height = 40;
+        y = aRect.size.height - height;
     }
     return CGRectMake(x, y, width, height);
 }
@@ -193,13 +179,24 @@
         hadMake = YES;
         NSLog(@"\n%@ - %s", [self class], __func__);
         
-        CGFloat content = 15;
-        height = 70;
-        x = content;
-        y = self.pictureView.frame.origin.y;
-        width = self.pictureView.frame.origin.x - 1.5 * content;
+        CGRect hRect = self.hintLab.frame;
+        x = hRect.origin.x;
+        width = hRect.size.width;
+        height = 60;
+        y = hRect.origin.y - height;
     }
     return CGRectMake(x, y, width, height);
+}
+
+/**绘制内部控件*/
+- (BannerCell *(^)(CGRect))CellDrawRect{
+    return ^BannerCell *(CGRect cellRect){
+        self.pictureView.frame = cellRect;
+        self.hintLab.frame = self.hintRect;
+        self.titleLab.frame = self.titleRect;
+        
+        return self;
+    };
 }
 
 @end

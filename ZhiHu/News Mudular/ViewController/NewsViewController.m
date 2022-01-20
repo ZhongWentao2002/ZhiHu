@@ -32,8 +32,6 @@
         NSLog(@"\n%@ - %s", [self class], __func__);
         
         self.sourse = News.Create_withID(ID).URL_URLString(url);
-        
-        NSLog(@"\n%@ - %s", [self class], __func__);
     }
     return self;
 }
@@ -46,6 +44,7 @@
     NewsViewController *vc = [[NewsViewController alloc] initWithID:ID URL:url];
     vc.delegate = delegate;
     
+    vc.view.backgroundColor = [UIColor whiteColor];
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     return vc;
@@ -88,8 +87,13 @@
     if (_webView == nil) {
         NSLog(@"\n%@ - %s", [self class], __func__);
         
-        _webView = [[NewsView alloc] initWithFrame:self.view.frame];
-        _webView.backgroundColor = [UIColor blueColor];
+        CGRect viewRect = self.view.frame;
+        CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+        viewRect.origin.y = statusHeight;
+        viewRect.size.height -= viewRect.origin.y;
+        
+        _webView = [[NewsView alloc] initWithFrame:viewRect];
+        _webView.backgroundColor = [UIColor whiteColor];
     }
     return _webView;
 }

@@ -11,8 +11,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - 代理
+
+@protocol BannerViewDelegate <NSObject>
+
+@required//提醒一下下
+
+/**单击了cell传出indexpath*/
+- (void)BannerView_tapAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
+#pragma mark - BannerView属性
+
 @interface BannerView : UICollectionView
-<UICollectionViewDelegate>
+<UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
+/**代理*/
+@property (nonatomic, weak) id <BannerViewDelegate> Banner_delegate;
 
 /**注册Cell的方法*/
 - (BannerCell *(^)(NSIndexPath *))ReusableBannerCell_atIndexPath;

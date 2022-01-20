@@ -161,13 +161,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		142FB72F2795D12F00FD001D /* BannerCellView *** */ = {
+		142FB72F2795D12F00FD001D /* BannerCellView */ = {
 			isa = PBXGroup;
 			children = (
 				142FB71D2795682F00FD001D /* BannerCell.h */,
 				142FB71E2795682F00FD001D /* BannerCell.m */,
 			);
-			path = "BannerCellView ***";
+			path = BannerCellView;
 			sourceTree = "<group>";
 		};
 		142FB7312795D18600FD001D /* BannerView *** */ = {
@@ -175,7 +175,7 @@
 			children = (
 				142FB71A27955F0E00FD001D /* BannerView.h */,
 				142FB71B27955F0E00FD001D /* BannerView.m */,
-				142FB72F2795D12F00FD001D /* BannerCellView *** */,
+				142FB72F2795D12F00FD001D /* BannerCellView */,
 			);
 			path = "BannerView ***";
 			sourceTree = "<group>";
