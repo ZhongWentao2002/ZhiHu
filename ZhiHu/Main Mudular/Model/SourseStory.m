@@ -85,6 +85,7 @@
  */
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     NSLog(@"\n%@ - %s", [self class], __func__);
+    NSLog(@"\n\tself.sectionStories.count = %ld", self.sectionStories.count);
     
     return self.sectionStories.count + 1;
 }
@@ -94,6 +95,7 @@
  */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"\n%@ - %s", [self class], __func__);
+    NSLog(@"\n\tself.sectionStories.count = %ld", self.sectionStories.count);
     
     return self.sectionStories.count == section ? 6 : self.sectionStories[section].stories.count;
 }
@@ -115,15 +117,17 @@
  */
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"\n%@ - %s", [self class], __func__);
+    NSLog(@"\n\tindexPath : %ld - %ld", indexPath.section, indexPath.item);
 
     return [self.delegate collectionView:collectionView ForIndexPath:indexPath];
 }
 
-/**返回个数，默认是6组*/
+/**返回个数，默认是5组*/
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSLog(@"\n%@ - %s", [self class], __func__);
+    NSLog(@"\n\tself.topStories.stories.count = %ld", self.topStories.stories.count);
     
-    return self.topStories.stories.count == 0 ? 6 :self.topStories.stories.count;
+    return self.topStories.stories.count == 0 ? 5 :self.topStories.stories.count;
 }
 
 @end

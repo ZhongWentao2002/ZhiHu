@@ -97,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1401386B279AC35C006A1D8C /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				14013868279A640E006A1D8C /* PageControl.h */,
+				14013869279A640E006A1D8C /* PageControl.m */,
+			);
+			path = PageControl;
+			sourceTree = "<group>";
+		};
 		142FB7262795D01B00FD001D /* NetTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,11 +204,10 @@
 			isa = PBXGroup;
 			children = (
 				142FB72D2795D0DC00FD001D /* SafeBarView */,
-				142FB72C2795D0D100FD001D /* MainView */,
+				1401386B279AC35C006A1D8C /* PageControl */,
 				142FB7312795D18600FD001D /* BannerView */,
+				142FB72C2795D0D100FD001D /* MainView */,
 				149EA4EB27930789009AC0A9 /* MainImage.xcassets */,
-				14013868279A640E006A1D8C /* PageControl.h */,
-				14013869279A640E006A1D8C /* PageControl.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

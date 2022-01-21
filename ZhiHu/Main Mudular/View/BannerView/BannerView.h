@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**单击了cell传出indexpath*/
 - (void)BannerView_tapAtIndexPath:(NSIndexPath *)indexPath;
 
+/**已停止滑动*/
+- (void)BannerView_endedScollAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 #pragma mark - BannerView属性

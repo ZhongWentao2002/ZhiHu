@@ -65,6 +65,15 @@
     [self.Banner_delegate BannerView_tapAtIndexPath:indexPath];
 }
 
+/**当bannerView停止滚动的时候调用*/
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGPoint p = scrollView.contentOffset;
+    NSLog(@"\n\t*****%@", NSStringFromCGPoint(p));
+    p.x += 1;
+    NSIndexPath *indexPath = [self indexPathForItemAtPoint:p];
+    [self.Banner_delegate BannerView_endedScollAtIndexPath:indexPath];
+}
+
 #pragma mark - <UICollectionViewDelegateFlowLayout>
 
 /**cell大小的代理*/

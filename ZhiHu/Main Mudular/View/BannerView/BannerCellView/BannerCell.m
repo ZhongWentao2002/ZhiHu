@@ -21,7 +21,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         NSLog(@"\n%@ - %s", [self class], __func__);
-        NSLog(@"\n]t%@", NSStringFromCGRect(frame));
+        NSLog(@"\n\tBanner - Cell%@", NSStringFromCGRect(frame));
         
         [self addSubview:self.pictureView];
         [self addSubview:self.hintLab];
@@ -79,6 +79,8 @@
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     return ^BannerCell *(NSString *str){
+        NSLog(@"\n\t%@", str);
+        
         self.titleLab.text = str;
         self.titleLab.textColor = [UIColor whiteColor];
         self.titleLab.backgroundColor = [UIColor clearColor];
@@ -164,8 +166,6 @@
         
         CGRect aRect = self.contentView.frame;
         hadMake = YES;
-        NSLog(@"\n%@ - %s", [self class], __func__);
-        
         CGFloat content = 10;
         x = 1.5 * content;
         width = aRect.size.width - 3.5 * content;
@@ -183,8 +183,6 @@
         NSLog(@"\n%@ - %s", [self class], __func__);
         
         hadMake = YES;
-        NSLog(@"\n%@ - %s", [self class], __func__);
-        
         CGRect hRect = self.hintLab.frame;
         x = hRect.origin.x;
         width = hRect.size.width;

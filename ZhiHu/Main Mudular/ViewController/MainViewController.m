@@ -201,9 +201,8 @@
         return self.bannerView
             .ReusableBannerCell_atIndexPath(indexPath);
     }
-    
-    self.pageControl.currentPage = indexPath.item;
     Story *aStory = top_stories.stories[indexPath.item];
+    
     return self.bannerView.ReusableBannerCell_atIndexPath(indexPath)
                 .Picture_URLString(aStory.image)
                 .Hint_text(aStory.hint)
@@ -216,6 +215,11 @@
 - (void)BannerView_tapAtIndexPath:(NSIndexPath *)indexPath{
     Story *aStory = self.sourse.DailyStories_inSection(indexPath.section).Story_inRow(indexPath.row);
     [self.navigationController pushViewController:[self.delegate VC_pushedFromBanner_withID:aStory.ID url:aStory.url] animated:YES];
+}
+
+/**已停止滑动*/
+- (void)BannerView_endedScollAtIndexPath:(NSIndexPath *)indexPath{
+    self.pageControl.currentPage = indexPath.item;
 }
 
 #pragma mark - <MainTableViewDelegate>

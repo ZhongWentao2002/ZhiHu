@@ -20,7 +20,7 @@
     self = [super init];
     NSLog(@"\n%@ - %s", [self class], __func__);
     if (self) {
-        self.view.backgroundColor = [UIColor blueColor];
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -36,10 +36,9 @@
 
 #pragma mark - 生命周期
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 @end
