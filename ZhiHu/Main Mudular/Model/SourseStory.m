@@ -115,7 +115,7 @@
  */
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"\n%@ - %s", [self class], __func__);
-    
+
     return [self.delegate collectionView:collectionView ForIndexPath:indexPath];
 }
 

@@ -26,6 +26,7 @@
         [self addSubview:self.pictureView];
         [self addSubview:self.hintLab];
         [self addSubview:self.titleLab];
+        self.CellDrawRect(frame);
     }
     return self;
 }
@@ -117,6 +118,7 @@
     
     return ^BannerCell *(NSString *url){
         [self.pictureView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"ImageDefault"]];
+        
         return self;
     };
 }
@@ -158,6 +160,8 @@
     static BOOL hadMake = NO;
     static CGFloat x, y, width, height;
     if (hadMake == NO) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         CGRect aRect = self.contentView.frame;
         hadMake = YES;
         NSLog(@"\n%@ - %s", [self class], __func__);
@@ -176,6 +180,8 @@
     static BOOL hadMake = NO;
     static CGFloat x, y, width, height;
     if (hadMake == NO) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         hadMake = YES;
         NSLog(@"\n%@ - %s", [self class], __func__);
         
@@ -191,7 +197,9 @@
 /**绘制内部控件*/
 - (BannerCell *(^)(CGRect))CellDrawRect{
     return ^BannerCell *(CGRect cellRect){
-        self.pictureView.frame = cellRect;
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
+        self.pictureView.frame = CGRectMake(0, 0, cellRect.size.width, cellRect.size.height);
         self.hintLab.frame = self.hintRect;
         self.titleLab.frame = self.titleRect;
         

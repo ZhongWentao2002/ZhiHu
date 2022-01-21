@@ -9,6 +9,8 @@
 
 #import "SafeBarView.h"
 
+#import "PageControl.h"
+
 #import "BannerView.h"
 
 #import "MainTableView.h"
@@ -24,7 +26,10 @@
 @property (nonatomic, strong) SafeBarView *safeView;
 
 /**banner视图*/
-@property (nonatomic,strong) BannerView *bannerView;
+@property (nonatomic, strong) BannerView *bannerView;
+
+/**PageControl视图*/
+@property (nonatomic, strong) PageControl *pageControl;
 
 /**主页的视图*/
 @property (nonatomic, strong) MainTableView *mainTableView;
@@ -72,6 +77,7 @@
     
     self.mainTableView.tableHeaderView = self.bannerView;
     
+    [self.mainTableView addSubview:self.pageControl];
 }
 
 /**自己的视图已经加载*/
@@ -82,6 +88,7 @@
     /**网络请求，加载数据*/
     [self.sourse
      getLastestTop:^{
+        self.pageControl.numberOfPages = self.sourse.topStories.stories.count;
         [self.bannerView reloadData];
     }
      Cell:^{
@@ -121,6 +128,7 @@
     return _safeView;
 }
 
+/**banner懒加载*/
 - (BannerView *)bannerView{
     if (_bannerView == nil) {
         CGFloat width = self.view.frame.size.width;
@@ -129,6 +137,18 @@
         _bannerView.Banner_delegate = self;
     }
     return _bannerView;
+}
+
+/**pageControl懒加载*/
+- (PageControl *)pageControl{
+    if (_pageControl == nil) {
+        CGRect bRect = self.mainTableView.tableHeaderView.frame;
+        CGRect rect = CGRectMake(0, 0, 160, 10);
+        rect.origin.x = bRect.size.width - rect.size.width;
+        rect.origin.y = bRect.size.height - rect.size.height - 15;
+        _pageControl = [[PageControl alloc] initWithFrame:rect];
+    }
+    return _pageControl;
 }
 
 /**主页视图懒加载*/
@@ -179,15 +199,15 @@
     DailyStories *top_stories = self.sourse.topStories;
     if (top_stories.stories.count == 0) {
         return self.bannerView
-                    .ReusableBannerCell_atIndexPath(indexPath)
-                    .Default();
+            .ReusableBannerCell_atIndexPath(indexPath);
     }
-    Story *aStory = top_stories.stories[indexPath.row];
+    
+    self.pageControl.currentPage = indexPath.item;
+    Story *aStory = top_stories.stories[indexPath.item];
     return self.bannerView.ReusableBannerCell_atIndexPath(indexPath)
                 .Picture_URLString(aStory.image)
                 .Hint_text(aStory.hint)
                 .Title_text(aStory.title);
-    
 }
 
 #pragma mark - <BannerViewDelegate>

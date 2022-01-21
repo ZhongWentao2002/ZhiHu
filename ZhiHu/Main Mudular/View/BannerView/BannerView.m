@@ -38,6 +38,7 @@
         self.pagingEnabled = YES;
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
+        self.bounces = NO;
         [self registerClass:[BannerCell class] forCellWithReuseIdentifier:@"BannerCell"];
     }
     return self;
@@ -49,9 +50,8 @@
 - (BannerCell *(^)(NSIndexPath *))ReusableBannerCell_atIndexPath{
     return ^BannerCell *(NSIndexPath *indexPath){
         BannerCell *cell = [self dequeueReusableCellWithReuseIdentifier:@"BannerCell" forIndexPath:indexPath];
-        
-        cell.CellDrawRect(self.frame);
-        
+        cell.Default();
+
         return cell;
     };
 }

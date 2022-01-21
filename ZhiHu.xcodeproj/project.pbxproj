@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1401386A279A640E006A1D8C /* PageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 14013869279A640E006A1D8C /* PageControl.m */; };
 		1422CB8427970AFD00C0E206 /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422CB8327970AFD00C0E206 /* NewsView.m */; };
 		142FB71C27955F0E00FD001D /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71B27955F0E00FD001D /* BannerView.m */; };
 		142FB71F2795682F00FD001D /* BannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71E2795682F00FD001D /* BannerCell.m */; };
@@ -35,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		13816A8DCD87EC58C446D512 /* Pods-ZhiHu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhiHu.release.xcconfig"; path = "Target Support Files/Pods-ZhiHu/Pods-ZhiHu.release.xcconfig"; sourceTree = "<group>"; };
+		14013868279A640E006A1D8C /* PageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageControl.h; sourceTree = "<group>"; };
+		14013869279A640E006A1D8C /* PageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageControl.m; sourceTree = "<group>"; };
 		1422CB8227970AFD00C0E206 /* NewsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsView.h; sourceTree = "<group>"; };
 		1422CB8327970AFD00C0E206 /* NewsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
 		142FB71A27955F0E00FD001D /* BannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
@@ -192,9 +195,11 @@
 			isa = PBXGroup;
 			children = (
 				142FB72D2795D0DC00FD001D /* SafeBarView */,
-				142FB7312795D18600FD001D /* BannerView */,
 				142FB72C2795D0D100FD001D /* MainView */,
+				142FB7312795D18600FD001D /* BannerView */,
 				149EA4EB27930789009AC0A9 /* MainImage.xcassets */,
+				14013868279A640E006A1D8C /* PageControl.h */,
+				14013869279A640E006A1D8C /* PageControl.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -463,6 +468,7 @@
 			files = (
 				1481A2D127990F6E00B6B4E8 /* Extra.m in Sources */,
 				145A0FE02792C16C001D1CA3 /* DailyStories.m in Sources */,
+				1401386A279A640E006A1D8C /* PageControl.m in Sources */,
 				142FB7252795CD0B00FD001D /* SafeBarView.m in Sources */,
 				145A0FC1279234A0001D1CA3 /* ViewController.m in Sources */,
 				149EA4E72792EE90009AC0A9 /* MainTableView.m in Sources */,
