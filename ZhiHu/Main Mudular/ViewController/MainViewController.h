@@ -6,7 +6,10 @@
 //
 
 /**知乎日报主页控制器（模块）
- * 此控制器将管理一个banner和tableview
+ * 此控制器将管理safeBarView顶视
+ * PageControl分页
+ * BannerView轮播
+ * MainView新闻
  */
 
 #import <UIKit/UIKit.h>

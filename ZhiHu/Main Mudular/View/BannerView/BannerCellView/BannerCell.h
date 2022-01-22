@@ -5,6 +5,14 @@
 //  Created by SSR on 2022/1/17.
 //
 
+/**BannerCell
+ * 每个cell装有图片
+ * 拥有标题
+ * 和作者
+ * 可以通过链式赋值的方法
+ * 优雅的形式传递数据
+ */
+
 #import <UIKit/UIKit.h>
 
 #import <UIImageView+AFNetworking.h>

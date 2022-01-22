@@ -5,6 +5,13 @@
 //  Created by SSR on 2022/1/20.
 //
 
+/**Extra数据
+ * 得到新闻的其他数据
+ * 拥有评论数和点赞数
+ * 可以根据ID去创建一个Extra类
+ * 并可以根据ID去网络请求数据
+ */
+
 #import <Foundation/Foundation.h>
 
 #import "NetTool.h"

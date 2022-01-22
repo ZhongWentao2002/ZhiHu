@@ -5,6 +5,11 @@
 //  Created by SSR on 2022/1/17.
 //
 
+/**NewsViewController
+ * 持有一个Web视图
+ * 一份web数据
+ */
+
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 

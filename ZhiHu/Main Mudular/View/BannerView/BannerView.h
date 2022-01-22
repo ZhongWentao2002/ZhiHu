@@ -5,6 +5,12 @@
 //  Created by SSR on 2022/1/17.
 //
 
+/**Banner视图
+ * 图片轮播器
+ * 将接受collectionView的代理
+ * 不确定的东西将交给自己的代理去做
+ */
+
 #import <UIKit/UIKit.h>
 
 #import "BannerCell.h"

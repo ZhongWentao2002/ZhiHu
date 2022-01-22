@@ -7,7 +7,11 @@
 
 /**News Model模型
  * 保存一个New的基本信息
- * html加载方法，css图片，js注册
+ * image大图片
+ * title标题
+ * html网页body源码
+ * css图片集附加载
+ * js注册代码
  */
 
 #import <Foundation/Foundation.h>

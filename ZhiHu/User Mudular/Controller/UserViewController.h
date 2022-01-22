@@ -5,6 +5,12 @@
 //  Created by SSR on 2022/1/18.
 //
 
+/**UserViewController
+ * 用户页
+ * 将有一个代替navigation的view
+ * 和一个主页视图的view
+ */
+
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
