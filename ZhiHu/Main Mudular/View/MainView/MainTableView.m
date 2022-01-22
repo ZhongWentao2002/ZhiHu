@@ -50,13 +50,6 @@ willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section{
     [self.mainTV_delegate MainTableViewWillDisplaySection:section];
 }
 
-/**scroll正在滚动的方法 banner应该放大*/
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    /*----------------------------------待完成-----------------------------------------**/
-    
-}
-
 // Variable height support
 
 /**每一个cell的高度，140*/
@@ -118,6 +111,15 @@ willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section{
     cell.Type_Integer(1);
     
     [self.mainTV_delegate tapAtIndexPath:indexPath];
+}
+
+/**scroll正在滚动的方法 banner应该放大*/
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    NSLog(@"\n\t- %@", NSStringFromCGPoint(scrollView.contentOffset));
+    if (scrollView.contentOffset.y <= 0) {
+        [self.mainTV_delegate MainTableView_Scrolling_offset:scrollView.contentOffset];
+    }
 }
 
 @end

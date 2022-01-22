@@ -23,9 +23,9 @@
         NSLog(@"\n%@ - %s", [self class], __func__);
         NSLog(@"\n\tBanner - Cell%@", NSStringFromCGRect(frame));
         
-        [self addSubview:self.pictureView];
-        [self addSubview:self.hintLab];
-        [self addSubview:self.titleLab];
+        [self.contentView addSubview:self.pictureView];
+        [self.contentView addSubview:self.hintLab];
+        [self.contentView addSubview:self.titleLab];
         self.CellDrawRect(frame);
     }
     return self;
@@ -39,6 +39,7 @@
         NSLog(@"\n%@ - %s", [self class], __func__);
         
         _pictureView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ImageDefault"]];
+        _pictureView.contentMode = UIViewContentModeScaleAspectFill;
         _pictureView.frame = self.contentView.frame;
         _pictureView.backgroundColor = [UIColor grayColor];
     }

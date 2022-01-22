@@ -20,7 +20,7 @@
 #import "NewsViewController.h"
 
 /**用户信息Controller*/
-#import "LoadViewController.h"
+#import "UserViewController.h"
 
 @interface ViewController : UIViewController
 /**遵循的代理*/

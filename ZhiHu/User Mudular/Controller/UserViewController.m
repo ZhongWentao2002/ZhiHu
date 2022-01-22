@@ -1,17 +1,17 @@
 //
-//  LoadViewController.m
+//  UserViewController.m
 //  ZhiHu
 //
 //  Created by SSR on 2022/1/18.
 //
 
-#import "LoadViewController.h"
+#import "UserViewController.h"
 
-@interface LoadViewController ()
+@interface UserViewController ()
 
 @end
 
-@implementation LoadViewController
+@implementation UserViewController
 
 #pragma mark - 初始化方法
 
@@ -26,9 +26,9 @@
 }
 
 /**链式创建方法*/
-+ (LoadViewController *(^)(UIViewController <LoadDelegate> *))Create_withDelegate{
-    return ^LoadViewController *(UIViewController <LoadDelegate> * t){
-        LoadViewController *vc = [[LoadViewController alloc] init];
++ (UserViewController *(^)(UIViewController <LoadDelegate> *))Create_withDelegate{
+    return ^UserViewController *(UIViewController <LoadDelegate> * t){
+        UserViewController *vc = [[UserViewController alloc] init];
         vc.delegate = t;
         return vc;
     };

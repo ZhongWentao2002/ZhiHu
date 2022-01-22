@@ -136,7 +136,7 @@
         _headImgView = [[UIImageView alloc] initWithFrame:[self headRect]];
         _headImgView.layer.cornerRadius = _headImgView.frame.size.width / 2;
         _headImgView.clipsToBounds = YES;
-        _headImgView.image = [UIImage imageNamed:@"ImageDefault"];
+        _headImgView.image = [UIImage imageNamed:@"SSR_default"];
         _headImgView.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(safeBarImageViewTaped)];
         [_headImgView addGestureRecognizer:tap];

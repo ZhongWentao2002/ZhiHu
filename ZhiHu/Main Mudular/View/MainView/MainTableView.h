@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**单击了indexPath的cell*/
 - (void)tapAtIndexPath:(NSIndexPath *)indexPath;
 
+/**滑动了TableView*/
+- (void)MainTableView_Scrolling_offset:(CGPoint)offset;
+
 @end
 
 #pragma mark - MainTableView基本

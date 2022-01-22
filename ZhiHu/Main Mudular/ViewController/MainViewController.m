@@ -259,6 +259,16 @@
     [self.navigationController pushViewController:[self.delegate VC_pushedFromCell_withID:aStory.ID url:aStory.url] animated:YES];
 }
 
+/**滑动了TableView*/
+- (void)MainTableView_Scrolling_offset:(CGPoint)offset{
+    
+    BannerCell *cell = self.bannerView.visibleCells[0];
+    CGRect pRect = cell.pictureView.frame;
+    pRect.origin.y = offset.y;
+    pRect.size.height = cell.contentView.frame.size.height - offset.y;
+    
+    cell.pictureView.frame = pRect;
+}
 
 #pragma mark - <SafeBarViewDelegate>
 

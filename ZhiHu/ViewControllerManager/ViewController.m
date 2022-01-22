@@ -18,7 +18,7 @@
 
 /**跳转到用户页*/
 - (UIViewController *)VC_pushedFromHeadView{
-    return LoadViewController
+    return UserViewController
             .Create_withDelegate(self);
 }
 

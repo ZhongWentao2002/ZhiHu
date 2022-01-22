@@ -1,5 +1,5 @@
 //
-//  LoadViewController.h
+//  UserViewController.h
 //  ZhiHu
 //
 //  Created by SSR on 2022/1/18.
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - News属性
 
-@interface LoadViewController : UIViewController
+@interface UserViewController : UIViewController
 
 /**代理，关键时候得到push对象*/
 @property (nonatomic, weak) UIViewController <LoadDelegate> *delegate;
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init __attribute__((unavailable("请使用Create_withDelegate()")));
 
 /**链式创建方法*/
-+ (LoadViewController *(^)(UIViewController <LoadDelegate> *))Create_withDelegate;
++ (UserViewController *(^)(UIViewController <LoadDelegate> *))Create_withDelegate;
 
 
 @end
