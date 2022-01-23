@@ -44,7 +44,7 @@
      ExtraID:self.ID
      Data:^(NSDictionary * _Nonnull dic) {
         self.Comments_Integer([dic[@"comments"] longValue])
-            .Popularity_Integer([dic[@"poppularity"] longValue]);
+            .Popularity_Integer([dic[@"popularity"] longValue]);
         load();
     }];
 }
