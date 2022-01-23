@@ -27,4 +27,9 @@
     return [NewsViewController createWithDelegate:self ID:ID URL:url];
 }
 
+/**转交safeBar的请求*/
+- (NSString *)MainViewController_needHeadImage{
+    return UserViewController.HeadImageName;
+}
+
 @end

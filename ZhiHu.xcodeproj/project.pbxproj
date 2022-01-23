@@ -117,10 +117,8 @@
 		14013871279BE941006A1D8C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1401386E279BB252006A1D8C /* UserTopView.h */,
-				1401386F279BB252006A1D8C /* UserTopView.m */,
-				14013874279C53A3006A1D8C /* UserView.h */,
-				14013875279C53A3006A1D8C /* UserView.m */,
+				14013878279D89E2006A1D8C /* UserTopView */,
+				14013877279D89DA006A1D8C /* UserView */,
 				1401386C279BB122006A1D8C /* UserImage.xcassets */,
 			);
 			path = View;
@@ -142,6 +140,24 @@
 				14013871279BE941006A1D8C /* View */,
 			);
 			path = "User Mudular";
+			sourceTree = "<group>";
+		};
+		14013877279D89DA006A1D8C /* UserView */ = {
+			isa = PBXGroup;
+			children = (
+				14013874279C53A3006A1D8C /* UserView.h */,
+				14013875279C53A3006A1D8C /* UserView.m */,
+			);
+			path = UserView;
+			sourceTree = "<group>";
+		};
+		14013878279D89E2006A1D8C /* UserTopView */ = {
+			isa = PBXGroup;
+			children = (
+				1401386E279BB252006A1D8C /* UserTopView.h */,
+				1401386F279BB252006A1D8C /* UserTopView.m */,
+			);
+			path = UserTopView;
 			sourceTree = "<group>";
 		};
 		142FB7262795D01B00FD001D /* NetTool */ = {

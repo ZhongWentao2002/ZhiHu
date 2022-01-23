@@ -9,6 +9,8 @@
 
 #import "UserTopView.h"
 
+#import "UserView.h"
+
 #pragma mark - 被封装的模块
 
 @interface UserViewController ()
@@ -16,6 +18,9 @@
 
 /**一个顶视图*/
 @property (nonatomic, strong) UserTopView *topView;
+
+/**一个主视图*/
+@property (nonatomic, strong) UserView *userView;
 
 @end
 
@@ -49,7 +54,10 @@
 /**加载视图*/
 - (void)loadView{
     [super loadView];
+    
     [self.view addSubview:self.topView];
+    
+    [self.view addSubview:self.userView];
 }
 
 /**视图将要展示*/
@@ -68,6 +76,25 @@
         _topView.delegate = self;
     }
     return _topView;
+}
+
+/**User视图懒加载*/
+- (UserView *)userView{
+    if (_userView == nil) {
+        CGRect tRect = self.topView.frame;
+        CGRect rect = self.view.frame;
+        rect.origin.y = tRect.size.height;
+        rect.size.height -= rect.origin.y;
+        _userView = [[UserView alloc] initWithFrame:rect];
+    }
+    return _userView;
+}
+
+#pragma mark - 其他
+
+/**获取基本数据，是否登录*/
++ (NSString *)HeadImageName{
+    return UserView.ImageNameWhereIsLoaded;
 }
 
 #pragma mark - <UserTopViewDelegate>

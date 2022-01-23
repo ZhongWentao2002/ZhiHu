@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**链式创建方法*/
 + (UserViewController *(^)(UIViewController <LoadDelegate> *))Create_withDelegate;
 
+/**获取基本数据，是否登录*/
++ (NSString *)HeadImageName;
 
 @end
 

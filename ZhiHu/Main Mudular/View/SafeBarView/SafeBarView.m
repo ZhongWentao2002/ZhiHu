@@ -62,6 +62,11 @@
     };
 }
 
+/**重写加载部分数据*/
+- (void)reloadData{
+    self.headImgView.image = [UIImage imageNamed:[self.delegate safeBarNeedHeadImage]];
+}
+
 #pragma mark - 懒加载
 
 /**日期*/
@@ -138,6 +143,10 @@
         _headImgView.clipsToBounds = YES;
         _headImgView.image = [UIImage imageNamed:@"SSR_default"];
         _headImgView.userInteractionEnabled = YES;
+        
+        _headImgView.layer.borderWidth = 2;
+        _headImgView.layer.borderColor = [UIColor orangeColor].CGColor;
+        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(safeBarImageViewTaped)];
         [_headImgView addGestureRecognizer:tap];
     }
@@ -201,7 +210,7 @@
     CGRect safebarRect = self.frame;
     CGFloat content = 5;
     CGRect rect;
-    rect.size.width = rect.size.height = 45;
+    rect.size.width = rect.size.height = 50;
     rect.origin.x = safebarRect.size.width - 20 - rect.size.width;
     rect.origin.y = safebarRect.size.height - rect.size.height - content;
     return rect;

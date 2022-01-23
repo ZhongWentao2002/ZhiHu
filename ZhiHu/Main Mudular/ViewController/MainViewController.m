@@ -85,6 +85,8 @@
     [super viewDidLoad];
     NSLog(@"\n%@ - %s", [self class], __func__);
     
+    [self.safeView reloadData];
+    
     /**网络请求，加载数据*/
     [self.sourse
      getLastestTop:^{
@@ -101,7 +103,9 @@
     [super viewWillAppear:animated];
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    /*---------------------------------------待实现-----------------------------------------**/
+    [self.safeView reloadData];
+    
+    [self.mainTableView reloadData];
     
 }
 
@@ -282,6 +286,11 @@
 - (void)safeBarImageViewTaped{
     /**应该跳转到用户页*/
     [self.navigationController pushViewController:[self.delegate VC_pushedFromHeadView] animated:YES];
+}
+
+/**头像的请求*/
+- (NSString *)safeBarNeedHeadImage{
+    return [self.delegate MainViewController_needHeadImage];
 }
 
 @end

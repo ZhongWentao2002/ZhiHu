@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**得到单击了Banner的push页面，传出id和url*/
 - (UIViewController *)VC_pushedFromBanner_withID:(NSInteger)ID url:(NSString *)url;
 
+/**转交safeBar的请求*/
+- (NSString *)MainViewController_needHeadImage;
+
 @end
 
 #pragma mark - Main属性

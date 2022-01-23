@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**单击imageview时会调用此代理*/
 - (void)safeBarImageViewTaped;
 
+/**头像的请求*/
+- (NSString *)safeBarNeedHeadImage;
+
 @end
 
 #pragma mark - SafeBarView属性
@@ -63,6 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**initWithFrame:不可用，请用链式语法*/
 - (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("请使用Frame_CGRect()")));
+
+/**重写加载部分数据*/
+- (void)reloadData;
 
 /**链式创建Create*/
 + (SafeBarView *(^)(id <SafeBarViewDelegate>))Create_withDelegate;
