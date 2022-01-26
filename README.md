@@ -13,6 +13,8 @@
 
 该程序采用MVC设计理论，实现了基本的数据展示。
 
-![Main Mudular模块MVC设计展示]()
+![Main Mudular模块MVC设计展示](https://github.com/HONEY-SSR/ZhiHu/blob/main/ReadMe/MVC%20Main%20Mudular.png)
+
+> 我才用由一个`viewController`管理所有的模块，提供被push的模块Controller
 
 ![如果没有数据，应加载这种视图](https://github.com/HONEY-SSR/ZhiHu/blob/main/ReadMe/ZhiHu%20without%20data.gif)
