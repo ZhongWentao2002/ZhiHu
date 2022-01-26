@@ -15,7 +15,7 @@
 
 <img width="242" alt="MVC Main Mudular" src="https://user-images.githubusercontent.com/88606535/151107954-1743a3cd-9b87-46db-9bf2-98071e7945d8.png">
 
-> 我才用由一个`viewController`管理所有的模块，提供被push的模块Controller，实现每个模块互不影响。
+> 我采用由一个`viewController`管理所有的模块，提供被push的模块Controller，实现每个模块互不影响。
 >
 > 例如Main Mudular模块，数据源代理将交由`SourseStory`处理，处理不了的数据将再由自己的代理转交给controller
 >
