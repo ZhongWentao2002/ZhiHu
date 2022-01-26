@@ -63,7 +63,7 @@
 
 单击顶部回到最出的位置，banner页可以实现下拉放大的效果。
 
-
+![返回头部下拉](https://user-images.githubusercontent.com/88606535/151121232-82ad873c-dcc5-4a45-bc1f-fcf35270edc9.gif)
 
 >如GIF所示，单击顶部可以实现返回到头部。
 >
@@ -75,7 +75,7 @@
 
 单击cell的新闻和banner的新闻可以到新闻页，返回时，cell的标题将永久变灰。
 
-
+![新闻页和返回](https://user-images.githubusercontent.com/88606535/151121271-63f64921-38c9-4eec-a615-002bba773bef.gif)
 
 > 如GIF所示，单击新闻可以到新闻页。
 >
@@ -91,7 +91,7 @@
 
 单击4个按钮都会有事件响应，但再次进入同一新闻时，采用默认状态。
 
-
+![新闻其他信息](https://user-images.githubusercontent.com/88606535/151121293-bde3eade-9601-4303-a52f-95cbb1de0830.gif)
 
 > 如GIF所示，单击评论时，响应了事件，但无法跳转。
 >
