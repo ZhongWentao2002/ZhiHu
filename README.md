@@ -33,4 +33,21 @@
 >这种情况下，如GIF所示，可以实现基本的UI互动操作，无法进行后续操作。
 >
 >此程序并没有做数据缓存（待完成）。
+>
+>
+
+
 ![ZhiHu without data](https://user-images.githubusercontent.com/88606535/151108498-3a237618-9e6a-4f82-8c2f-3ca81387d5d7.gif)
+
+
+
+
+
+
+
+
+
+
+
+
+
