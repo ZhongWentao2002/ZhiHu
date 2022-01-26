@@ -96,8 +96,10 @@
                        boundingRectWithSize:CGSizeMake(tRect.size.width, 0)
                                     options:NSStringDrawingUsesFontLeading
                                            |NSStringDrawingUsesLineFragmentOrigin
-                                 attributes:font context:nil];
+                                 attributes:font
+                                    context:nil];
         tRect.size.height = rect.size.height;
+        tRect.origin.y = self.hintLab.frame.origin.y - rect.size.height;
         self.titleLab.frame = tRect;
         return self;
     };

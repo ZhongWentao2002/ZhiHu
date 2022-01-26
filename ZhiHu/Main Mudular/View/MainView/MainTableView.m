@@ -115,9 +115,10 @@ willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section{
 
 /**scroll正在滚动的方法 banner应该放大*/
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"\n%@ - %s", [self class], __func__);
-    NSLog(@"\n\t- %@", NSStringFromCGPoint(scrollView.contentOffset));
     if (scrollView.contentOffset.y <= 0) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        NSLog(@"\n\t- %@", NSStringFromCGPoint(scrollView.contentOffset));
+        
         [self.mainTV_delegate MainTableView_Scrolling_offset:scrollView.contentOffset];
     }
 }

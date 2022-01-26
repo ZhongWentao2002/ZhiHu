@@ -139,6 +139,7 @@
         _bannerView = [[BannerView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
         _bannerView.dataSource = self.sourse;
         _bannerView.Banner_delegate = self;
+        _bannerView.clipsToBounds = NO;
     }
     return _bannerView;
 }
