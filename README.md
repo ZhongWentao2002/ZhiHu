@@ -1,3 +1,4 @@
+<img width="242" alt="MVC Main Mudular" src="https://user-images.githubusercontent.com/88606535/151107954-1743a3cd-9b87-46db-9bf2-98071e7945d8.png">
 # ZhiHu
 
 ## 程序基本信息
@@ -13,7 +14,7 @@
 
 该程序采用MVC设计理论，实现了基本的数据展示。
 
-![Main Mudular模块MVC设计展示](https://github.com/HONEY-SSR/ZhiHu/blob/main/ReadMe/MVC%20Main%20Mudular.png)
+![Main Mudular模块MVC设计展示](https://user-images.githubusercontent.com/88606535/151107954-1743a3cd-9b87-46db-9bf2-98071e7945d8.png)
 
 > 我才用由一个`viewController`管理所有的模块，提供被push的模块Controller，实现每个模块互不影响。
 >
