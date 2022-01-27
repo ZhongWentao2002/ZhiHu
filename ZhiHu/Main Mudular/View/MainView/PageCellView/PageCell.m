@@ -13,157 +13,115 @@
 
 @implementation PageCell
 
-#pragma mark - 初始化和布局
+#pragma mark - 初始化
+
+/**采用default状态，@“PageCell”复用*/
+- (instancetype)init {
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    return [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PageCellReuseIdentifier];
+}
+
+/**采用default状态，@“PageCell”复用*/
+- (instancetype)initWithFrame:(CGRect)frame{
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    return [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PageCellReuseIdentifier];
+}
 
 /**重写注册cell的方法
  * 采用复用池机制时调用
  * 将固定除titleHeight的布局属性
  */
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
-              reuseIdentifier:(NSString *)reuseIdentifier{
+              reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
         NSLog(@"\n%@ - %s", [self class], __func__);
+        
         /**自己被选中后不显示任何东西*/
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
     }
     return self;
 }
 
-
-
-/**链式创建，如果有则直接拿，如果没有则创建，默认default状态*/
-+ (PageCell *(^)(UITableView *))ReusableCellFromSuperTableView{
-    NSLog(@"\n%@ - %s", [self class], __func__);
-    
-    return ^PageCell *(UITableView *superTableView){
-        static NSString *PageCellIdentify = @"PageCell";
-        /**向资源池访问*/
-        PageCell *aCell = [superTableView dequeueReusableCellWithIdentifier:PageCellIdentify];
-        /**如果资源池无数据则需要创建*/
-        if (aCell == nil) {
-            /**创建资源池类型*/
-            aCell = [[PageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PageCellIdentify];
-            /**设置基础宽度*/
-            aCell.frame = CGRectMake(0, 0, superTableView.frame.size.width, 0);
-            /**加载到自己的contentView上*/
-            [aCell.contentView addSubview:aCell.pictureView];
-            [aCell.contentView addSubview:aCell.titleLab];
-            [aCell.contentView addSubview:aCell.hintLab];
-        }
-        /**初始化状态*/
-        aCell.Default();
-        return aCell;
-    };
+/**创建复用池cell*/
++ (PageCell *)CreateReusableCell{
+    /**创建资源池类型*/
+    PageCell *cell = [[PageCell alloc]
+                      initWithStyle:UITableViewCellStyleDefault
+                      reuseIdentifier:PageCellReuseIdentifier];
+    /**设置基础宽度*/
+    cell.frame = CGRectMake(0, 0, MainScreenWidth, 0);
+    /**加载到自己的contentView上*/
+    [cell.contentView addSubview:cell.pictureView];
+    [cell.contentView addSubview:cell.titleLab];
+    [cell.contentView addSubview:cell.hintLab];
+    /**初始化状态*/
+    return cell.Default;
 }
 
-#pragma mark - 懒加载
-
-/**懒加载pictureView，以免bug*/
-- (UIImageView *)pictureView{
-    if (_pictureView == nil) {
-        NSLog(@"\n%@ - %s", [self class], __func__);
-        
-        _pictureView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ImageDefault"]];
-        _pictureView.frame = self.pictureRect;
-        _pictureView.backgroundColor = [UIColor grayColor];
-    }
-    return _pictureView;
-}
-
-/**懒加载titleLab*/
-- (UILabel *)titleLab{
-    if (_titleLab == nil) {
-        NSLog(@"\n%@ - %s", [self class], __func__);
-     
-        _titleLab = [[UILabel alloc] init];
-        _titleLab.frame = self.titleRect;
-        _titleLab.numberOfLines = 0;
-        _titleLab.font = [UIFont boldSystemFontOfSize:18];
-        _titleLab.backgroundColor = [UIColor darkGrayColor];
-    }
-    return _titleLab;
-}
-
-/**懒加载hintLab*/
-- (UILabel *)hintLab{
-    if (_hintLab == nil) {
-        NSLog(@"\n%@ - %s", [self class], __func__);
-        
-        _hintLab = [[UILabel alloc] init];
-        _hintLab.frame = self.hintRect;
-        _hintLab.font = [UIFont systemFontOfSize:16];
-        _hintLab.backgroundColor = [UIColor grayColor];
-    }
-    return _hintLab;
-}
-
-#pragma mark - 链式编程
+#pragma mark - 赋值
 
 /**自定义title的文字*/
-- (PageCell *(^)(NSString *))Title_text{
+- (PageCell *)TitleWithtext:(NSString *)str{
     NSLog(@"\n%@ - %s", [self class], __func__);
+ 
+    self.titleLab.text = str;
+    self.titleLab.backgroundColor = [UIColor clearColor];
     
-    return ^PageCell *(NSString *str){
-        self.titleLab.text = str;
-        self.titleLab.backgroundColor = [UIColor clearColor];
-        
-        // 计算高度
-        CGRect tRect = self.titleLab.frame;
-        /**取得字典*/
-        NSDictionary *font =
-            @{NSFontAttributeName : [UIFont boldSystemFontOfSize:self.titleLab.font.pointSize]};
-        /*计算cgrect(0,0,width,autoHeight)*/
-        CGRect rect = [self.titleLab.text
-                       boundingRectWithSize:CGSizeMake(tRect.size.width, 0)
-                                    options:NSStringDrawingUsesFontLeading
-                                           |NSStringDrawingUsesLineFragmentOrigin
-                                 attributes:font context:nil];
-        tRect.size.height = rect.size.height;
-        self.titleLab.frame = tRect;
-        
-        // 重新布局hint的高度
-        CGRect hRect = self.hintLab.frame;
-        hRect.origin.y = tRect.origin.y + tRect.size.height;
-        self.hintLab.frame = hRect;
-        return self;
-    };
+    // 计算高度
+    CGRect tRect = self.titleLab.frame;
+    /**取得字典*/
+    NSDictionary *font =
+        @{NSFontAttributeName :
+              [UIFont boldSystemFontOfSize:self.titleLab.font.pointSize]};
+    /*计算cgrect(0,0,width,autoHeight)*/
+    CGRect rect = [self.titleLab.text
+                   boundingRectWithSize:CGSizeMake(tRect.size.width, 0)
+                                options:NSStringDrawingUsesFontLeading
+                                       |NSStringDrawingUsesLineFragmentOrigin
+                             attributes:font context:nil];
+    tRect.size.height = rect.size.height;
+    self.titleLab.frame = tRect;
+    
+    // 重新布局hint的高度
+    CGRect hRect = self.hintLab.frame;
+    hRect.origin.y = tRect.origin.y + tRect.size.height;
+    self.hintLab.frame = hRect;
+    return self;
 }
 
-/**title文字颜色，0黑，1灰*/
-- (PageCell *(^)(NSInteger))Type_Integer{
-    return ^PageCell *(NSInteger type){
-        if (type == 0) {
-            self.titleLab.textColor = [UIColor blackColor];
-        }
-        else{
-            self.titleLab.textColor = [UIColor grayColor];
-        }
-        return self;
-    };
+/**title文字颜色，NO黑，YES灰*/
+- (PageCell *)isWatched:(BOOL)watched{
+    if (watched == 0) {
+        self.titleLab.textColor = [UIColor blackColor];
+    }
+    else{
+        self.titleLab.textColor = [UIColor grayColor];
+    }
+    return self;
 }
 
 /**自定义hint的文字*/
-- (PageCell *(^)(NSString *))Hint_text{
+- (PageCell *)HintWithtext:(NSString *)str{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    return ^PageCell *(NSString *str){
-        self.hintLab.text = str;
-        self.hintLab.textColor = [UIColor grayColor];
-        self.hintLab.backgroundColor = [UIColor clearColor];
-        return self;
-    };
+    self.hintLab.text = str;
+    self.hintLab.textColor = [UIColor grayColor];
+    self.hintLab.backgroundColor = [UIColor clearColor];
+    return self;
 }
 
 /**自定义picture*/
-- (PageCell *(^)(NSString *))Picture_URLString{
+- (PageCell *)PictureWithURLString:(NSString *)url{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    return ^PageCell *(NSString *url){
-        [self.pictureView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"ImageDefault"]];
-        return self;
-    };
+    [self.pictureView
+     setImageWithURL:[NSURL URLWithString:url]
+     placeholderImage:[UIImage imageNamed:@"ImageDefault"]];
+    
+    return self;
 }
 
 /**无数据状态
@@ -175,79 +133,69 @@
  * hintlab显示空文本，灰色
  * backgroundColor
  */
-- (PageCell *(^)(void))Default{
-    NSLog(@"\n%@ - %s", [self class], __func__);
+- (PageCell *)Default{
+    self.titleLab.text = @"";
+    self.titleLab.backgroundColor = [UIColor darkGrayColor];
     
-    return ^PageCell *(){
-        self.titleLab.text = @"";
-        self.titleLab.backgroundColor = [UIColor darkGrayColor];
-        
-        self.hintLab.text = @"";
-        self.hintLab.backgroundColor = [UIColor grayColor];
-        
-        self.pictureView.image = [UIImage imageNamed:@"ImageDefault"];
-        return self;
-    };
+    self.hintLab.text = @"";
+    self.hintLab.backgroundColor = [UIColor grayColor];
+    
+    self.pictureView.image = [UIImage imageNamed:@"ImageDefault"];
+    return self;
 }
-
-@end
-
-#pragma mark - PageCell (CGRect)方法实现
-
-@implementation PageCell (CGRect)
 
 #pragma mark - 懒加载
 
-/**picture的Rect*/
-- (CGRect)pictureRect{
-    static BOOL hadMake = NO;
-    static CGFloat x, y, width, height;
-    if (hadMake == NO) {
-        hadMake = YES;
+- (UIImageView *)pictureView {
+    if (_pictureView == nil) {
         NSLog(@"\n%@ - %s", [self class], __func__);
+     
+        _pictureView = [[UIImageView alloc] init];
+        _pictureView.backgroundColor = [UIColor grayColor];
+        _pictureView.image = [UIImage imageNamed:@"ImageDefault"];
         
-        CGRect thisRect = self.contentView.frame;
-        CGFloat content = 20;
-        CGFloat size = 100;
-        x = thisRect.size.width - content - size;
-        y = content;
-        width = height = size;
+        _pictureView.width = _pictureView.height = 100;
+        _pictureView.right = self.contentView.right - 20;
+        _pictureView.top = self.contentView.top + 20;
     }
-    return CGRectMake(x, y, width, height);
+    return _pictureView;
 }
 
-/**title的Rect*/
-- (CGRect)titleRect{
-    static BOOL hadMake = NO;
-    static CGFloat x, y, width, height;
-    if (hadMake == NO) {
-        hadMake = YES;
+/**懒加载titleLab*/
+- (UILabel *)titleLab{
+    if (_titleLab == nil) {
         NSLog(@"\n%@ - %s", [self class], __func__);
+     
+        _titleLab = [[UILabel alloc] init];
+        _titleLab.numberOfLines = 0;
+        _titleLab.font = [UIFont boldSystemFontOfSize:18];
+        _titleLab.backgroundColor = [UIColor darkGrayColor];
         
-        CGFloat content = 15;
-        height = 70;
-        x = content;
-        y = self.pictureView.frame.origin.y;
-        width = self.pictureView.frame.origin.x - 1.5 * content;
+        [[[_titleLab
+         Left_toPointX:self.left Set_offset:15]
+         Right_toPointX:self.pictureView.left Set_offset:15]
+         Top_toPointY:self.pictureView.top Set_offset:0];
+        _titleLab.height = 70;
     }
-    return CGRectMake(x, y, width, height);
+    return _titleLab;
 }
 
-- (CGRect)hintRect{
-    static BOOL hadMake = NO;
-    static CGFloat x, y, width, height;
-    if (hadMake == NO) {
-        hadMake = YES;
+/**懒加载hintLab*/
+- (UILabel *)hintLab{
+    if (_hintLab == nil) {
         NSLog(@"\n%@ - %s", [self class], __func__);
         
-        CGFloat content = 10;
-        CGRect titleRect = self.titleRect;
-        height = 30;
-        x = titleRect.origin.x;
-        y = titleRect.origin.y + titleRect.size.height + content / 2;
-        width = titleRect.size.width;
+        _hintLab = [[UILabel alloc] init];
+        _hintLab.font = [UIFont systemFontOfSize:16];
+        _hintLab.backgroundColor = [UIColor grayColor];
+        
+        [_hintLab Top_toPointY:self.titleLab.bottom Set_offset:10];
+        _hintLab.x = self.titleLab.x;
+        _hintLab.width = self.titleLab.width;
+        _hintLab.height = 30;
     }
-    return CGRectMake(x, y, width, height);
+    return _hintLab;
 }
+
 
 @end

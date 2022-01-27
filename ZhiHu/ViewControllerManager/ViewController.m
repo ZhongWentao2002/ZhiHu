@@ -12,23 +12,23 @@
 #pragma mark - <MainDelegate>
 
 /**得到id和url，跳转新闻中心模块*/
-- (UIViewController *)VC_pushedFromCell_withID:(NSInteger)ID url:(NSString *)url{
+- (UIViewController *)MainVC_pushedFromCell_forID:(NSInteger)ID URL:(NSString *)url{
     return [NewsViewController createWithDelegate:self ID:ID URL:url];
 }
 
 /**跳转到用户页*/
-- (UIViewController *)VC_pushedFromHeadView{
+- (UIViewController *)MainVC_pushedForTapHeadView{
     return UserViewController
             .Create_withDelegate(self);
 }
 
 /**得到单击了Banner的push页面，传出id和url*/
-- (UIViewController *)VC_pushedFromBanner_withID:(NSInteger)ID url:(NSString *)url{
+- (UIViewController *)MainVC_pushedFromBanner_forID:(NSInteger)ID url:(NSString *)url{
     return [NewsViewController createWithDelegate:self ID:ID URL:url];
 }
 
 /**转交safeBar的请求*/
-- (NSString *)MainViewController_needHeadImage{
+- (NSString *)MainVC_needHeadImage{
     return UserViewController.HeadImageName;
 }
 

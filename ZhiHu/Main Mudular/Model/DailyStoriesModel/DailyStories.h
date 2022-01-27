@@ -55,19 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initCellWithDate:(NSString *)date
                     Cell_stories:(NSArray *)storiesArray;
 
-#pragma mark - 链式创建
-
-/**创建*/
-+ (DailyStories *(^)(void))Create;
-
-/**Top，传值类型为Array*/
-- (DailyStories *(^)(NSArray *))Top_Array;
-
-/**Cell，传值date和Array*/
-- (DailyStories *(^)(NSString *, NSArray *))Cell_Date_Array;
-
-/**得到下标为Row的story*/
-- (Story *(^)(NSInteger))Story_inRow;
+/**提供一个快速访问Story到的方法，给定story的下标*/
+- (Story  * _Nullable)StoryAtRow:(NSInteger)row;
 
 #pragma mark - 网络请求
 

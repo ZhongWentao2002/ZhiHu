@@ -23,28 +23,12 @@
     return self;
 }
 
-#pragma mark - 链式编程
-
-/**创建*/
-+ (SourseStory *(^)(void))Create{
-    return ^SourseStory *(){
-        return [[SourseStory alloc] init];
-    };
-}
-
-/**代理*/
-- (SourseStory *(^)(id <SourseStoryDelegate>))Self_Delegate{
-    return ^SourseStory *(id <SourseStoryDelegate> delegate){
-        self.delegate = delegate;
-        return self;
-    };
-}
-
-/**得到section数据*/
-- (DailyStories *(^)(NSInteger))DailyStories_inSection{
-    return ^DailyStories *(NSInteger section){
-        return section <= self.sectionStories.count ? self.sectionStories[section] : nil;
-    };
+/**快速返回cell的DailyStories*/
+- (DailyStories * _Nullable)DailyStories_atCellSection:(NSInteger)section {
+    return (self.sectionStories == nil ||
+            section >= self.sectionStories.count) ?
+                nil :
+                self.sectionStories[section];
 }
 
 #pragma mark - 网络请求
@@ -106,7 +90,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"\n%@ - %s", [self class], __func__);
     
-    return [self.delegate tableView:tableView ForSourse:(self.sectionStories.count == indexPath.section ? nil : self.sectionStories[indexPath.section].stories[indexPath.row])];
+    return [self.delegate SourseStory_CellForSourse:
+            [[self
+             DailyStories_atCellSection:indexPath.section]
+             StoryAtRow:indexPath.row]];
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -119,7 +106,7 @@
     NSLog(@"\n%@ - %s", [self class], __func__);
     NSLog(@"\n\tindexPath : %ld - %ld", indexPath.section, indexPath.item);
 
-    return [self.delegate collectionView:collectionView ForIndexPath:indexPath];
+    return [self.delegate SourseStory_ItemForIndexPath:indexPath];
 }
 
 /**返回个数，默认是5组*/

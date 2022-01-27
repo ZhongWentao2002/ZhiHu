@@ -23,16 +23,16 @@ NS_ASSUME_NONNULL_BEGIN
 @required//提醒下下
 
 /**得到单击了Cell被push到的页面，传出id和url*/
-- (UIViewController *)VC_pushedFromCell_withID:(NSInteger)ID url:(NSString *)url;
+- (UIViewController *)MainVC_pushedFromCell_forID:(NSInteger)ID URL:(NSString *)url;
 
 /**得到单击了SafeView的Img被push到的页面*/
-- (UIViewController *)VC_pushedFromHeadView;
+- (UIViewController *)MainVC_pushedForTapHeadView;
 
 /**得到单击了Banner的push页面，传出id和url*/
-- (UIViewController *)VC_pushedFromBanner_withID:(NSInteger)ID url:(NSString *)url;
+- (UIViewController *)MainVC_pushedFromBanner_forID:(NSInteger)ID url:(NSString *)url;
 
 /**转交safeBar的请求*/
-- (NSString *)MainViewController_needHeadImage;
+- (NSString *)MainVC_needHeadImage;
 
 @end
 
@@ -42,12 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**代理，关键时候得到push对象*/
 @property (nonatomic, weak) UIViewController <MainDelegate> *delegate;
-
-/**init不可用，请使用Create_withDelegate*/
-- (instancetype)init __attribute__((unavailable("请使用Create_withDelegate()")));
-
-/**链式创建方法*/
-+ (MainViewController *(^)(UIViewController <MainDelegate> *))Create_withDelegate;
 
 @end
 

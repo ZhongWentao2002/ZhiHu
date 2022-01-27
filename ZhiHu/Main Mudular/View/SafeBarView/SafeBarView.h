@@ -14,6 +14,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "UIView+Frame.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - SafeBarView代理
@@ -61,20 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 方法
 
-/**init不可用，请用Create_withDelegate*/
-- (instancetype)init __attribute__((unavailable("请使用Create_withDelegate()")));
-
-/**initWithFrame:不可用，请用链式语法*/
-- (instancetype)initWithFrame:(CGRect)frame __attribute__((unavailable("请使用Frame_CGRect()")));
-
 /**重写加载部分数据*/
 - (void)reloadData;
-
-/**链式创建Create*/
-+ (SafeBarView *(^)(id <SafeBarViewDelegate>))Create_withDelegate;
-
-/**frame链式语法*/
-- (SafeBarView *(^)(CGRect))Frame_CGRect;
 
 @end
 

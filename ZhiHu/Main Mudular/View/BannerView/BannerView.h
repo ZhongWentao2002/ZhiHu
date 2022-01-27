@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id <BannerViewDelegate> Banner_delegate;
 
 /**注册Cell的方法*/
-- (BannerCell *(^)(NSIndexPath *))ReusableBannerCell_atIndexPath;
+- (BannerCell *)getReusableBannerCell:(NSIndexPath *)indexPath;
 
 @end
 

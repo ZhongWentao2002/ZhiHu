@@ -47,13 +47,9 @@
 #pragma mark - bannerCell有关方法
 
 /**注册Cell的方法*/
-- (BannerCell *(^)(NSIndexPath *))ReusableBannerCell_atIndexPath{
-    return ^BannerCell *(NSIndexPath *indexPath){
-        BannerCell *cell = [self dequeueReusableCellWithReuseIdentifier:@"BannerCell" forIndexPath:indexPath];
-        cell.Default();
-
-        return cell;
-    };
+- (BannerCell *)getReusableBannerCell:(NSIndexPath *)indexPath{
+    BannerCell *cell = [self dequeueReusableCellWithReuseIdentifier:BannerCellReuseIdentifier forIndexPath:indexPath];
+    return cell.Default;
 }
 
 #pragma mark - <UICollectionViewDelegate>

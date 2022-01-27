@@ -23,11 +23,18 @@
 
 /**当application完成从 启动选项 字典中加载*/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:MainViewController.Create_withDelegate(self.VCmanager)];
+    NSLog(@"\n%@ - %s", [self class], __func__);
+    
+    MainViewController *mainVC = [[MainViewController alloc] init];
+    mainVC.delegate = self.VCmanager;
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
     nav.navigationBar.hidden = YES;
+    
+    self.window = [[UIWindow alloc] init];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

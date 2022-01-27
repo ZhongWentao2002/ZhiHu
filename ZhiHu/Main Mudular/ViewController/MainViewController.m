@@ -7,15 +7,15 @@
 
 #import "MainViewController.h"
 
+#import "UIView+Frame.h"
+
 #import "SafeBarView.h"
-
 #import "PageControl.h"
-
 #import "BannerView.h"
-
 #import "MainTableView.h"
 
 #import "SourseStory.h"
+
 
 #pragma mark - 模块封装
 
@@ -48,20 +48,12 @@
 /**基本初始化方法，外部不可用使用*/
 - (instancetype)init{
     self = [super init];
-    NSLog(@"\n%@ - %s", [self class], __func__);
     if (self) {
+        NSLog(@"\n%@ - %s", [self class], __func__);
+        
         self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
-}
-
-/**链式创建方法*/
-+ (MainViewController *(^)(UIViewController <MainDelegate> *))Create_withDelegate{
-    return ^MainViewController *(UIViewController <MainDelegate> *t){
-        MainViewController *vc = [[MainViewController alloc] init];
-        vc.delegate = t;
-        return vc;
-    };
 }
 
 #pragma mark - 生命周期
@@ -123,11 +115,8 @@
 /**safeView懒加载*/
 - (SafeBarView *)safeView{
     if (_safeView == nil) {
-        /**计算可用高度*/
-        CGFloat statusHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-        CGRect tvRect = self.view.frame;
-        tvRect.size.height = statusHeight + 45;
-        _safeView = SafeBarView.Create_withDelegate(self).Frame_CGRect(tvRect);
+        _safeView = [[SafeBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, StatusBarHeight + 50)];
+        _safeView.delegate = self;
     }
     return _safeView;
 }
@@ -159,15 +148,16 @@
 /**主页视图懒加载*/
 - (MainTableView *)mainTableView{
     if (_mainTableView == nil) {
-        /**计算可靠高度，留足40给hearderView*/
-        CGRect tvRect = self.view.frame;
-        CGRect safeRect = self.safeView.frame;
-        tvRect.origin.y = safeRect.origin.y + safeRect.size.height;
-        tvRect.size.height -= tvRect.origin.y;
-        _mainTableView = [[MainTableView alloc] initWithFrame:tvRect style:UITableViewStyleGrouped];
+        /**创建，并且为group样式*/
+        _mainTableView =
+        [[MainTableView alloc]
+            initWithFrame:CGRectMake
+                 (0, self.safeView.bottom, self.view.width,
+                  MainScreenHeight - self.safeView.height)
+            style:UITableViewStyleGrouped];
         /**数据源代理将交给数据源处理*/
         _mainTableView.dataSource = self.sourse;
-        _mainTableView.mainTV_delegate = self;
+        _mainTableView.MainTableView_delegate = self;
     }
     return _mainTableView;
 }
@@ -175,7 +165,8 @@
 /**主页数据懒加载，代理交给自己*/
 - (SourseStory *)sourse{
     if (_sourse == nil) {
-        _sourse = SourseStory.Create().Self_Delegate(self);
+        _sourse = [[SourseStory alloc] init];
+        _sourse.delegate = self;
     }
     return _sourse;
 }
@@ -183,43 +174,48 @@
 #pragma mark - <SourseStoryDelegate>
 
 /**根据story去创建一个cell，如果没有story，则得到nil*/
-- (UITableViewCell *)tableView:(UITableView *)tableView
-                     ForSourse:(Story * _Nullable)story{
+- (UITableViewCell *)SourseStory_CellForSourse:(Story *)story {
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     return story == nil ?
-        self.mainTableView.ReusablePageCell():
-        self.mainTableView.ReusablePageCell()
-            .Title_text(story.title)
-            .Type_Integer(story.type)
-            .Hint_text(story.hint)
-            .Picture_URLString(story.image);
+    [self.mainTableView getReusablePageCell] :
+    [[[[[self.mainTableView getReusablePageCell]
+     TitleWithtext:story.title]
+      isWatched:story.watched]
+     HintWithtext:story.hint]
+     PictureWithURLString:story.image];
 }
 
 /**根据story去创建一个cell，如果没有story，则得到nil*/
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                            ForIndexPath:(NSIndexPath *)indexPath{
+- (UICollectionViewCell *)SourseStory_ItemForIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     DailyStories *top_stories = self.sourse.topStories;
     if (top_stories.stories.count == 0) {
-        return self.bannerView
-            .ReusableBannerCell_atIndexPath(indexPath);
+        return [self.bannerView getReusableBannerCell:indexPath];
     }
     Story *aStory = top_stories.stories[indexPath.item];
     
-    return self.bannerView.ReusableBannerCell_atIndexPath(indexPath)
-                .Picture_URLString(aStory.image)
-                .Hint_text(aStory.hint)
-                .Title_text(aStory.title);
+    return [[[[self.bannerView getReusableBannerCell:indexPath]
+            TitleWithText:aStory.title]
+            HintWithText:aStory.hint]
+            Picture_URLString:aStory.image];
 }
 
 #pragma mark - <BannerViewDelegate>
 
 /**单击了cell传出indexpath*/
 - (void)BannerView_tapAtIndexPath:(NSIndexPath *)indexPath{
-    Story *aStory = self.sourse.DailyStories_inSection(indexPath.section).Story_inRow(indexPath.row);
-    [self.navigationController pushViewController:[self.delegate VC_pushedFromBanner_withID:aStory.ID url:aStory.url] animated:YES];
+    
+    Story *aStory = [[self.sourse
+                     DailyStories_atCellSection:indexPath.section]
+                     StoryAtRow:indexPath.row];
+    
+    [self.navigationController
+     pushViewController:[self.delegate
+                         MainVC_pushedFromBanner_forID:aStory.ID
+                         url:aStory.url]
+     animated:YES];
 }
 
 /**已停止滑动*/
@@ -230,7 +226,7 @@
 #pragma mark - <MainTableViewDelegate>
 
 /**得到section，当显示footer时调用*/
-- (void)MainTableViewWillDisplaySection:(NSInteger)section{
+- (void)MainTableView_WillDisplaySection:(NSInteger)section{
     /**是否正在网络请求*/
     static BOOL Loading = NO;
     /**如果没有网络请求才判断*/
@@ -246,7 +242,7 @@
 }
 
 /**获取indexPath的date*/
-- (NSString *)titleForSection:(NSInteger)section{
+- (NSString *)MainTableView_titleForSection:(NSInteger)section{
     /**返回YYYYMMDD日期*/
     if (section == self.sourse.sectionStories.count) {
         return nil;
@@ -258,14 +254,21 @@
 }
 
 /**得到单击事件，应执行跳转操作*/
-- (void)tapAtIndexPath:(NSIndexPath *)indexPath{
-    Story *aStory = self.sourse.DailyStories_inSection(indexPath.section).Story_inRow(indexPath.row);
-    aStory.type = 1;
-    [self.navigationController pushViewController:[self.delegate VC_pushedFromCell_withID:aStory.ID url:aStory.url] animated:YES];
+- (void)MainTableView_selectedAtIndexPath:(NSIndexPath *)indexPath{
+    Story *aStory = [[self.sourse
+                     DailyStories_atCellSection:indexPath.section]
+                     StoryAtRow:indexPath.row];
+    aStory.watched = YES;
+    
+    [self.navigationController
+     pushViewController:[self.delegate
+                         MainVC_pushedFromCell_forID:aStory.ID
+                         URL:aStory.url]
+     animated:YES];
 }
 
 /**滑动了TableView*/
-- (void)MainTableView_Scrolling_offset:(CGPoint)offset{
+- (void)MainTableView_scrollingWithOffset:(CGPoint)offset{
     
     BannerCell *cell = self.bannerView.visibleCells[0];
     CGRect pRect = cell.pictureView.frame;
@@ -286,12 +289,12 @@
 /**单击imageview时会调用此代理*/
 - (void)safeBarImageViewTaped{
     /**应该跳转到用户页*/
-    [self.navigationController pushViewController:[self.delegate VC_pushedFromHeadView] animated:YES];
+    [self.navigationController pushViewController:[self.delegate MainVC_pushedForTapHeadView] animated:YES];
 }
 
 /**头像的请求*/
 - (NSString *)safeBarNeedHeadImage{
-    return [self.delegate MainViewController_needHeadImage];
+    return [self.delegate MainVC_needHeadImage];
 }
 
 @end

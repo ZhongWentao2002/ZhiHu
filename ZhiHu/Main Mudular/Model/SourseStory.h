@@ -6,6 +6,7 @@
 //
 
 /**SourseStory
+ * 一定要设置代理
  * 所有的主页数据都将归到这个数据中心
  * 传递和代理都将写在这个文件
  * 遵循<UITableViewDataSource, UICollectionViewDataSource>
@@ -27,12 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 @required//必须实现
 
 /**根据story去创建一个cell，如果没有story，则得到nil*/
-- (UITableViewCell *)tableView:(UITableView *)tableView
-                     ForSourse:(Story * _Nullable)story;
+- (UITableViewCell *)SourseStory_CellForSourse:(Story * _Nullable)story;
 
 /**根据story去创建一个cell，如果没有story，则得到nil*/
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                            ForIndexPath:(NSIndexPath *)indexPath;
+- (UICollectionViewCell *)SourseStory_ItemForIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -54,16 +53,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**代理*/
 @property (nonatomic, weak)id <SourseStoryDelegate> delegate;
 
-#pragma mark - 链式编程
+#pragma mark - 初始化方法
 
-/**创建*/
-+ (SourseStory *(^)(void))Create;
-
-/**代理*/
-- (SourseStory *(^)(id <SourseStoryDelegate>))Self_Delegate;
-
-/**得到section数据*/
-- (DailyStories *(^)(NSInteger))DailyStories_inSection;
+/**快速返回cell的DailyStories*/
+- (DailyStories * _Nullable)DailyStories_atCellSection:(NSInteger)section;
 
 #pragma mark - 网络请求
 

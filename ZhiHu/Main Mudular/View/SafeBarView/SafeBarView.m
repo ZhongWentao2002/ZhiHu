@@ -24,42 +24,19 @@
 
 /**init方法*/
 - (instancetype)init{
-    self = [super init];
+    return [self initWithFrame:CGRectMake(0, 0, MainScreenWidth, MainScreenHeight)];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        [self addSubview:self.todayView];
+        [self addSubview:self.line];
+        [self addSubview:self.headImgView];
+        [self addSubview:self.titleLab];
     }
     return self;
-}
-
-/**链式创建Create*/
-+ (SafeBarView *(^)(id <SafeBarViewDelegate>))Create_withDelegate{
-    return ^SafeBarView *(id <SafeBarViewDelegate> delegate){
-        SafeBarView *vc = [[SafeBarView alloc] init];
-        vc.delegate = delegate;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:vc.delegate action:@selector(safeBarTaped)];
-        [vc addGestureRecognizer:tap];
-        [vc addSubview:vc.todayView];
-        [vc addSubview:vc.line];
-        [vc addSubview:vc.headImgView];
-        [vc addSubview:vc.titleLab];
-        return vc;
-    };
-}
-
-/**frame链式语法*/
-- (SafeBarView *(^)(CGRect))Frame_CGRect{
-    return ^SafeBarView *(CGRect rect){
-        self.frame = rect;
-        self.todayView.frame = [self todayViewRect];{
-            self.dayLab.frame = [self dayRect];
-            self.monthLab.frame = [self monthRect];
-        }
-        
-        self.line.frame = [self lineRect];
-        self.headImgView.frame = [self headRect];
-        self.titleLab.frame = [self titleRect];
-        return self;
-    };
 }
 
 /**重写加载部分数据*/
@@ -74,6 +51,12 @@
     if (_todayView == nil) {
         _todayView = [[UILabel alloc] init];
         
+        _todayView.top = StatusBarHeight;
+        [[_todayView
+         Bottom_toPointY:self.bottom Set_offset:5]
+         Left_toPointX:self.left Set_offset:15];
+        _todayView.width = _todayView.height;
+        
         [_todayView addSubview:self.dayLab];
         [_todayView addSubview:self.monthLab];
     }
@@ -83,7 +66,7 @@
 /**天*/
 - (UILabel *)dayLab{
     if (_dayLab == nil) {
-        _dayLab = [[UILabel alloc] init];
+        _dayLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         _dayLab.textAlignment = NSTextAlignmentCenter;
         _dayLab.userInteractionEnabled = NO;
         _dayLab.font = [UIFont boldSystemFontOfSize:23];
@@ -94,6 +77,9 @@
         [formatter setDateFormat:@"dd"];
         NSString *day = [NSString stringWithFormat:@"%ld",[[formatter stringFromDate:date] integerValue]];
         _dayLab.text = [NSString stringWithFormat:@"%@", day];
+        
+        _dayLab.width = self.todayView.width;
+        _dayLab.height = self.todayView.height / 2;
     }
     return _dayLab;
 }
@@ -101,10 +87,13 @@
 /**月*/
 - (UILabel *)monthLab{
     if (_monthLab == nil) {
-        _monthLab = [[UILabel alloc] init];
+        _monthLab = [[UILabel alloc] initWithFrame:self.dayLab.frame];
+        
         _monthLab.textAlignment = NSTextAlignmentCenter;
-        _monthLab.font = [UIFont boldSystemFontOfSize:18];
+        _monthLab.font = [UIFont boldSystemFontOfSize:17];
         _monthLab.userInteractionEnabled = NO;
+        
+        _monthLab.top = self.dayLab.bottom;
         //找日期
         NSDate *date =[NSDate date];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -131,6 +120,11 @@
         _line = [[UILabel alloc] init];
         _line.backgroundColor = [UIColor grayColor];
         _line.userInteractionEnabled = NO;
+        
+        _line.top = self.todayView.top;
+        _line.left = self.todayView.right + 10;
+        _line.width = 3;
+        _line.height = self.todayView.height;
     }
     return _line;
 }
@@ -138,14 +132,18 @@
 /**懒加载imageView*/
 - (UIImageView *)headImgView{
     if (_headImgView == nil) {
-        _headImgView = [[UIImageView alloc] initWithFrame:[self headRect]];
-        _headImgView.layer.cornerRadius = _headImgView.frame.size.width / 2;
-        _headImgView.clipsToBounds = YES;
+        _headImgView = [[UIImageView alloc] init];
         _headImgView.image = [UIImage imageNamed:@"SSR_default"];
         _headImgView.userInteractionEnabled = YES;
         
+        _headImgView.width = _headImgView.height = 50;
+        _headImgView.right = self.right - 10;
+        _headImgView.bottom = self.bottom - 5;
+        
+        _headImgView.layer.cornerRadius = _headImgView.width / 2;
         _headImgView.layer.borderWidth = 2;
         _headImgView.layer.borderColor = [UIColor orangeColor].CGColor;
+        _headImgView.clipsToBounds = YES;
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(safeBarImageViewTaped)];
         [_headImgView addGestureRecognizer:tap];
@@ -157,75 +155,18 @@
 - (UILabel *)titleLab{
     if(_titleLab == nil){
         _titleLab = [[UILabel alloc] init];
+        
+        [[_titleLab
+         Left_toPointX:self.line.right Set_offset:10]
+         Right_toPointX:self.headImgView.left Set_offset:10];
+        _titleLab.top = self.todayView.top;
+        _titleLab.height = self.todayView.height;
+        
         _titleLab.font = [UIFont boldSystemFontOfSize:27];
-        _titleLab.text = @"SSR  知乎日报";
+        _titleLab.text = @"SSR - 知乎日报";
         _titleLab.userInteractionEnabled = NO;
     }
     return _titleLab;
-}
-
-#pragma mark - 尺寸计算
-
-/**todayLab的计算*/
-- (CGRect)todayViewRect{
-    CGRect safebarRect = self.frame;
-    CGRect rect;
-    rect.size.width = rect.size.height = 50;
-    rect.origin.x = 15;
-    rect.origin.y = safebarRect.size.height - rect.size.width - 5;
-    return rect;
-}
-
-/**天*/
-- (CGRect)dayRect{
-    CGRect tRect = self.todayView.frame;
-    CGRect rect = CGRectMake(0, 0, tRect.size.width, tRect.size.height * 0.618);
-    return rect;
-}
-
-/**月*/
-- (CGRect)monthRect{
-    CGRect rect = self.todayView.frame;
-    CGRect dayRect = self.dayLab.frame;
-    rect.origin.x = 0;
-    rect.origin.y = dayRect.size.height;
-    rect.size.height -= rect.origin.y;
-    return rect;
-}
-
-/**line的计算*/
-- (CGRect)lineRect{
-    CGRect todayRect = self.todayView.frame;
-    CGFloat content = 10;
-    CGRect rect;
-    rect.origin.x = todayRect.origin.x + todayRect.size.width + content;
-    rect.origin.y = todayRect.origin.y;
-    rect.size.width = 2;
-    rect.size.height = todayRect.size.height;
-    return rect;
-}
-
-/**headImgView的计算*/
-- (CGRect)headRect{
-    CGRect safebarRect = self.frame;
-    CGFloat content = 5;
-    CGRect rect;
-    rect.size.width = rect.size.height = 50;
-    rect.origin.x = safebarRect.size.width - 20 - rect.size.width;
-    rect.origin.y = safebarRect.size.height - rect.size.height - content;
-    return rect;
-}
-
-/**title的计算*/
-- (CGRect)titleRect{
-    CGRect lineRect = self.line.frame;
-    CGFloat content = 10;
-    CGRect rect;
-    rect.origin.x = lineRect.origin.x + lineRect.size.width + content;
-    rect.origin.y = lineRect.origin.y;
-    rect.size.height = lineRect.size.height;
-    rect.size.width = self.headImgView.frame.origin.x - lineRect.origin.x - content;
-    return rect;
 }
 
 @end

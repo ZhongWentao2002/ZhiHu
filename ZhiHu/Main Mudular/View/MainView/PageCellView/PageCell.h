@@ -9,15 +9,21 @@
  * 拥有titleLab，需要去判断行高
  * hintLab，显示作者信息
  * picture，显示图片
+ * 自己被选中后不显示任何东西
  *
  * Defualt状态，即加载不出来cell的状态，初始化时默认此状态
- * 链式创建，当得到了值过后，视图将有其他人决定
+ * 当得到了值过后，视图将有其他人决定
  * 外部将传递Story模型供封装使用
  */
 
 #import <UIKit/UIKit.h>
 
+#import "UIView+Frame.h"
+
 NS_ASSUME_NONNULL_BEGIN
+
+/**PageCell复用标识*/
+#define PageCellReuseIdentifier @"PageCell"
 
 #pragma mark - PageCellDelegate
 
@@ -50,15 +56,24 @@ NS_ASSUME_NONNULL_BEGIN
 /**代理*/
 @property (nonatomic, weak) id delegate;
 
-#pragma mark - 链式编程方法
+#pragma mark - 初始化方法
 
-#pragma mark 初始化
+/**创建复用池cell*/
++ (PageCell *)CreateReusableCell;
 
-/**init不可用，请用initWithStyle*/
-- (instancetype)init NS_UNAVAILABLE;
+#pragma mark - 赋值
 
-/**链式创建，如果有则直接拿，如果没有则创建，默认default状态*/
-+ (PageCell *(^)(UITableView *))ReusableCellFromSuperTableView;
+/**自定义title的文字*/
+- (PageCell *)TitleWithtext:(NSString *)str;
+
+/**title文字颜色，NO黑，YES灰*/
+- (PageCell *)isWatched:(BOOL)watched;
+
+/**自定义hint的文字*/
+- (PageCell *)HintWithtext:(NSString *)str;
+
+/**自定义picture*/
+- (PageCell *)PictureWithURLString:(NSString *)url;
 
 /**无数据状态
  * 这种状态将存在于 加载数据前 和 无限滚动加载数据前
@@ -69,39 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
  * hintlab显示空文本，灰色
  * backgroundColor
  */
-- (PageCell *(^)(void))Default;
-
-#pragma mark 根据传值设置数据
-
-/**自定义title的文字*/
-- (PageCell *(^)(NSString *text))Title_text;
-
-/**title文字颜色，0黑，1灰*/
-- (PageCell *(^)(NSInteger))Type_Integer;
-
-/**自定义hint的文字*/
-- (PageCell *(^)(NSString *text))Hint_text;
-
-/**自定义picture*/
-- (PageCell *(^)(NSString *url))Picture_URLString;
-
-
-@end
-
-#pragma mark - PageCell类扩展（封装）
-
-@interface PageCell (CGRect)
-
-#pragma mark - 被封装的基本CGRect
-
-/**title的Rect封装*/
-@property (nonatomic, readonly) CGRect titleRect;
-
-/**hint的Rect封装*/
-@property (nonatomic, readonly) CGRect hintRect;
-
-/**picture的Rect封装*/
-@property (nonatomic, readonly) CGRect pictureRect;
+- (PageCell *)Default;
 
 @end
 

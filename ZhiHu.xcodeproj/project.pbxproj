@@ -25,6 +25,7 @@
 		145A0FDA27923F79001D1CA3 /* NetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A0FD927923F79001D1CA3 /* NetTool.m */; };
 		145A0FDD279243E6001D1CA3 /* Story.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A0FDC279243E6001D1CA3 /* Story.m */; };
 		145A0FE02792C16C001D1CA3 /* DailyStories.m in Sources */ = {isa = PBXBuildFile; fileRef = 145A0FDF2792C16C001D1CA3 /* DailyStories.m */; };
+		1479CD2B27A27FEE00C8F9FC /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1479CD2A27A27FED00C8F9FC /* UIView+Frame.m */; };
 		1481A2D127990F6E00B6B4E8 /* Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481A2D027990F6E00B6B4E8 /* Extra.m */; };
 		1481A2D427992CBA00B6B4E8 /* ExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481A2D327992CBA00B6B4E8 /* ExtraView.m */; };
 		1481A2D62799482300B6B4E8 /* NewsImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1481A2D52799482300B6B4E8 /* NewsImage.xcassets */; };
@@ -73,6 +74,8 @@
 		145A0FDC279243E6001D1CA3 /* Story.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Story.m; sourceTree = "<group>"; };
 		145A0FDE2792C16C001D1CA3 /* DailyStories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DailyStories.h; sourceTree = "<group>"; };
 		145A0FDF2792C16C001D1CA3 /* DailyStories.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyStories.m; sourceTree = "<group>"; };
+		1479CD2927A27FED00C8F9FC /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		1479CD2A27A27FED00C8F9FC /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		1481A2CF27990F6E00B6B4E8 /* Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Extra.h; sourceTree = "<group>"; };
 		1481A2D027990F6E00B6B4E8 /* Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Extra.m; sourceTree = "<group>"; };
 		1481A2D227992CBA00B6B4E8 /* ExtraView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtraView.h; sourceTree = "<group>"; };
@@ -351,6 +354,7 @@
 				14314BA127985247001D71D0 /* News Mudular */,
 				14013873279BE95D006A1D8C /* User Mudular */,
 				142FB7262795D01B00FD001D /* NetTool */,
+				1479CD2C27A2A7AE00C8F9FC /* UIView+Frame */,
 				145A0FC5279234A1001D1CA3 /* Assets.xcassets */,
 				145A0FC7279234A1001D1CA3 /* LaunchScreen.storyboard */,
 				145A0FCA279234A1001D1CA3 /* Info.plist */,
@@ -393,6 +397,15 @@
 				1422CB8327970AFD00C0E206 /* NewsView.m */,
 			);
 			path = NewView;
+			sourceTree = "<group>";
+		};
+		1479CD2C27A2A7AE00C8F9FC /* UIView+Frame */ = {
+			isa = PBXGroup;
+			children = (
+				1479CD2927A27FED00C8F9FC /* UIView+Frame.h */,
+				1479CD2A27A27FED00C8F9FC /* UIView+Frame.m */,
+			);
+			path = "UIView+Frame";
 			sourceTree = "<group>";
 		};
 		A3CF346CF81C155FC07FE6E0 /* Pods */ = {
@@ -529,6 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1481A2D127990F6E00B6B4E8 /* Extra.m in Sources */,
+				1479CD2B27A27FEE00C8F9FC /* UIView+Frame.m in Sources */,
 				145A0FE02792C16C001D1CA3 /* DailyStories.m in Sources */,
 				1401386A279A640E006A1D8C /* PageControl.m in Sources */,
 				142FB7252795CD0B00FD001D /* SafeBarView.m in Sources */,

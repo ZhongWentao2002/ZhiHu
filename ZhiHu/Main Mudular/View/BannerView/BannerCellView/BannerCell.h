@@ -9,13 +9,13 @@
  * 每个cell装有图片
  * 拥有标题
  * 和作者
- * 可以通过链式赋值的方法
- * 优雅的形式传递数据
  */
 
 #import <UIKit/UIKit.h>
 
-#import <UIImageView+AFNetworking.h>
+#import "UIView+Frame.h"
+
+#define BannerCellReuseIdentifier @"BannerCell"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,13 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark 根据传值设置数据
 
 /**自定义title的文字*/
-- (BannerCell *(^)(NSString *text))Title_text;
+- (BannerCell *)TitleWithText:(NSString *)str;
 
 /**自定义hint的文字*/
-- (BannerCell *(^)(NSString *text))Hint_text;
+- (BannerCell *)HintWithText:(NSString *)strt;
 
 /**自定义picture*/
-- (BannerCell *(^)(NSString *url))Picture_URLString;
+- (BannerCell *)Picture_URLString:(NSString *)url;
 
 /**无数据状态
  * 这种状态将存在于 加载数据前 和 无限滚动加载数据前
@@ -52,24 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
  * hintlab显示空文本，灰色
  * backgroundColor
  */
-- (BannerCell *(^)(void))Default;
-
-@end
-
-#pragma mark - 被封装的
-
-@interface BannerCell (CGRect)
-
-#pragma mark - 被封装的基本CGRect
-
-/**title的Rect封装*/
-@property (nonatomic, readonly) CGRect titleRect;
-
-/**hint的Rect封装*/
-@property (nonatomic, readonly) CGRect hintRect;
-
-/**绘制内部控件*/
-- (BannerCell *(^)(CGRect))CellDrawRect;
+- (BannerCell *)Default;
 
 @end
 
