@@ -32,13 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 初始化方法
 
 /**类方法初始化*/
-+ (Extra *(^)(NSInteger))Create_withID_Integer;
-
-/**comments*/
-- (Extra *(^)(NSInteger))Comments_Integer;
-
-/**popularity*/
-- (Extra *(^)(NSInteger))Popularity_Integer;
++ (Extra *)CreateWithID:(NSInteger)ID;
 
 /**得到网络请求*/
 - (void)getExtra:(void(^)(void))load;

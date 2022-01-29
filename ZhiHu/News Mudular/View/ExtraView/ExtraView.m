@@ -161,22 +161,18 @@
     return _popularNumLab;
 }
 
-#pragma mark - 链式
+#pragma mark - 数字赋值
 
 /**comment数字*/
-- (ExtraView *(^)(NSInteger)) CommentNum_Integer{
-    return ^ExtraView *(NSInteger com){
-        self.commentNumLab.text = [NSString stringWithFormat:@"%ld", com];
-        return self;
-    };
+- (ExtraView *) CommentWithNum:(NSInteger)com {
+    self.commentNumLab.text = [NSString stringWithFormat:@"%ld", com];
+    return self;
 }
 
 /**popular数字*/
-- (ExtraView *(^)(NSInteger)) PopularNum_Integer{
-    return ^ExtraView *(NSInteger pop){
-        self.popularNumLab.text = [NSString stringWithFormat:@"%ld", pop];
-        return self;
-    };
+- (ExtraView *) PopularWithNum:(NSInteger)pop {
+    self.popularNumLab.text = [NSString stringWithFormat:@"%ld", pop];
+    return self;
 }
 
 @end

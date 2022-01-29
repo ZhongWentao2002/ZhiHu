@@ -43,14 +43,15 @@
 
 #pragma mark - 初始化方法
 
+/**根据传进来的id和url赋值*/
 - (instancetype)initWithID:(NSInteger)ID URL:(NSString * _Nullable )url{
     self = [super init];
     if (self) {
         NSLog(@"\n%@ - %s", [self class], __func__);
         
-        self.newsSourse = News.Create_withID(ID).URL_URLString(url);
+        self.newsSourse = [News CreateWithID:ID];
         
-        self.extraSourse = Extra.Create_withID_Integer(ID);
+        self.extraSourse = [Extra CreateWithID:ID];
     }
     return self;
 }
@@ -78,6 +79,7 @@
     NSLog(@"\n%@ - %s", [self class], __func__);
     
     [self.view addSubview:self.extraView];
+    
     [self.view addSubview:self.webView];
 }
 
@@ -89,9 +91,9 @@
     [self.extraSourse
      getExtra:^{
         //得到数据
-        self.extraView
-            .CommentNum_Integer(self.extraSourse.comments)
-            .PopularNum_Integer(self.extraSourse.popularity);
+        [[self.extraView
+          CommentWithNum:self.extraSourse.comments]
+         PopularWithNum:self.extraSourse.popularity];
     }];
     
     [self.newsSourse

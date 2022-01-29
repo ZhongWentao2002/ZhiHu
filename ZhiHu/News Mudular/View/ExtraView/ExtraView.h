@@ -79,13 +79,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**点赞数*/
 @property (nonatomic, strong) UILabel *popularNumLab;
 
-#pragma mark - 链式
+#pragma mark - 赋值方法
 
 /**comment数字*/
-- (ExtraView *(^)(NSInteger)) CommentNum_Integer;
+- (ExtraView *) CommentWithNum:(NSInteger)com;
 
 /**popular数字*/
-- (ExtraView *(^)(NSInteger)) PopularNum_Integer;
+- (ExtraView *) PopularWithNum:(NSInteger)pop;
 
 @end
 

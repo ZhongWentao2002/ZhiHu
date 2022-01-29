@@ -53,28 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 链式
 
 /**Create操作*/
-+ (News *(^)(NSInteger))Create_withID;
-
-/**body赋值*/
-- (News *(^)(NSString *))Body_HTTPString;
-
-/**css赋值*/
-- (News *(^)(NSArray *))CSS_URLArray;
-
-/**image赋值*/
-- (News *(^)(NSString *))Image_URLString;
-
-/**image_hue赋值*/
-- (News *(^)(NSString *))Image_hue_String;
-
-/**js赋值*/
-- (News *(^)(NSArray *))JS_URLArray;
-
-/**title赋值*/
-- (News *(^)(NSString *))Title_String;
-
-/**url赋值*/
-- (News *(^)(NSString *))URL_URLString;
++ (News *)CreateWithID:(NSInteger)ID;
 
 #pragma mark - 方法
 

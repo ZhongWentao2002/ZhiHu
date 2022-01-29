@@ -28,12 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**代理，关键时候得到push对象*/
 @property (nonatomic, weak) UIViewController <LoadDelegate> *delegate;
 
-/**init不可用，请使用Create_withDelegate*/
-- (instancetype)init __attribute__((unavailable("请使用Create_withDelegate()")));
-
-/**链式创建方法*/
-+ (UserViewController *(^)(UIViewController <LoadDelegate> *))Create_withDelegate;
-
 /**获取基本数据，是否登录*/
 + (NSString *)HeadImageName;
 

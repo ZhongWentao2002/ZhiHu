@@ -40,15 +40,6 @@
     return self;
 }
 
-/**链式创建方法*/
-+ (UserViewController *(^)(UIViewController <LoadDelegate> *))Create_withDelegate{
-    return ^UserViewController *(UIViewController <LoadDelegate> * t){
-        UserViewController *vc = [[UserViewController alloc] init];
-        vc.delegate = t;
-        return vc;
-    };
-}
-
 #pragma mark - 生命周期
 
 /**加载视图*/

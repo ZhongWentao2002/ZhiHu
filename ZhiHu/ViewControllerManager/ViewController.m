@@ -18,8 +18,9 @@
 
 /**跳转到用户页*/
 - (UIViewController *)MainVC_pushedForTapHeadView{
-    return UserViewController
-            .Create_withDelegate(self);
+    UserViewController *userVC = [[UserViewController alloc] init];
+    userVC.delegate = self;
+    return userVC;
 }
 
 /**得到单击了Banner的push页面，传出id和url*/
