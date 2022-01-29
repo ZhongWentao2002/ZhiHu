@@ -137,12 +137,6 @@
     return self.frame.origin.y + self.frame.size.height;
 }
 
-@end
-
-#pragma mark - Layout扩展
-
-@implementation UIView (Layout)
-
 // left (frame.origin.x)
 
 - (void)setLeft:(CGFloat)left {
@@ -164,29 +158,52 @@
 }
 
 
+@end
+
+#pragma mark - Stretch扩展
+
+@implementation UIView (Stretch)
+
 /**距离左边某点(x,0)多少距离*/
-- (UIView *)Left_toPointX:(CGFloat)left Set_offset:(CGFloat)leftSpace {
+- (UIView *)Left_toPointX:(CGFloat)left offset:(CGFloat)leftSpace {
     self.width -= leftSpace;
     self.x = left + leftSpace;
     return self;
 }
 
 /**距离上面某点(0,x)多少距离*/
-- (UIView *)Top_toPointY:(CGFloat)top Set_offset:(CGFloat)topSpace {
+- (UIView *)Top_toPointY:(CGFloat)top offset:(CGFloat)topSpace {
     self.height -= topSpace;
     self.y = top + topSpace;
     return self;
 }
 
 /**距离右边某点(x,0)多少距离*/
-- (UIView *)Right_toPointX:(CGFloat)right Set_offset:(CGFloat)rightSpace {
+- (UIView *)Right_toPointX:(CGFloat)right offset:(CGFloat)rightSpace {
     self.width = right - self.x - rightSpace;
     return self;
 }
 
 /**距离底部某点(0,x)多少距离*/
-- (UIView *)Bottom_toPointY:(CGFloat)bottom Set_offset:(CGFloat)bottomSpace {
+- (UIView *)Bottom_toPointY:(CGFloat)bottom offset:(CGFloat)bottomSpace {
     self.height = bottom - self.y - bottomSpace;
+    return self;
+}
+
+/**总共的方法*/
+- (UIView *)Edge:(EdgeSide)edge toPointP:(CGFloat)p offset:(CGFloat)offset {
+    if (edge & EdgeSideTop) {
+        [self Top_toPointY:p offset:offset];
+    }
+    if (edge & EdgeSideLeft) {
+        [self Left_toPointX:p offset:offset];
+    }
+    if (edge & EdgeSideRight) {
+        [self Right_toPointX:p offset:offset];
+    }
+    if (edge & EdgeSideBottom) {
+        [self Bottom_toPointY:p offset:offset];
+    }
     return self;
 }
 

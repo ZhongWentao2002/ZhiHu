@@ -6,23 +6,36 @@
 //
 
 /**<UIView+Frame.h>
- * 已将MianScreen的可用属性用define表示
- *
- * 将类扩展UIView的Frame
- * 快速取值和赋值
- *
- * 布局将采用Windows拉伸方法
- *
+ * 将所有可能用到的Frame计算方式都写在这里
+ * 不断的更新计算的方式和需求
+ * Stretch将采用拉伸布局
  */
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**全屏的define类型*/
 #define MainScreenWidth [UIScreen mainScreen].bounds.size.width
 #define MainScreenHeight [UIScreen mainScreen].bounds.size.height
 
+/**刘海的define类型*/
 #define StatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 
-NS_ASSUME_NONNULL_BEGIN
+/**父控件的define类型*/
+#define SuperTop 0
+#define SuprLeft 0
+#define SuperRight width
+#define SuperBottom height
+
+/**枚举对其的方向*/
+typedef NS_OPTIONS(NSUInteger, EdgeSide) {
+    EdgeSideLeft = 1 << 0,
+    EdgeSideTop = 1 << 1,
+    EdgeSideRight = 1 << 2,
+    EdgeSideBottom = 1 << 3
+};
+
 
 #pragma mark - Frame扩展
 
@@ -64,6 +77,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 // other
 
+/**frame.origin.x*/
+@property (nonatomic) CGFloat left;
+
+/**frame.origin.y*/
+@property (nonatomic) CGFloat top;
+
 /**frame.origin.x + frame.size.width*/
 @property (nonatomic) CGFloat right;
 
@@ -72,34 +91,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-#pragma mark - Layout扩展
+#pragma mark - Stretch扩展
 
-/**Layout扩展
+/**Stretch扩展
+ * 在同一父控件下，采用
+ * 不可以使用自己的父控件Point值
  * 将按照Widows拉伸方法
- * 所有的操作将对此UIView本身Frame作用
+ * 例：LeftTo将向左拉伸到某点的右边offset距离
  * 并不会自动改变大小或睁开控件
  * 返回值返回自己，可以实现伪链式
  */
 
-@interface UIView (Layout)
-
-/**frame.origin.x*/
-@property (nonatomic) CGFloat left;
-
-/**frame.origin.y*/
-@property (nonatomic) CGFloat top;
+@interface UIView (Stretch)
 
 /**距离左边某点(x,0)多少距离*/
-- (UIView *)Left_toPointX:(CGFloat)left Set_offset:(CGFloat)leftSpace;
+- (UIView *)Left_toPointX:(CGFloat)left offset:(CGFloat)leftSpace;
 
 /**距离上面某点(0,y)多少距离*/
-- (UIView *)Top_toPointY:(CGFloat)top Set_offset:(CGFloat)topSpace;
+- (UIView *)Top_toPointY:(CGFloat)top offset:(CGFloat)topSpace;
 
 /**距离右边某点(x,0)多少距离*/
-- (UIView *)Right_toPointX:(CGFloat)right Set_offset:(CGFloat)rightSpace;
+- (UIView *)Right_toPointX:(CGFloat)right offset:(CGFloat)rightSpace;
 
 /**距离底部某点(0,y)多少距离*/
-- (UIView *)Bottom_toPointY:(CGFloat)bottom Set_offset:(CGFloat)bottomSpace;
+- (UIView *)Bottom_toPointY:(CGFloat)bottom offset:(CGFloat)bottomSpace;
+
+/**总共的方法*/
+- (UIView *)Edge:(EdgeSide)edge toPointP:(CGFloat)p offset:(CGFloat)offset;
 
 @end
 

@@ -65,7 +65,7 @@
         _hintLab.x = 15;
         _hintLab.height = 40;
         _hintLab.bottom = self.contentView.bottom - 15;
-        [_hintLab Right_toPointX:self.contentView.width Set_offset:15];
+        [_hintLab Right_toPointX:self.contentView.width offset:15];
     }
     return _hintLab;
 }

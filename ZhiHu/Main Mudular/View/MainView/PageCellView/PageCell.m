@@ -172,9 +172,9 @@
         _titleLab.backgroundColor = [UIColor darkGrayColor];
         
         [[[_titleLab
-         Left_toPointX:self.left Set_offset:15]
-         Right_toPointX:self.pictureView.left Set_offset:15]
-         Top_toPointY:self.pictureView.top Set_offset:0];
+         Left_toPointX:self.left offset:15]
+         Right_toPointX:self.pictureView.left offset:15]
+         Top_toPointY:self.pictureView.top offset:0];
         _titleLab.height = 70;
     }
     return _titleLab;
@@ -189,7 +189,7 @@
         _hintLab.font = [UIFont systemFontOfSize:16];
         _hintLab.backgroundColor = [UIColor grayColor];
         
-        [_hintLab Top_toPointY:self.titleLab.bottom Set_offset:10];
+        [_hintLab Top_toPointY:self.titleLab.bottom offset:10];
         _hintLab.x = self.titleLab.x;
         _hintLab.width = self.titleLab.width;
         _hintLab.height = 30;

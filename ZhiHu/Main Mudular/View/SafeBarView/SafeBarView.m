@@ -53,8 +53,8 @@
         
         _todayView.top = StatusBarHeight;
         [[_todayView
-         Bottom_toPointY:self.bottom Set_offset:5]
-         Left_toPointX:self.left Set_offset:15];
+         Bottom_toPointY:self.bottom offset:5]
+         Left_toPointX:self.left offset:15];
         _todayView.width = _todayView.height;
         
         [_todayView addSubview:self.dayLab];
@@ -94,6 +94,7 @@
         _monthLab.userInteractionEnabled = NO;
         
         _monthLab.top = self.dayLab.bottom;
+        [_monthLab Bottom_toPointY:self.todayView.SuperBottom offset:0];
         //找日期
         NSDate *date =[NSDate date];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -157,8 +158,8 @@
         _titleLab = [[UILabel alloc] init];
         
         [[_titleLab
-         Left_toPointX:self.line.right Set_offset:10]
-         Right_toPointX:self.headImgView.left Set_offset:10];
+         Left_toPointX:self.line.right offset:10]
+         Right_toPointX:self.headImgView.left offset:10];
         _titleLab.top = self.todayView.top;
         _titleLab.height = self.todayView.height;
         
