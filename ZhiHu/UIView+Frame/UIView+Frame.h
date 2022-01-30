@@ -22,12 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**刘海的define类型*/
 #define StatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 
-/**父控件的define类型*/
-#define SuperTop 0
-#define SuprLeft 0
-#define SuperRight width
-#define SuperBottom height
-
 /**枚举对其的方向*/
 typedef NS_OPTIONS(NSUInteger, EdgeSide) {
     EdgeSideLeft = 1 << 0,
@@ -103,6 +97,22 @@ typedef NS_OPTIONS(NSUInteger, EdgeSide) {
  */
 
 @interface UIView (Stretch)
+
+// Super
+
+/**父控件的顶部：0*/
+@property (nonatomic, readonly) CGFloat SuperTop;
+
+/**父控件的左边：0*/
+@property (nonatomic, readonly) CGFloat SuperLeft;
+
+/**父控件的右边：width*/
+@property (nonatomic, readonly) CGFloat SuperRight;
+
+/**父控件的底部：height*/
+@property (nonatomic, readonly) CGFloat SuperBottom;
+
+// Layout
 
 /**距离左边某点(x,0)多少距离*/
 - (UIView *)Left_toPointX:(CGFloat)left offset:(CGFloat)leftSpace;

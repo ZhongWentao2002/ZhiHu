@@ -164,6 +164,30 @@
 
 @implementation UIView (Stretch)
 
+#pragma mark Super
+
+/**父控件的顶部*/
+- (CGFloat)SuperTop {
+    return 0;
+}
+
+/**父控件的左边*/
+- (CGFloat)SuperLeft {
+    return 0;
+}
+
+/**父控件的右边*/
+- (CGFloat)SuperRight {
+    return self.width;
+}
+
+/**父控件的底部*/
+- (CGFloat)SuperBottom{
+    return self.height;
+}
+
+#pragma mark Layout
+
 /**距离左边某点(x,0)多少距离*/
 - (UIView *)Left_toPointX:(CGFloat)left offset:(CGFloat)leftSpace {
     self.width -= leftSpace;

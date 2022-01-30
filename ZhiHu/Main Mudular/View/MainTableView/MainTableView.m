@@ -40,9 +40,9 @@
     if (self) {
         /**将UITableView代理给自己*/
         self.delegate = self;
-        /**不显示横条*/
-        self.showsVerticalScrollIndicator = NO;
         /**不显示竖条*/
+        self.showsVerticalScrollIndicator = NO;
+        /**不显示横条*/
         self.showsHorizontalScrollIndicator = NO;
         /**不显示cell间线*/
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
