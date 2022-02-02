@@ -12,6 +12,7 @@
 		14013870279BB252006A1D8C /* UserTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1401386F279BB252006A1D8C /* UserTopView.m */; };
 		14013876279C53A3006A1D8C /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14013875279C53A3006A1D8C /* UserView.m */; };
 		1419CE2C27A6848B009762E8 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1419CE2B27A6848B009762E8 /* UIView+Frame.m */; };
+		1419CE2F27A8FE07009762E8 /* ZhiHuPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1419CE2E27A8FE07009762E8 /* ZhiHuPage.m */; };
 		1422CB8427970AFD00C0E206 /* NewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422CB8327970AFD00C0E206 /* NewsView.m */; };
 		142FB71C27955F0E00FD001D /* BannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71B27955F0E00FD001D /* BannerView.m */; };
 		142FB71F2795682F00FD001D /* BannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FB71E2795682F00FD001D /* BannerCell.m */; };
@@ -49,6 +50,8 @@
 		14013875279C53A3006A1D8C /* UserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		1419CE2A27A6848B009762E8 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		1419CE2B27A6848B009762E8 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		1419CE2D27A8FE07009762E8 /* ZhiHuPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhiHuPage.h; sourceTree = "<group>"; };
+		1419CE2E27A8FE07009762E8 /* ZhiHuPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhiHuPage.m; sourceTree = "<group>"; };
 		1422CB8227970AFD00C0E206 /* NewsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsView.h; sourceTree = "<group>"; };
 		1422CB8327970AFD00C0E206 /* NewsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsView.m; sourceTree = "<group>"; };
 		142FB71A27955F0E00FD001D /* BannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerView.h; sourceTree = "<group>"; };
@@ -111,6 +114,8 @@
 		1401386B279AC35C006A1D8C /* PageControl */ = {
 			isa = PBXGroup;
 			children = (
+				1419CE2D27A8FE07009762E8 /* ZhiHuPage.h */,
+				1419CE2E27A8FE07009762E8 /* ZhiHuPage.m */,
 				14013868279A640E006A1D8C /* PageControl.h */,
 				14013869279A640E006A1D8C /* PageControl.m */,
 			);
@@ -544,6 +549,7 @@
 				1481A2D127990F6E00B6B4E8 /* Extra.m in Sources */,
 				1419CE2C27A6848B009762E8 /* UIView+Frame.m in Sources */,
 				145A0FE02792C16C001D1CA3 /* DailyStories.m in Sources */,
+				1419CE2F27A8FE07009762E8 /* ZhiHuPage.m in Sources */,
 				1401386A279A640E006A1D8C /* PageControl.m in Sources */,
 				142FB7252795CD0B00FD001D /* SafeBarView.m in Sources */,
 				145A0FC1279234A0001D1CA3 /* ViewController.m in Sources */,
