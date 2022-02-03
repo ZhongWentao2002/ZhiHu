@@ -113,8 +113,55 @@
     }];
 }
 
+//日期，个数，@{@"1":@story1,...};
+
+/**传当天时间，如果找到了则返回*/
+- (void)requestStoriesBeforeDate:(NSString *)date
+       successWithDailyStories:(void (^)(DailyStories *aStories))success
+          getStoriesSaveToFile:(DailyStories * _Nonnull(^)(NSString *getDate))notFound {
+    // 1.得到要找的路径
+    NSString *caches = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+    NSString *dateFile = [caches stringByAppendingPathComponent:date];
+    // 2.寻找路径
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL hadFile = [fileManager fileExistsAtPath:dateFile];
+    // 3.1.成功则反序列化回掉
+    if (hadFile) {
+        // 准备数据
+        NSMutableData *data = [NSMutableData data];
+        NSKeyedUnarchiver *unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        // 取得数据
+        NSMutableArray <Story *> *ma = [[NSMutableArray alloc] init];
+        NSInteger count = [unArchiver decodeIntegerForKey:@"number"];
+        for (NSInteger i = 0; i < count; i++) {
+            Story *aStory = [unArchiver decodeObjectOfClass:[Story class] forKey:[NSString stringWithFormat:@"%ld", i]];
+            [ma addObject:aStory];
+        }
+        [unArchiver finishDecoding];
+        // 赋值数据
+        DailyStories *aDaily = [[DailyStories alloc] init];
+        aDaily.date = date;
+        aDaily.stories = [ma copy];
+        // 回掉数据
+        success(aDaily);
+    }
+    // 3.2.不成功则先网络请求，返回自己后保存至文档
+    else {
+        // 准备数据
+        NSMutableData *data = [NSMutableData data];
+        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        // 取得数据
+        NSDate *date = [[NSDate alloc] init];
+        NSDateFormatter *a;
+        
+//        DailyStories *theStories =
+    }
+}
+
 - (void)encodeCell {
     NSString *caches = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     
     NSMutableData *data = [NSMutableData data];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];

@@ -74,8 +74,8 @@
         NSDate *date =[NSDate date];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         /**日期*/
-        [formatter setDateFormat:@"dd"];
-        NSString *day = [NSString stringWithFormat:@"%ld",[[formatter stringFromDate:date] integerValue]];
+        [formatter setDateFormat:@"d"];
+        NSString *day = [formatter stringFromDate:date];
         _dayLab.text = [NSString stringWithFormat:@"%@", day];
         
         _dayLab.width = self.todayView.width;
@@ -99,20 +99,44 @@
         NSDate *date =[NSDate date];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         /**日期*/
-        [formatter setDateFormat:@"MM"];
+        [formatter setDateFormat:@"M"];
         NSString *month = [self monthTransform:[[formatter stringFromDate:date] integerValue]];
-        _monthLab.text = [NSString stringWithFormat:@"%@", month];
+        _monthLab.text = [NSString stringWithFormat:@"%@月", month];
     }
     return _monthLab;
 }
 
 /**将数字转文字*月*/
 - (NSString *)monthTransform:(NSInteger)month{
-    NSArray *arabicNumeralsArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12"];
-    NSArray *chineseNumeralsArray = @[@"一月",@"二月",@"三月",@"四月",@"五月",@"六月",@"七月",@"八月",@"九月",@"十月",@"十一月",@"十二月"];
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:chineseNumeralsArray forKeys:arabicNumeralsArray];
-    NSString *chinese = [dictionary objectForKey:[NSString stringWithFormat:@"%ld", month]];
-    return chinese;
+    switch (month) {
+        case 1:
+            return @"一";
+        case 2:
+            return @"二";
+        case 3:
+            return @"三";
+        case 4:
+            return @"四";
+        case 5:
+            return @"五";
+        case 6:
+            return @"六";
+        case 7:
+            return @"七";
+        case 8:
+            return @"八";
+        case 9:
+            return @"九";
+        case 10:
+            return @"十";
+        case 11:
+            return @"十一";
+        case 12:
+            return @"十二";
+        default:
+            return nil;
+    }
+    return nil;
 }
 
 /**线*/
