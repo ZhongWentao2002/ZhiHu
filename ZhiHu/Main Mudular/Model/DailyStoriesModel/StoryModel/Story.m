@@ -64,4 +64,31 @@
     return self;
 }
 
+#pragma mark - <NSCoding>
+
+/**归档*/
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeObject:self.title forKey:@"title"];
+    [coder encodeObject:self.hint forKey:@"hint"];
+    [coder encodeObject:self.image forKey:@"image"];
+    
+    [coder encodeObject:self.image_hue forKey:@"image_hue"];
+    [coder encodeInteger:self.ID forKey:@"id"];
+    [coder encodeObject:self.url forKey:@"url"];
+    [coder encodeBool:self.watched forKey:@"watched"];
+}
+
+/**解档*/
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+    self.title = [coder decodeObjectForKey:@"title"];
+    self.hint = [coder decodeObjectForKey:@"hint"];
+    self.image = [coder decodeObjectForKey:@"image"];
+    
+    self.image_hue = [coder decodeObjectForKey:@"image_hue"];
+    self.ID = [coder decodeIntegerForKey:@"id"];
+    self.url = [coder decodeObjectForKey:@"url"];
+    self.watched = [coder decodeBoolForKey:@"watched"];
+    return self;
+}
+
 @end

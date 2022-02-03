@@ -113,4 +113,18 @@
     }];
 }
 
+- (void)encodeCell {
+    NSString *caches = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+    
+    NSMutableData *data = [NSMutableData data];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:self.date forKey:self.date];
+    NSInteger count = self.stories.count;
+    for (NSInteger i = 0; i < count; i++) {
+        Story *aStory = self.stories[i];
+        [archiver encodeObject:aStory forKey:[NSString stringWithFormat:@"%ld", i]];
+    }
+    [archiver finishEncoding];
+    [data writeToFile:caches atomically:YES];
+}
 @end

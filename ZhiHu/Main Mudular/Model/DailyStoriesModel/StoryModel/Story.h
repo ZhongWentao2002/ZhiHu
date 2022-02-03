@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Story属性
 
 @interface Story : NSObject
+<NSCoding>
 
 #pragma mark 基本数据属性
 
